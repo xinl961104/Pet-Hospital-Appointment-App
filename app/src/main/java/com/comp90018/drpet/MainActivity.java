@@ -9,7 +9,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     public void goToDoctor(View view) {
-        Intent intent = new Intent(getApplicationContext(), DoctorActivity.class);
+//        Intent intent = new Intent(getApplicationContext(), DoctorActivity.class);
+        Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
         startActivity(intent);
     }
 
