@@ -1,8 +1,11 @@
 package com.comp90018.drpet;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,9 +14,16 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
+
+    Map<String, LatLng> hostpitals = new HashMap<>();
+//    Map<String, Map<String,LatLng>> hostpitals = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +50,27 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-37, 144);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Melbourne"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng melbourne = new LatLng(-37.81, 144.96);
+        mMap.addMarker(new MarkerOptions().position(melbourne).title("Marker in Melbourne"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
+
+
+        hostpitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
+
+        for (String hospital : hostpitals.keySet()){
+            LatLng vet = hostpitals.get(hospital);
+            mMap.addMarker(new MarkerOptions().position(vet).title(hospital)).showInfoWindow();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(vet));
+        }
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
     }
 }
