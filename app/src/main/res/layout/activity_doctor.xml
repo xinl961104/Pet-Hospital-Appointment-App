@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="232dp">
 
         <TextView
-            android:id="@+id/HospitalTextView"
+            android:id="@+id/hospitalTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"

@@ -64,7 +64,8 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         mapViewPager = findViewById(R.id.mapViewPager);
 
-        mAdapter = new HospitalAdapter(hospitalsList);
+        mAdapter = new HospitalAdapter(hospitalsList, this);
+
         mapViewPager.setAdapter(mAdapter);
 
         mapViewPager.setOrientation(androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL);

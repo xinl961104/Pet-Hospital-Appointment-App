@@ -25,10 +25,9 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/choosebutton"
+            android:id="@+id/chooseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="chooseClicked"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Choose"

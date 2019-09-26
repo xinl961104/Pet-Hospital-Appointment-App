@@ -1,9 +1,13 @@
 package com.comp90018.drpet;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,22 +20,27 @@ import java.util.Set;
 
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.PlacesViewHolder> {
 
+    private Activity activity;
+    private ArrayList<String> hospitals;
+
     public class PlacesViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        public TextView hospitalNameTextView;
+        public Button chooseButton;
+
 
         PlacesViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.hospitalNameTextView);
+            hospitalNameTextView = itemView.findViewById(R.id.hospitalNameTextView);
+            chooseButton = itemView.findViewById(R.id.chooseButton);
         }
 
     }
 
-    private ArrayList<String> hospitals;
 
-    public HospitalAdapter(ArrayList<String> hospitals) {
-
+    public HospitalAdapter(ArrayList<String> hospitals, Activity activity) {
         this.hospitals = hospitals;
+        this.activity = activity;
     }
 
     @Override
@@ -46,10 +55,17 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
     }
 
     @Override
-    public void onBindViewHolder(PlacesViewHolder holder, int position) {
+    public void onBindViewHolder(final PlacesViewHolder holder, int position) {
         String place = hospitals.get(position);
+        holder.hospitalNameTextView.setText(place);
 
-        holder.textView.setText(place);
+        holder.chooseButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, DoctorActivity.class);
+                intent.putExtra("hospitalName", holder.hospitalNameTextView.getText());
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
