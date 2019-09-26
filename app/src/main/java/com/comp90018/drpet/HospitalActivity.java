@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,8 +33,11 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     private GoogleMap mMap;
 
     private RecyclerView mapRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
-    Map<String, LatLng> hostpitals = new HashMap<>();
+    ArrayList<String> hospitalsList;
+    Map<String, LatLng> hostpitals;
 //    Map<String, Map<String,LatLng>> hostpitals = new HashMap<>();
 
     @Override
@@ -42,7 +49,42 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        hostpitals = new HashMap<>();
+
+        // add a dummy hospital
+        hostpitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
+        hostpitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
+        hostpitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
+
+        hospitalsList = new ArrayList<>(hostpitals.keySet());
+
         mapRecyclerView = findViewById(R.id.mapRecyclerView);
+        mapRecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mapRecyclerView.setLayoutManager(layoutManager);
+
+        SnapHelper mSnapHelper = new PagerSnapHelper();
+        mSnapHelper.attachToRecyclerView(mapRecyclerView);
+
+        // specify an adapter (see also next example)
+        mAdapter = new HospitalAdapter(hospitalsList);
+        mapRecyclerView.setAdapter(mAdapter);
+        mapRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mapRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+//                Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+//                intent.putExtra("hospitalID", position);
+//                startActivity(intent);
+                Log.d("Name", "onItemClick: Done!");
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+                // ...
+            }
+        }));
     }
 
 
@@ -61,11 +103,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         // Add a marker in Sydney and move the camera
         LatLng melbourne = new LatLng(-37.81, 144.96);
-        mMap.addMarker(new MarkerOptions().position(melbourne).title("Marker in Melbourne"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
-
-        // add a dummy hospital
-        hostpitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
 
         for (String hospital : hostpitals.keySet()) {
             LatLng vet = hostpitals.get(hospital);
@@ -79,10 +117,12 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-//                int position = (int)(marker.getTag());
                 mapRecyclerView.setVisibility(View.VISIBLE);
                 Log.d("Marker", "Clicked!");
-                //Using position get Value from arraylist
+                String chosenMarker = marker.getTitle();
+                // Using chosenMarker get position from arraylist
+                int position = hospitalsList.indexOf(chosenMarker);
+                mapRecyclerView.scrollToPosition(position);
                 return false;
             }
         });
