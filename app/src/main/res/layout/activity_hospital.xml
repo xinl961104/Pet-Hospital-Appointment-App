@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -15,7 +15,7 @@
         tools:context=".HospitalActivity" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/map_recyclerView"
+        android:id="@+id/mapRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal|bottom"

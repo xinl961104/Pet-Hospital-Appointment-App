@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,15 +17,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
+public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private RecyclerView mapRecyclerView;
 
     Map<String, LatLng> hostpitals = new HashMap<>();
 //    Map<String, Map<String,LatLng>> hostpitals = new HashMap<>();
@@ -37,6 +41,8 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        mapRecyclerView = findViewById(R.id.mapRecyclerView);
     }
 
 
@@ -58,49 +64,43 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap.addMarker(new MarkerOptions().position(melbourne).title("Marker in Melbourne"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
 
-
+        // add a dummy hospital
         hostpitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
 
-        for (String hospital : hostpitals.keySet()){
+        for (String hospital : hostpitals.keySet()) {
             LatLng vet = hostpitals.get(hospital);
-            mMap.addMarker(new MarkerOptions().position(vet).title(hospital)).showInfoWindow();
+            mMap.addMarker(new MarkerOptions()
+                    .position(vet)
+                    .title(hospital)).showInfoWindow();
             mMap.moveCamera(CameraUpdateFactory.newLatLng(vet));
         }
+
+        // marker click function
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+//                int position = (int)(marker.getTag());
+                mapRecyclerView.setVisibility(View.VISIBLE);
+                Log.d("Marker", "Clicked!");
+                //Using position get Value from arraylist
+                return false;
+            }
+        });
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                mapRecyclerView.setVisibility(View.GONE);
+                Log.d("Map", "Short Clicked!");
+            }
+        });
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                Log.d("Map", "Long Clicked!");
+            }
+        });
     }
 
-    @Override
-    public void onMapClick(LatLng latLng) {
-
-    }
-
-    @Override
-    public void onMapLongClick(LatLng latLng) {
-
-    }
 }
-
-//public class MapFragment extends Fragment {
-//
-//    public MapFragment() {
-//    }
-//
-//    public static MapFragment newInstance() {
-//        return new MapFragment();
-//    }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater,
-//                             @Nullable ViewGroup container,
-//                             @Nullable Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_map, container, false);
-//
-//        initViews(view);
-//
-//        return view;
-//    }
-//
-//    private void initViews(View view) {
-//        // TODO: Init views.
-//    }
-//}
