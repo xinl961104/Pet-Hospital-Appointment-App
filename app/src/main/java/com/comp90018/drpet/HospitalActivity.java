@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     private GoogleMap mMap;
 
+    private ViewPager2 mapViewPager;
     private RecyclerView mapRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -58,33 +60,49 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         hospitalsList = new ArrayList<>(hostpitals.keySet());
 
-        mapRecyclerView = findViewById(R.id.mapRecyclerView);
-        mapRecyclerView.setHasFixedSize(true);
+        // *************************** Use ViewPager *************************
 
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mapRecyclerView.setLayoutManager(layoutManager);
+        mapViewPager = findViewById(R.id.mapViewPager);
 
-        SnapHelper mSnapHelper = new PagerSnapHelper();
-        mSnapHelper.attachToRecyclerView(mapRecyclerView);
-
-        // specify an adapter (see also next example)
         mAdapter = new HospitalAdapter(hospitalsList);
-        mapRecyclerView.setAdapter(mAdapter);
-        mapRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mapRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
-//                intent.putExtra("hospitalID", position);
-//                startActivity(intent);
-                Log.d("Name", "onItemClick: Done!");
-            }
+        mapViewPager.setAdapter(mAdapter);
 
+        mapViewPager.setOrientation(androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL);
+        mapViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onItemLongClick(View view, int position) {
-                // ...
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
             }
-        }));
+        });
+
+        // *************************** Use RecyclerView *************************
+//        mapRecyclerView = findViewById(R.id.mapRecyclerView);
+//        mapRecyclerView.setHasFixedSize(true);
+//
+//        // use a linear layout manager
+//        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+//        mapRecyclerView.setLayoutManager(layoutManager);
+//
+//        SnapHelper mSnapHelper = new PagerSnapHelper();
+//        mSnapHelper.attachToRecyclerView(mapRecyclerView);
+//
+//        // specify an adapter (see also next example)
+//        mAdapter = new HospitalAdapter(hospitalsList);
+//        mapRecyclerView.setAdapter(mAdapter);
+//        mapRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mapRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+////                Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+////                intent.putExtra("hospitalID", position);
+////                startActivity(intent);
+//                Log.d("Name", "onItemClick: Done!");
+//            }
+//
+//            @Override
+//            public void onItemLongClick(View view, int position) {
+//                // ...
+//            }
+//        }));
     }
 
 
@@ -117,12 +135,16 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                mapRecyclerView.setVisibility(View.VISIBLE);
-                Log.d("Marker", "Clicked!");
+//                mapRecyclerView.setVisibility(View.VISIBLE);
+//                Log.d("Marker", "Clicked!");
+//                String chosenMarker = marker.getTitle();
+//                // Using chosenMarker get position from arraylist
+//                int position = hospitalsList.indexOf(chosenMarker);
+//                mapRecyclerView.smoothScrollToPosition(position);
+                mapViewPager.setVisibility(View.VISIBLE);
                 String chosenMarker = marker.getTitle();
-                // Using chosenMarker get position from arraylist
-                int position = hospitalsList.indexOf(chosenMarker);
-                mapRecyclerView.scrollToPosition(position);
+                int page = hospitalsList.indexOf(chosenMarker);
+                mapViewPager.setCurrentItem(page, true);
                 return false;
             }
         });
@@ -130,7 +152,8 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                mapRecyclerView.setVisibility(View.GONE);
+//                mapRecyclerView.setVisibility(View.GONE);
+                mapViewPager.setVisibility(View.GONE);
                 Log.d("Map", "Short Clicked!");
             }
         });
