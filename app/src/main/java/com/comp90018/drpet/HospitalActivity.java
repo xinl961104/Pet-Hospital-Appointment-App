@@ -1,21 +1,12 @@
 package com.comp90018.drpet;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,9 +29,10 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    ArrayList<String> hospitalsList;
-    Map<String, LatLng> hostpitals;
-//    Map<String, Map<String,LatLng>> hostpitals = new HashMap<>();
+    private ArrayList<String> hospitalsList;
+    private Map<String, LatLng> hospitals;
+    private Map<String,Marker> makerMap;
+//    Map<String, Map<String,LatLng>> hospitals = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,32 +43,53 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        hostpitals = new HashMap<>();
+        hospitals = new HashMap<>();
 
-        // add a dummy hospital
-        hostpitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
-        hostpitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
-        hostpitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
+        loadHospitals();
 
-        hospitalsList = new ArrayList<>(hostpitals.keySet());
+        initializeViewPager();
 
-        // *************************** Use ViewPager *************************
+    }
+
+    private void loadHospitals() {
+
+        // add dummy hospitals
+        hospitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
+        hospitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
+        hospitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
+
+        hospitalsList = new ArrayList<>(hospitals.keySet());
+
+    }
+
+    // *************************** Use ViewPager *************************
+    private void initializeViewPager() {
 
         mapViewPager = findViewById(R.id.mapViewPager);
 
         mAdapter = new HospitalAdapter(hospitalsList, this);
 
         mapViewPager.setAdapter(mAdapter);
-
         mapViewPager.setOrientation(androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL);
+
+        // go to new marker when page changed
         mapViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+
+                String hospitalName = hospitalsList.get(position);
+                Marker marker = makerMap.get(hospitalName);
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                marker.showInfoWindow();
             }
         });
 
-        // *************************** Use RecyclerView *************************
+    }
+
+    // *************************** Use RecyclerView *************************
+//    private void initializeRecyclerView() {
+//
 //        mapRecyclerView = findViewById(R.id.mapRecyclerView);
 //        mapRecyclerView.setHasFixedSize(true);
 //
@@ -104,7 +117,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 //                // ...
 //            }
 //        }));
-    }
+//    }
 
 
     /**
@@ -120,17 +133,11 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // move the camera to current user location
         LatLng melbourne = new LatLng(-37.81, 144.96);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
 
-        for (String hospital : hostpitals.keySet()) {
-            LatLng vet = hostpitals.get(hospital);
-            mMap.addMarker(new MarkerOptions()
-                    .position(vet)
-                    .title(hospital)).showInfoWindow();
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(vet));
-        }
+        createMapMarkers();
 
         // marker click function
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -155,16 +162,24 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
             public void onMapClick(LatLng latLng) {
 //                mapRecyclerView.setVisibility(View.GONE);
                 mapViewPager.setVisibility(View.GONE);
-                Log.d("Map", "Short Clicked!");
             }
         });
+    }
 
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                Log.d("Map", "Long Clicked!");
-            }
-        });
+    private void createMapMarkers() {
+
+        makerMap=new HashMap<>();
+
+        for (String hospital : hospitals.keySet()) {
+            LatLng vet = hospitals.get(hospital);
+            MarkerOptions markerOption = new MarkerOptions()
+                    .position(vet)
+                    .title(hospital);
+
+            Marker maker = mMap.addMarker(markerOption);
+
+            makerMap.put(hospital, maker);
+        }
     }
 
 }
