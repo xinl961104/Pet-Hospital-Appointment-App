@@ -2,10 +2,14 @@ package com.comp90018.drpet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -74,3 +78,29 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 }
+
+//public class MapFragment extends Fragment {
+//
+//    public MapFragment() {
+//    }
+//
+//    public static MapFragment newInstance() {
+//        return new MapFragment();
+//    }
+//
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater,
+//                             @Nullable ViewGroup container,
+//                             @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_map, container, false);
+//
+//        initViews(view);
+//
+//        return view;
+//    }
+//
+//    private void initViews(View view) {
+//        // TODO: Init views.
+//    }
+//}
