@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".updateActivity" />
+
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
