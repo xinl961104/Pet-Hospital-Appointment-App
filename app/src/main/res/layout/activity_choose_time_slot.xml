@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <TextView
-        android:id="@+id/Selected date"
+        android:id="@+id/SelectedDate"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="Selected Date"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Selected date"
+        app:layout_constraintTop_toBottomOf="@+id/SelectedDate"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
