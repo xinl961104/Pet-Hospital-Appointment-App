@@ -6,8 +6,36 @@ public class AppointmentInfo {
     private String phone;
     private String message;
     private String date;
+    private String hospital;
+    private String doctorName;
+    private String customerName;
+
 
     public AppointmentInfo() {
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getDate() {

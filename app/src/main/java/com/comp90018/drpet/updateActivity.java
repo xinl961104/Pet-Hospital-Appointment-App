@@ -24,6 +24,7 @@ public class updateActivity extends AppCompatActivity {
     String email;
     AppointmentInfo info;
     long maxId = 0;
+    String UID;
 
 
     TextView a,b,c,d,e,a1,b1,c1,d1,e1;
@@ -35,7 +36,7 @@ public class updateActivity extends AppCompatActivity {
         return userEmail.replace(",", ".");
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         info = new AppointmentInfo();
@@ -44,6 +45,9 @@ public class updateActivity extends AppCompatActivity {
         info.setMessage("this is a cat");
         info.setPetName("bob");
         info.setPhone("0468999661");
+        info.setCustomerName("bob's dad");
+        info.setHospital("melbourne");
+        info.setDoctorName("dobby");
 
         btnupdate=(Button)findViewById(R.id.btnupdate);
         btnretrive=(Button)findViewById(R.id.btnretrive);
@@ -64,6 +68,8 @@ public class updateActivity extends AppCompatActivity {
         if (user != null) {
             // Name, email address, and profile photo Url
             this.email = user.getEmail();
+            this.UID = user.getUid();
+            System.out.println(UID);
 
         }else{
             this.email = "123";
@@ -105,6 +111,11 @@ public class updateActivity extends AppCompatActivity {
                 reff1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        long times;
+                        if (dataSnapshot.exists()) {
+                            times = (dataSnapshot.getChildrenCount());
+                            System.out.println(times);
+                        }
                         String petName = dataSnapshot.child("1").child("petName").getValue().toString();
                         String date = dataSnapshot.child("1").child("date").getValue().toString();
                         String email = dataSnapshot.child("1").child("email").getValue().toString();
