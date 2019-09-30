@@ -1,29 +1,43 @@
 package com.comp90018.drpet;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class ChooseDoctorActivity extends AppCompatActivity {
-    String hospitalName = "Epworth Freemasons";
+
+    TextView hospitalName;
+    ImageView hospitalImage;
+    TextView hospitalInfo;
+    TextView placeholderDoctor;
+    TextView hospitalOpenHours;
+    TextView hospitalPhone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_doctor);
-        // the name/id of the hospital is from the map sensor.
-        // Here I use a temporary Hospital name which should be replaced after map sensor implemented
 
+        Intent incomingIntent = getIntent();
+        String id = incomingIntent.getStringExtra("HospitalId");
+        String name = incomingIntent.getStringExtra("HospitalName");
+        String address = incomingIntent.getStringExtra("HospitalAddress");
+        String phone = incomingIntent.getStringExtra("HospitalPhone");
+        String background = incomingIntent.getStringExtra("HospitalBackground");
+        String openhour = incomingIntent.getStringExtra("HospitalOpenHours");
 
+        hospitalName = (TextView) findViewById(R.id.HospitalName);
+        hospitalInfo = (TextView) findViewById(R.id.HospitalInfo);
+        placeholderDoctor = (TextView) findViewById(R.id.PlaceholderDoctor);
+        hospitalOpenHours = (TextView) findViewById(R.id.HospitalOpenHours);
+        hospitalPhone = (TextView) findViewById(R.id.HospitalPhone);
 
-
-
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
+        hospitalName.setText(name);
+        hospitalOpenHours.setText(openhour);
+        hospitalInfo.setText(background);
+        hospitalPhone.setText(phone +"   "+ address);
     }
 }

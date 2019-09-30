@@ -12,6 +12,10 @@ public class HospitalModel {
     private String hospitalAddress;
     private String hospitalPhone;
 
+    public HospitalModel() {
+
+    }
+
     public HospitalModel(String hospitalId, String hospitalName, String hospitalBackground, String hospitalOpenhours, String hospitalAddress, String hospitalPhone) {
         this.hospitalId = hospitalId;
         this.hospitalName = hospitalName;
