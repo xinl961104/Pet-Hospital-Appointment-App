@@ -34,7 +34,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     private ArrayList<String> hospitalsList;
     private Map<String, LatLng> hospitals;
     private Map<String,Marker> makerMap;
-//    Map<String, Map<String,LatLng>> hospitals = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +82,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 String hospitalName = hospitalsList.get(position);
                 Marker marker = makerMap.get(hospitalName);
 
-                if (previousMarker != null) {
-                    previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                }
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                previousMarker = marker;
+                markerClicked(marker);
 
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
                 marker.showInfoWindow();
@@ -176,13 +171,8 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                markerClicked(marker);
 
-                if (previousMarker != null) {
-                    previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                }
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                previousMarker = marker;
-                
                 mapViewPager.setVisibility(View.VISIBLE);
                 String chosenMarker = marker.getTitle();
                 int page = hospitalsList.indexOf(chosenMarker);
@@ -190,6 +180,15 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 return false;
             }
         });
+    }
+
+    // highlight the marker when clicked
+    private void markerClicked(Marker marker) {
+        if (previousMarker != null) {
+            previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        }
+        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+        previousMarker = marker;
     }
 
 }
