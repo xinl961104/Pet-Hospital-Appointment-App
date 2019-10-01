@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Marker previousMarker = null;
 
     private ViewPager2 mapViewPager;
     private RecyclerView mapRecyclerView;
@@ -80,8 +82,16 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
                 String hospitalName = hospitalsList.get(position);
                 Marker marker = makerMap.get(hospitalName);
+
+                if (previousMarker != null) {
+                    previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                previousMarker = marker;
+
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
                 marker.showInfoWindow();
+
             }
         });
 
@@ -139,28 +149,9 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         createMapMarkers();
 
-        // marker click function
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-//                mapRecyclerView.setVisibility(View.VISIBLE);
-//                Log.d("Marker", "Clicked!");
-//                String chosenMarker = marker.getTitle();
-//                // Using chosenMarker get position from arraylist
-//                int position = hospitalsList.indexOf(chosenMarker);
-//                mapRecyclerView.smoothScrollToPosition(position);
-                mapViewPager.setVisibility(View.VISIBLE);
-                String chosenMarker = marker.getTitle();
-                int page = hospitalsList.indexOf(chosenMarker);
-                mapViewPager.setCurrentItem(page, true);
-                return false;
-            }
-        });
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-//                mapRecyclerView.setVisibility(View.GONE);
                 mapViewPager.setVisibility(View.GONE);
             }
         });
@@ -180,6 +171,25 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
             makerMap.put(hospital, maker);
         }
+
+        // marker click function
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                if (previousMarker != null) {
+                    previousMarker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                previousMarker = marker;
+                
+                mapViewPager.setVisibility(View.VISIBLE);
+                String chosenMarker = marker.getTitle();
+                int page = hospitalsList.indexOf(chosenMarker);
+                mapViewPager.setCurrentItem(page, true);
+                return false;
+            }
+        });
     }
 
 }
