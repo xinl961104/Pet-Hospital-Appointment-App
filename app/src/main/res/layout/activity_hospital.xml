@@ -18,13 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="50dp"
         android:elevation="2dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/map"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--    <androidx.recyclerview.widget.RecyclerView-->
     <!--        android:id="@+id/mapRecyclerView"-->
