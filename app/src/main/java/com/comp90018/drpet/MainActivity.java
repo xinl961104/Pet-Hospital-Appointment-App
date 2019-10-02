@@ -8,8 +8,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void goToDoctor(View view) {
-        Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+    public void login(View view) {
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(intent);
     }
 
