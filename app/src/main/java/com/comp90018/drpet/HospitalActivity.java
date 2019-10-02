@@ -25,6 +25,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     private GoogleMap mMap;
     private Marker previousMarker = null;
+    private Map<String, Marker> makerMap;
 
     private ViewPager2 mapViewPager;
     private RecyclerView mapRecyclerView;
@@ -33,7 +34,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     private ArrayList<String> hospitalsList;
     private Map<String, LatLng> hospitals;
-    private Map<String,Marker> makerMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
