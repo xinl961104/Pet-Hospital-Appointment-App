@@ -175,8 +175,13 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
                 mapViewPager.setVisibility(View.VISIBLE);
                 String chosenMarker = marker.getTitle();
-                int page = hospitalsList.indexOf(chosenMarker);
-                mapViewPager.setCurrentItem(page, true);
+                final int page = hospitalsList.indexOf(chosenMarker);
+                mapViewPager.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mapViewPager.setCurrentItem(page, true);
+                    }
+                }, 100);
                 return false;
             }
         });
