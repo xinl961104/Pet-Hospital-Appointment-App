@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
         startActivity(intent);
     }
 

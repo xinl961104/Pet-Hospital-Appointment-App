@@ -60,7 +60,7 @@ public class SigninActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             //startActivity(new Intent(SigninActivity.this, MainActivity.class));
-                            startActivity(new Intent(SigninActivity.this, updateActivity.class));
+                            startActivity(new Intent(SigninActivity.this, HomeActivity.class));
 
 //                            FirebaseUser user = mAuth.getCurrentUser();
 //                            String name = user.getDisplayName();

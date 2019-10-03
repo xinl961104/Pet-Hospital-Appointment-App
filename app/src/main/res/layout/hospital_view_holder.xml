@@ -27,6 +27,12 @@
             android:text="Hospital Name"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/infoTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="医院介绍，评分。" />
+
         <Button
             android:id="@+id/chooseButton"
             android:layout_width="wrap_content"
