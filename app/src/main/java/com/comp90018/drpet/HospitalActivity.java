@@ -68,7 +68,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         locations.add(new LatLng(-37.798866, 144.953180));
 
         HospitalRetriever retriever = new HospitalRetriever();
-        retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
+        retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
             @Override
             public void onCallback(ArrayList<Hospital> list) {
                 System.out.println(list.size());
@@ -203,7 +203,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
             location.getLatitude();
             location.getLongitude();
 
-            coord = new LatLng((double) (location.getLatitude() * 1E6), (double) (location.getLongitude() * 1E6));
+            coord = new LatLng(location.getLatitude() * 1E6, location.getLongitude() * 1E6);
 
         } catch (Exception e) {
             e.printStackTrace();
