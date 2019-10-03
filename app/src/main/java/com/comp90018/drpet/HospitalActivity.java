@@ -7,7 +7,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import helper.HospitalRetriever;
+import com.comp90018.drpet.helper.HospitalRetriever;
 
 public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback {
 

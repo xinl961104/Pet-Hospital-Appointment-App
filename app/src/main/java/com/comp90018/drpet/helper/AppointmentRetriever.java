@@ -15,55 +15,62 @@ import java.util.ArrayList;
 
 public class AppointmentRetriever {
 
-    private static String UID;
-    private static DatabaseReference reff;
-    private static ArrayList<Appointment> appointment = new ArrayList<>();
+    private  String UID;
+    private  DatabaseReference reff;
+    private  ArrayList<Appointment> appointment;
 
 
-    public static ArrayList<Appointment> retrieveAppointments() {
+
+    public AppointmentRetriever(String userID) {
+        this.UID = userID;
+        this.reff = FirebaseDatabase.getInstance().getReference().child("Appointmentinfo");
+        this.appointment = new ArrayList<>();
+    }
+
+    public interface FirebaseCallback {
+        void onCallback(ArrayList<Appointment> list);
+    }
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (user != null) {
-            UID = user.getUid();
-
-        }
-
-        reff  = FirebaseDatabase.getInstance().getReference().child("AppointmentNew").child(UID);
-        reff.addValueEventListener(new ValueEventListener() {
+    public void retrievData(final FirebaseCallback firebaseCallback){
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                appointment.clear();
                 if (dataSnapshot.exists()) {
                     int i = 0;
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        appointment.add(new Appointment());
-                        appointment.get(i).setAppointmentID(ds.child("appointmentID").getValue(String.class));
-                        appointment.get(i).setComment(ds.child("comment").getValue(String.class));
-                        appointment.get(i).setDate(ds.child("date").getValue(String.class));
-                        appointment.get(i).setDoctorID(ds.child("doctorID").getValue(String.class));
-                        appointment.get(i).setPetID(ds.child("petID").getValue(String.class));
-                        appointment.get(i).setPetName(ds.child("petName").getValue(String.class));
-                        appointment.get(i).setStartTime(ds.child("startTime").getValue(String.class));
-                        appointment.get(i).setStatus(ds.child("status").getValue(String.class));
-                        appointment.get(i).setUserEmail(ds.child("userEmail").getValue(String.class));
-                        appointment.get(i).setUserID(ds.child("userID").getValue(String.class));
-                        appointment.get(i).setUserName(ds.child("userName").getValue(String.class));
-                        System.out.println(i);
-                        System.out.println(appointment.get(i));
+                        if(UID.equals(ds.child("userID").getValue(String.class))){
+                            appointment.add(new Appointment());
+                            appointment.get(i).setAppointmentID(ds.child("appointmentID").getValue(String.class));
+                            appointment.get(i).setComment(ds.child("comment").getValue(String.class));
+                            appointment.get(i).setDate(ds.child("date").getValue(String.class));
+                            appointment.get(i).setDoctorID(ds.child("doctorID").getValue(String.class));
+                            appointment.get(i).setPetID(ds.child("petID").getValue(String.class));
+                            appointment.get(i).setPetName(ds.child("petName").getValue(String.class));
+                            appointment.get(i).setStartTime(ds.child("startTime").getValue(String.class));
+                            appointment.get(i).setStatus(ds.child("status").getValue(String.class));
+                            appointment.get(i).setUserEmail(ds.child("userEmail").getValue(String.class));
+                            appointment.get(i).setUserID(ds.child("userID").getValue(String.class));
+                            appointment.get(i).setUserName(ds.child("userName").getValue(String.class));
+                        }
+
+//                        System.out.println(i);
+//                        System.out.println(appointment.get(i));
                         i++;
                     }
+
                 }
+                firebaseCallback.onCallback(appointment);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
-
-        return appointment;
-
+        };
+        reff.addValueEventListener(valueEventListener);
     }
 
 }

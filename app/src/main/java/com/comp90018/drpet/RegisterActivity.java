@@ -1,8 +1,6 @@
 package com.comp90018.drpet;
 
-import helper.AppointmentDeleter;
-import helper.AppointmentRetriever;
-import helper.HospitalRetriever;
+import com.comp90018.drpet.helper.HospitalRetriever;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
