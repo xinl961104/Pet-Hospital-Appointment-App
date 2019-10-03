@@ -37,12 +37,43 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     DatabaseReference reff;
+    Appointment appointment;
+    Pet pet;
     Hospital hospital;
     TimeSlot slot;
     Doctor doctor;
     Button btntest;
     String uniqueID = UUID.randomUUID().toString().replace("-","");
 
+    public Appointment setAppointment(String appointmentID,String doctorID,String userID,String petID,
+                                      String petName,String comment,String startTime, String date,String userName,
+                                      String userEmail,String status){
+        Appointment appointment = new Appointment();
+        appointment.setAppointmentID(appointmentID);
+        appointment.setDoctorID(doctorID);
+        appointment.setUserID(userID);
+        appointment.setPetID(petID);
+        appointment.setPetName(petName);
+        appointment.setComment(comment);
+        appointment.setStartTime(startTime);
+        appointment.setDate(date);
+        appointment.setUserName(userName);
+        appointment.setUserEmail(userEmail);
+        appointment.setStatus(status);
+        return appointment;
+    }
+    public Pet setPet(String petID, String category,String breed,String petAge,
+                      String comment,String ownerID,String petName){
+        Pet pet = new Pet();
+        pet.setPetID(petID);
+        pet.setCategory(category);
+        pet.setBreed(breed);
+        pet.setPetAge(petAge);
+        pet.setComment(comment);
+        pet.setOwnerID(ownerID);
+        pet.setPetName(petName);
+        return pet;
+    }
     public TimeSlot setSlot(String slotID,String doctorID,String startTime,String flag,String period,String date){
         TimeSlot slot = new TimeSlot();
         slot.setSlotID(slotID);
@@ -111,7 +142,22 @@ public class RegisterActivity extends AppCompatActivity {
         //slot = setSlot(uniqueID,"0ca1dac7ebda425290d9e8f503a681d7","8:00","0","1","2019-08-12");
         //slot = setSlot(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","16:00","0","1","2019-09-13");
         //slot = setSlot(uniqueID,"a22d185378934fc587ff174e345eeb71","10:00","0","1","2019-08-12");
-        slot = setSlot(uniqueID,"d4b1b0578e204a92b8be35bbe56e31cf","11:00","0","1","2019-06-14");
+        //slot = setSlot(uniqueID,"d4b1b0578e204a92b8be35bbe56e31cf","11:00","0","1","2019-06-14");
+        //pet = setPet(uniqueID,"dog","sheepdog","5","he doesn't eat anything",
+          //      "vzD5yGDcH8XmXITdow7iReBAhAq1","dobby");
+//        pet = setPet(uniqueID,"cat","ragdoll","2","Inbreeding",
+//                     "vzD5yGDcH8XmXITdow7iReBAhAq1","wangcai");
+//        pet = setPet(uniqueID,"dog","retriever","4","Excessive drinking and urination",
+//                     "UijkHkIVSXXaDX7spJyrPg5AXW83","vane");
+//        pet = setPet(uniqueID,"cat","british long hair","3","Bad breath",
+//                "UijkHkIVSXXaDX7spJyrPg5AXW83","Max");
+
+        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
+                "38a47786f63043adb39f30656b45f05c","dobby","he doesn't eat anything","16:00","2019-09-12",
+                "qwe","123455@163.com","booked");
+//        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
+//                "befef5c52d6042a3bff2c356c1a68424","wangcai","Inbreeding","16:00","2019-09-13",
+//                "qwe","123455@163.com","booked");
         reff = FirebaseDatabase.getInstance().getReference();
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +173,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
                 //reff.child("Doctor").child(doctor.getDoctorId()).setValue(doctor);
-                reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
+                //reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
+                //reff.child("Pet").child(pet.getPetID()).setValue(pet);
+                reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
                 Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });
