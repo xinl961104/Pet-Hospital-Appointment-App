@@ -161,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                "befef5c52d6042a3bff2c356c1a68424","wangcai","Inbreeding","16:00","2019-09-13",
 //                "qwe","123455@163.com","booked");
 
-//        appointment = setAppointment("1349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
+//        appointment = setAppointment("4349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
 //                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","16:00","2019-06-12",
 //                "xiandong","xiandong@abc.com","booked");
 
@@ -200,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                });
 
 
-                // delete appointment by appointmentID
+//                // delete appointment by appointmentID
 //                AppointmentDeleter deleter = new AppointmentDeleter("1349f9744286464dbeebda49f7ab7287");
 //                deleter.deleteData(new AppointmentDeleter.FirebaseCallback() {
 //                    @Override
@@ -213,20 +213,35 @@ public class RegisterActivity extends AppCompatActivity {
 //                });
 
 
+                HospitalRetriever retriever1 = new HospitalRetriever("0ca1dac7ebda425290d9e8f503a681d7");
+                retriever1.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
+                    @Override
+                    public void onCallback(Doctor doctor1) {
+                        doctor = doctor1;
+                        System.out.println(doctor1);
+                    }
+                });
+
                 HospitalRetriever retriever = new HospitalRetriever();
                 retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
                     @Override
                     public void onCallback(ArrayList<Hospital> list) {
-                        System.out.println(list.size());
+                        //System.out.println(list.size());
                         for(int i =0; i<list.size();i++){
-                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
+                            if(doctor.getHospitalId().equals(list.get(i).getHospitalId())){
                                 System.out.println(list.get(i));
+                                System.out.println(doctor.getDoctorLastName()+doctor.getDoctorFirstName());
+                            }
+                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
+                            //System.out.println(list.get(i));
                             //}
 
                         }
 
                     }
                 });
+
+
 
 
 

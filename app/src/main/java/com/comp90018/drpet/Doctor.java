@@ -11,6 +11,18 @@ public class Doctor {
     public Doctor() {
     }
 
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "doctorId='" + doctorId + '\'' +
+                ", hospitalId='" + hospitalId + '\'' +
+                ", doctorFirstName='" + doctorFirstName + '\'' +
+                ", doctorLastName='" + doctorLastName + '\'' +
+                ", doctorInfo='" + doctorInfo + '\'' +
+                ", doctorPhone='" + doctorPhone + '\'' +
+                '}';
+    }
+
     public String getDoctorId() {
         return doctorId;
     }

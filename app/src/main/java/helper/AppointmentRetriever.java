@@ -3,8 +3,7 @@ package helper;
 import androidx.annotation.NonNull;
 
 import com.comp90018.drpet.Appointment;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +18,6 @@ public class AppointmentRetriever {
     private  DatabaseReference reff;
     private  ArrayList<Appointment> appointment;
 
-
-
     public AppointmentRetriever(String userID) {
         this.UID = userID;
         this.reff = FirebaseDatabase.getInstance().getReference().child("Appointmentinfo");
@@ -30,7 +27,6 @@ public class AppointmentRetriever {
     public interface FirebaseCallback {
         void onCallback(ArrayList<Appointment> list);
     }
-
 
 
     public void retrievData(final FirebaseCallback firebaseCallback){
