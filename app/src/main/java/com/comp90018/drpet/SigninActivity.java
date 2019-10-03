@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -50,23 +53,39 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void signinEvent() {
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            startActivity(new Intent(SigninActivity.this, MainActivity.class));
+        if (!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
 
 
-                        } else {
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            Toast.makeText(SigninActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(SigninActivity.this, MainActivity.class));
+                                startActivity(new Intent(SigninActivity.this, HomeActivity.class));
+
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            String name = user.getDisplayName();
+//                            String id = user.getUid();
+//                            List qwe = user.getProviderData();
+//                            String email = user.getEmail();
+//                            System.out.println(user);
+//                            System.out.println("id"+id);
+//                            System.out.println(qwe);
+//                            System.out.println(email);
+
+                            } else {
+
+                                Toast.makeText(SigninActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
+                    });
+        } else {
+            Toast.makeText(SigninActivity.this, "Email and password can not be empty", Toast.LENGTH_SHORT).show();
+        }
     }
 }
