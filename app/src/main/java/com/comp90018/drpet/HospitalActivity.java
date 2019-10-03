@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +21,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import helper.HospitalRetriever;
 
 public class HospitalActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -48,18 +53,40 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         loadHospitals();
 
-        initializeViewPager();
 
     }
 
     private void loadHospitals() {
 
         // add dummy hospitals
-        hospitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
-        hospitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
-        hospitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
+//        hospitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
+//        hospitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
+//        hospitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
 
-        hospitalsList = new ArrayList<>(hospitals.keySet());
+        final ArrayList<LatLng> locations = new ArrayList<>();
+        locations.add(new LatLng(-37.815202, 144.963940));
+        locations.add(new LatLng(-37.799459, 144.974074));
+        locations.add(new LatLng(-37.798866, 144.953180));
+
+        HospitalRetriever retriever = new HospitalRetriever();
+        retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<Hospital> list) {
+                System.out.println(list.size());
+                for (int i = 0; i < list.size(); i++) {
+                    String hospitalName = list.get(i).getHospitalName();
+//                    LatLng coord = getLocationFromAddress(list.get(i).getHospitalAddress());
+                    LatLng coord = locations.get(i);
+                    System.out.println(hospitalName + coord.toString());
+                    hospitals.put(hospitalName, coord);
+                }
+
+                hospitalsList = new ArrayList<>(hospitals.keySet());
+
+                initializeViewPager();
+                createMapMarkers();
+            }
+        });
 
     }
 
@@ -92,38 +119,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 
-    // *************************** Use RecyclerView *************************
-//    private void initializeRecyclerView() {
-//
-//        mapRecyclerView = findViewById(R.id.mapRecyclerView);
-//        mapRecyclerView.setHasFixedSize(true);
-//
-//        // use a linear layout manager
-//        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        mapRecyclerView.setLayoutManager(layoutManager);
-//
-//        SnapHelper mSnapHelper = new PagerSnapHelper();
-//        mSnapHelper.attachToRecyclerView(mapRecyclerView);
-//
-//        // specify an adapter (see also next example)
-//        mAdapter = new HospitalAdapter(hospitalsList);
-//        mapRecyclerView.setAdapter(mAdapter);
-//        mapRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), mapRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-////                Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
-////                intent.putExtra("hospitalID", position);
-////                startActivity(intent);
-//                Log.d("Name", "onItemClick: Done!");
-//            }
-//
-//            @Override
-//            public void onItemLongClick(View view, int position) {
-//                // ...
-//            }
-//        }));
-//    }
-
 
     /**
      * Manipulates the map once available.
@@ -142,8 +137,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         LatLng melbourne = new LatLng(-37.81, 144.96);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
 
-        createMapMarkers();
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -154,7 +147,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     private void createMapMarkers() {
 
-        makerMap=new HashMap<>();
+        makerMap = new HashMap<>();
 
         for (String hospital : hospitals.keySet()) {
             LatLng vet = hospitals.get(hospital);
@@ -194,6 +187,29 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         }
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
         previousMarker = marker;
+    }
+
+    public LatLng getLocationFromAddress(String strAddress) {
+
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+        LatLng coord = null;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+
+            coord = new LatLng((double) (location.getLatitude() * 1E6), (double) (location.getLongitude() * 1E6));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return coord;
     }
 
 }
