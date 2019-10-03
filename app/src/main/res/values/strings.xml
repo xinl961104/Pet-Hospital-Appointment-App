@@ -2,6 +2,6 @@
     <string name="app_name">Dr Pet</string>
     <string name="title_activity_hospital">Map</string>
     <string name="title_activity_management">ManagementActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Pending</string>
+    <string name="tab_text_2">History</string>
 </resources>
