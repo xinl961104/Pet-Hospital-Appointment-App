@@ -1,12 +1,13 @@
 package com.comp90018.drpet;
 
+import helper.AppointmentDeleter;
+import helper.AppointmentRetriever;
+import helper.HospitalRetriever;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,17 +15,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -35,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
 //    Uri imageUri;
     private FirebaseAuth mAuth;
 
-
     DatabaseReference reff;
     Appointment appointment;
     Pet pet;
@@ -44,6 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
     Doctor doctor;
     Button btntest;
     String uniqueID = UUID.randomUUID().toString().replace("-","");
+
+//    AppointmentRetriever retriever = new AppointmentRetriever();
+
+
 
     public Appointment setAppointment(String appointmentID,String doctorID,String userID,String petID,
                                       String petName,String comment,String startTime, String date,String userName,
@@ -161,9 +161,9 @@ public class RegisterActivity extends AppCompatActivity {
 //                "befef5c52d6042a3bff2c356c1a68424","wangcai","Inbreeding","16:00","2019-09-13",
 //                "qwe","123455@163.com","booked");
 
-        appointment = setAppointment("1349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
-                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","16:00","2019-06-12",
-                "xiandong","xiandong@abc.com","booked");
+//        appointment = setAppointment("1349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
+//                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","16:00","2019-06-12",
+//                "xiandong","xiandong@abc.com","booked");
 
 //        appointment = setAppointment("42044cde3e0747b2b60269112af2f481","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
 //                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","11:00","2019-06-14",
@@ -179,15 +179,65 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         btntest = findViewById(R.id.btntest);
+
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //retrieve appointment info
+//                AppointmentRetriever retriever = new AppointmentRetriever("lpM91PpV79c5W8X0AHr7xYCeXQF2");
+//                retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
+//                    @Override
+//                    public void onCallback(ArrayList<Appointment> list) {
+//                        System.out.println(list.size());
+//                        for(int i =0; i<list.size();i++){
+//                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
+//                                System.out.println(list.get(i));
+//                            //}
+//
+//                        }
+//
+//                    }
+//                });
+
+
+                // delete appointment by appointmentID
+//                AppointmentDeleter deleter = new AppointmentDeleter("1349f9744286464dbeebda49f7ab7287");
+//                deleter.deleteData(new AppointmentDeleter.FirebaseCallback() {
+//                    @Override
+//                    public void onCallback(String message) {
+//                        if(message.equals("delete")){
+//                            System.out.println("success delete");
+//                        }
+//
+//                    }
+//                });
+
+
+                HospitalRetriever retriever = new HospitalRetriever();
+                retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
+                    @Override
+                    public void onCallback(ArrayList<Hospital> list) {
+                        System.out.println(list.size());
+                        for(int i =0; i<list.size();i++){
+                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
+                                System.out.println(list.get(i));
+                            //}
+
+                        }
+
+                    }
+                });
+
+
+
                 //reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
                 //reff.child("Doctor").child(doctor.getDoctorId()).setValue(doctor);
                 //reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
                 //reff.child("Pet").child(pet.getPetID()).setValue(pet);
                 //reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
-                reff.child("Appointment").child(appointment.getAppointmentID()).setValue(appointment);
+                //reff.child("Appointmentinfo").child(appointment.getAppointmentID()).setValue(appointment);
+                //reff.child("Appointment").child(appointment.getAppointmentID()).setValue(appointment);
+
                 Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });

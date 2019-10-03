@@ -11,6 +11,18 @@ public class Hospital {
     public Hospital() {
     }
 
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "hospitalId='" + hospitalId + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
+                ", hospitalBackground='" + hospitalBackground + '\'' +
+                ", hospitalOpenhours='" + hospitalOpenhours + '\'' +
+                ", hospitalPhone='" + hospitalPhone + '\'' +
+                ", hospitalAddress='" + hospitalAddress + '\'' +
+                '}';
+    }
+
     public String getHospitalId() {
         return hospitalId;
     }
