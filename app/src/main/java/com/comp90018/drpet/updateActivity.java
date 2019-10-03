@@ -125,7 +125,8 @@ public class updateActivity extends AppCompatActivity {
                                 String date = ds.child("date").getValue(String.class);
                                 String appointmentID = ds.child("appointmentID").getValue(String.class);
                                 appointment[i].setAppointmentID(appointmentID);
-                                appointment[i].setComment(ds.child("comment").getValue(String.class));appointment[i].setDate(ds.child("date").getValue(String.class));
+                                appointment[i].setComment(ds.child("comment").getValue(String.class));
+                                appointment[i].setDate(ds.child("date").getValue(String.class));
                                 appointment[i].setDoctorID(ds.child("doctorID").getValue(String.class));
                                 appointment[i].setPetID(ds.child("petID").getValue(String.class));
                                 appointment[i].setPetName(ds.child("petName").getValue(String.class));
