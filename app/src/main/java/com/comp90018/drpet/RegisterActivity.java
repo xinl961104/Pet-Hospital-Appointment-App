@@ -152,12 +152,23 @@ public class RegisterActivity extends AppCompatActivity {
 //        pet = setPet(uniqueID,"cat","british long hair","3","Bad breath",
 //                "UijkHkIVSXXaDX7spJyrPg5AXW83","Max");
 
-        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
-                "38a47786f63043adb39f30656b45f05c","dobby","he doesn't eat anything","16:00","2019-09-12",
-                "qwe","123455@163.com","booked");
+//        pet = setPet(uniqueID,"cat","british long hair","5","Bad breath",
+//                "lpM91PpV79c5W8X0AHr7xYCeXQF2","fugui");
 //        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
+//                "38a47786f63043adb39f30656b45f05c","dobby","he doesn't eat anything","16:00","2019-09-12",
+//                "qwe","123455@163.com","booked");
+        //        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
 //                "befef5c52d6042a3bff2c356c1a68424","wangcai","Inbreeding","16:00","2019-09-13",
 //                "qwe","123455@163.com","booked");
+
+        appointment = setAppointment("1349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
+                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","16:00","2019-06-12",
+                "xiandong","xiandong@abc.com","booked");
+
+//        appointment = setAppointment("42044cde3e0747b2b60269112af2f481","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
+//                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","11:00","2019-06-14",
+//                "xiandong","xiandong@abc.com","booked");
+
         reff = FirebaseDatabase.getInstance().getReference();
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +186,8 @@ public class RegisterActivity extends AppCompatActivity {
                 //reff.child("Doctor").child(doctor.getDoctorId()).setValue(doctor);
                 //reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
                 //reff.child("Pet").child(pet.getPetID()).setValue(pet);
-                reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
+                //reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
+                reff.child("Appointment").child(appointment.getAppointmentID()).setValue(appointment);
                 Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });
