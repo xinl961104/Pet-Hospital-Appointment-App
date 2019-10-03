@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder> {
 
     private Activity activity;
-    private ArrayList<String> appointments;
+    private ArrayList<Appointment> appointments;
 
     public class AppointmentViewHolder extends RecyclerView.ViewHolder {
 
@@ -30,7 +30,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
     }
 
 
-    public AppointmentAdapter(ArrayList<String> appointments, Activity activity) {
+    public AppointmentAdapter(ArrayList<Appointment> appointments, Activity activity) {
         this.appointments = appointments;
         this.activity = activity;
     }
@@ -48,8 +48,11 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
 
     @Override
     public void onBindViewHolder(final com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder holder, int position) {
-//        String hospitalID = appointments.get(position);
-//        holder.hospitalTextView.setText();
+        String hospital = "HospitalID is" + appointments.get(position).getDoctorID();
+        holder.hospitalTextView.setText("Hospital");
+        String dateTime = "HospitalID is" + appointments.get(position).getStartTime() + " " + appointments.get(position).getDate();
+        holder.timeTextView.setText(dateTime);
+        System.out.println(hospital + dateTime);
     }
 
     @Override
