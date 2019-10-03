@@ -21,8 +21,8 @@ public class AppointmentRetriever {
 
 
 
-    public AppointmentRetriever(String userID) {
-        this.UID = userID;
+    public AppointmentRetriever() {
+        this.UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         this.reff = FirebaseDatabase.getInstance().getReference().child("Appointmentinfo");
         this.appointment = new ArrayList<>();
     }

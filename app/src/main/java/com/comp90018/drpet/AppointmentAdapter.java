@@ -48,9 +48,9 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
 
     @Override
     public void onBindViewHolder(final com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder holder, int position) {
-        String hospital = "HospitalID is" + appointments.get(position).getDoctorID();
-        holder.hospitalTextView.setText("Hospital");
-        String dateTime = "HospitalID is" + appointments.get(position).getStartTime() + " " + appointments.get(position).getDate();
+        String hospital = "DoctorID is " + appointments.get(position).getDoctorID();
+        holder.hospitalTextView.setText(hospital);
+        String dateTime = appointments.get(position).getStartTime() + " " + appointments.get(position).getDate();
         holder.timeTextView.setText(dateTime);
         System.out.println(hospital + dateTime);
     }

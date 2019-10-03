@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.comp90018.drpet.Appointment;
 import com.comp90018.drpet.AppointmentAdapter;
+import com.comp90018.drpet.Hospital;
 import com.comp90018.drpet.R;
 import com.comp90018.drpet.RecyclerItemClickListener;
 import com.comp90018.drpet.helper.AppointmentRetriever;
+import com.comp90018.drpet.helper.HospitalRetriever;
 
 import java.util.ArrayList;
 
@@ -25,7 +27,7 @@ import java.util.ArrayList;
  */
 public class PendingFragment extends Fragment {
 
-    private ArrayList<Appointment> appointmentsList;
+//    private ArrayList<Appointment> appointmentsList = new ArrayList<>();
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -55,35 +57,55 @@ public class PendingFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_management, container, false);
+
         final RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        AppointmentRetriever retriever = new AppointmentRetriever();
+        retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
+            @Override
+            public void onCallback(final ArrayList<Appointment> appointmentsList) {
+//                for(int i =0; i<appointmentsList.size();i++){
+//                    System.out.println(appointmentsList.get(i));
+//                }
+                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
+                recyclerView.setAdapter(appointmentAdapter);
+
+                recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+//                Intent intent = new Intent(getApplicationContext(), AppointmentActivity.class);
+//                intent.putExtra("doctorID", position);
+//                startActivity(intent);
+                        Toast.makeText(getActivity().getApplicationContext(), appointmentsList.get(position).getComment(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        // ...
+                    }
+                }));
+                appointmentAdapter.notifyDataSetChanged();
+            }
+        });
+
+//        Appointment app = new Appointment();
+//        app.setDoctorID("Link");
+//        app.setStartTime("9 AM");
+//        app.setDate("12 September, 2019");
+//        appointmentsList.add(app);
+
 //        pageViewModel.getText().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
 //                textView.setText(s);
 //            }
 //        });
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
 
-        AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
-        recyclerView.setAdapter(appointmentAdapter);
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), AppointmentActivity.class);
-//                intent.putExtra("doctorID", position);
-//                startActivity(intent);
-//                Log.d("Name", "onItemClick: Done!");
-//                Toast.makeText(getActivity().getApplicationContext(), appointmentsList.get(position), Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onItemLongClick(View view, int position) {
-                // ...
-            }
-        }));
-
-        appointmentAdapter.notifyDataSetChanged();
         return root;
     }
 
