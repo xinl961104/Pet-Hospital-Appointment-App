@@ -12,6 +12,8 @@ public class TimeSlotModel {
     private String period;
     private String startTime;
 
+    public TimeSlotModel(){}
+
     public TimeSlotModel(String slotId, String date, String doctorId, String flag, String period, String startTime) {
         this.slotId = slotId;
         this.date = date;

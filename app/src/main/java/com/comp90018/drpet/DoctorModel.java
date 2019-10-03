@@ -11,7 +11,7 @@ public class DoctorModel {
     private String doctorInfo;
     private String doctorPhone;
     private String hospitalId;
-
+    public DoctorModel(){}
     public DoctorModel(String doctorId, String doctorFirstName, String doctorLastName, String doctorInfo, String doctorPhone, String hospitalId) {
         this.doctorId = doctorId;
         this.doctorFirstName = doctorFirstName;

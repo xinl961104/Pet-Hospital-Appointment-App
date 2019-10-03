@@ -56,7 +56,6 @@ public class ChooseHospitalActivity extends AppCompatActivity {
                         intent.putExtra("HospitalOpenHours", hospital.getHospitalOpenhours());
                         startActivity(intent);
                     }
-
             }}
             @Override
             public void onCancelled(DatabaseError databaseError) {
