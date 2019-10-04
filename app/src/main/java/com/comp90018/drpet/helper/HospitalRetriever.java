@@ -106,4 +106,29 @@ public class HospitalRetriever {
         reff.addValueEventListener(valueEventListener);
     }
 
+    public void findHospitalByDoctor (String doctorID) {
+        final String hospitalID;
+        HospitalRetriever retriever = new HospitalRetriever(doctorID);
+        retriever.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
+            @Override
+            public void onCallback(Doctor doctor) {
+                hospitalID = doctor.getHospitalId();
+            }
+        });
+
+        retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<Hospital> list) {
+                System.out.println(list.size());
+                for (int i = 0; i < list.size(); i++) {
+                    if (hospitalName == list.get(i).getHospitalId()){
+
+                    }
+
+                }
+
+            }
+        });
+    }
+
 }
