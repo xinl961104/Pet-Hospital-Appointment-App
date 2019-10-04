@@ -5,6 +5,7 @@ import com.comp90018.drpet.helper.HospitalRetriever;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -283,6 +284,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userModel.uid = uid;
                     userModel.email = email.getText().toString();
                     FirebaseDatabase.getInstance().getReference().child("users").child(userModel.name).setValue(userModel);
+                    startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
 //                    final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 //                    final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("users").child(uid);
 //                    storageReference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
