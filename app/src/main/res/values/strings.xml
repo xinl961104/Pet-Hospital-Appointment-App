@@ -3,6 +3,6 @@
     <string name="title_activity_hospital">Map</string>
     <string name="title_activity_management">ManagementActivity</string>
     <string name="tab_text_1">Pending</string>
-    <string name="tab_text_2">History</string>
+    <string name="tab_text_2">Finished</string>
     <string name="title_activity_details">DetailsActivity</string>
 </resources>

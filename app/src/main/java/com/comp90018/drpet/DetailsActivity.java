@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
     String status;
 
     public void cancelAppointment(View view) {
-        
+
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Cancel Appointment")
