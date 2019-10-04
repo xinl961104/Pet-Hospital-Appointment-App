@@ -1,5 +1,6 @@
 package com.comp90018.drpet.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,19 +68,30 @@ public class PendingFragment extends Fragment {
         AppointmentRetriever retriever = new AppointmentRetriever();
         retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
             @Override
-            public void onCallback(final ArrayList<Appointment> appointmentsList) {
-//                for(int i =0; i<appointmentsList.size();i++){
-//                    System.out.println(appointmentsList.get(i));
-//                }
+            public void onCallback(ArrayList<Appointment> list) {
+                final ArrayList<Appointment> appointmentsList = new ArrayList<>();
+
+                for (Appointment i: list) {
+                    String status = i.getStatus();
+                    if (status.equals("booked")) {
+                        appointmentsList.add(i);
+                    }
+                }
+
                 AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
                 recyclerView.setAdapter(appointmentAdapter);
 
                 recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(getApplicationContext(), AppointmentActivity.class);
-//                intent.putExtra("doctorID", position);
-//                startActivity(intent);
+                        Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
+                        intent.putExtra("hospitalName", appointmentsList.get(position).getHospitalName());
+                        intent.putExtra("doctorName", appointmentsList.get(position).getDoctorName());
+                        intent.putExtra("date", appointmentsList.get(position).getDate());
+                        intent.putExtra("time", appointmentsList.get(position).getStartTime());
+                        intent.putExtra("petName", appointmentsList.get(position).getPetName());
+                        intent.putExtra("status", appointmentsList.get(position).getStatus());
+                        startActivity(intent);
                         Toast.makeText(getActivity().getApplicationContext(), appointmentsList.get(position).getComment(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -91,20 +103,6 @@ public class PendingFragment extends Fragment {
                 appointmentAdapter.notifyDataSetChanged();
             }
         });
-
-//        Appointment app = new Appointment();
-//        app.setDoctorID("Link");
-//        app.setStartTime("9 AM");
-//        app.setDate("12 September, 2019");
-//        appointmentsList.add(app);
-
-//        pageViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-
 
         return root;
     }

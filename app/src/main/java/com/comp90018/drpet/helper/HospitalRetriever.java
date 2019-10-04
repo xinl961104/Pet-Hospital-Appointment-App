@@ -21,7 +21,9 @@ public class HospitalRetriever {
     private Hospital hospital;
     private Doctor doctor;
     private DatabaseReference reff1;
-    private String hospitalID;
+
+//    private static String hospitalID;
+//    private static String hospitalName;
 
 
     public HospitalRetriever() {
@@ -80,6 +82,7 @@ public class HospitalRetriever {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                hospitals = new ArrayList<>();
                 hospitals.clear();
                 if (dataSnapshot.exists()) {
                     int i = 0;
@@ -106,30 +109,33 @@ public class HospitalRetriever {
         reff.addValueEventListener(valueEventListener);
     }
 
-    public void findHospitalByDoctor (String doctorID) {
-
-        HospitalRetriever retriever = new HospitalRetriever(doctorID);
-        retriever.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
-            @Override
-            public void onCallback(Doctor doctor) {
-                hospitalID = doctor.getHospitalId();
-            }
-        });
-
-        retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
-            @Override
-            public void onCallback(ArrayList<Hospital> list) {
-                System.out.println(list.size());
-                for (int i = 0; i < list.size(); i++) {
-                    if (hospitalID == list.get(i).getHospitalId()){
-
-                        System.out.println(list.get(i).getHospitalName());
-                    }
-                }
-
-            }
-        });
-
-    }
+//    public static String findHospitalByDoctor(String doctorID) {
+//
+//        HospitalRetriever retriever = new HospitalRetriever(doctorID);
+//        retriever.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
+//            @Override
+//            public void onCallback(Doctor doctor) {
+//                hospitalID = doctor.getHospitalId();
+//            }
+//        });
+//
+//        retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
+//            @Override
+//            public void onCallback(ArrayList<Hospital> list) {
+//                System.out.println(list.size());
+//                for (int i = 0; i < list.size(); i++) {
+//                    if (hospitalID == list.get(i).getHospitalId()){
+//                        System.out.println(list.get(i).getHospitalName());
+//                        hospitalName = list.get(i).getHospitalName();
+//                        break;
+//                    }
+//                }
+//
+//            }
+//        });
+//
+//        return hospitalName;
+//
+//    }
 
 }
