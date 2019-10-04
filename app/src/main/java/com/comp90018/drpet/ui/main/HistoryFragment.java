@@ -1,5 +1,6 @@
 package com.comp90018.drpet.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.comp90018.drpet.Appointment;
 import com.comp90018.drpet.AppointmentAdapter;
+import com.comp90018.drpet.DetailsActivity;
 import com.comp90018.drpet.R;
 import com.comp90018.drpet.RecyclerItemClickListener;
 import com.comp90018.drpet.helper.AppointmentRetriever;
@@ -54,36 +56,52 @@ public class HistoryFragment extends Fragment {
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_management, container, false);
 
-//        final RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
-//
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//
-//        AppointmentRetriever retriever = new AppointmentRetriever();
-//        retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
-//            @Override
-//            public void onCallback(final ArrayList<Appointment> appointmentsList) {
-//                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
-//                recyclerView.setAdapter(appointmentAdapter);
-//
-//                recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-////                Intent intent = new Intent(getApplicationContext(), AppointmentActivity.class);
-////                intent.putExtra("doctorID", position);
-////                startActivity(intent);
-//                        Toast.makeText(getActivity().getApplicationContext(), appointmentsList.get(position).getComment(), Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                    @Override
-//                    public void onItemLongClick(View view, int position) {
-//                        // ...
-//                    }
-//                }));
-//                appointmentAdapter.notifyDataSetChanged();
-//            }
-//        });
+        final RecyclerView recyclerView = root.findViewById(R.id.recyclerView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        AppointmentRetriever retriever = new AppointmentRetriever();
+        retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<Appointment> list) {
+                final ArrayList<Appointment> appointmentsList = new ArrayList<>();
+
+                for (Appointment i: list) {
+                    String status = i.getStatus();
+                    if (status.equals("finished")) {
+                        appointmentsList.add(i);
+                    }
+                }
+
+                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
+                recyclerView.setAdapter(appointmentAdapter);
+
+                recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
+                        intent.putExtra("appintmentID", appointmentsList.get(position).getAppointmentID());
+                        intent.putExtra("hospitalName", appointmentsList.get(position).getHospitalName());
+                        intent.putExtra("doctorFirstName", appointmentsList.get(position).getDoctorFirstName());
+                        intent.putExtra("doctorLastName", appointmentsList.get(position).getDoctorLastName());
+                        intent.putExtra("date", appointmentsList.get(position).getDate());
+                        intent.putExtra("time", appointmentsList.get(position).getStartTime());
+                        intent.putExtra("petName", appointmentsList.get(position).getPetName());
+                        intent.putExtra("comment", appointmentsList.get(position).getComment());
+                        intent.putExtra("status", appointmentsList.get(position).getStatus());
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        // ...
+                    }
+                }));
+                appointmentAdapter.notifyDataSetChanged();
+            }
+        });
 
         return root;
     }
