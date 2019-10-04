@@ -22,10 +22,6 @@ public class HospitalRetriever {
     private Doctor doctor;
     private DatabaseReference reff1;
 
-//    private static String hospitalID;
-//    private static String hospitalName;
-
-
     public HospitalRetriever() {
 
         this.reff = FirebaseDatabase.getInstance().getReference().child("Hospital");
@@ -108,34 +104,5 @@ public class HospitalRetriever {
         };
         reff.addValueEventListener(valueEventListener);
     }
-
-//    public static String findHospitalByDoctor(String doctorID) {
-//
-//        HospitalRetriever retriever = new HospitalRetriever(doctorID);
-//        retriever.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
-//            @Override
-//            public void onCallback(Doctor doctor) {
-//                hospitalID = doctor.getHospitalId();
-//            }
-//        });
-//
-//        retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
-//            @Override
-//            public void onCallback(ArrayList<Hospital> list) {
-//                System.out.println(list.size());
-//                for (int i = 0; i < list.size(); i++) {
-//                    if (hospitalID == list.get(i).getHospitalId()){
-//                        System.out.println(list.get(i).getHospitalName());
-//                        hospitalName = list.get(i).getHospitalName();
-//                        break;
-//                    }
-//                }
-//
-//            }
-//        });
-//
-//        return hospitalName;
-//
-//    }
 
 }

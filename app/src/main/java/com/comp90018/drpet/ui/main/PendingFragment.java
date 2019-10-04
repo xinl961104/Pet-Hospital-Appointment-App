@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.comp90018.drpet.Appointment;
 import com.comp90018.drpet.AppointmentAdapter;
+import com.comp90018.drpet.DetailsActivity;
 import com.comp90018.drpet.Hospital;
 import com.comp90018.drpet.R;
 import com.comp90018.drpet.RecyclerItemClickListener;
@@ -85,14 +86,16 @@ public class PendingFragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(getActivity().getApplicationContext(), DetailsActivity.class);
+                        intent.putExtra("appintmentID", appointmentsList.get(position).getAppointmentID());
                         intent.putExtra("hospitalName", appointmentsList.get(position).getHospitalName());
-                        intent.putExtra("doctorName", appointmentsList.get(position).getDoctorName());
+                        intent.putExtra("doctorFirstName", appointmentsList.get(position).getDoctorFirstName());
+                        intent.putExtra("doctorLastName", appointmentsList.get(position).getDoctorLastName());
                         intent.putExtra("date", appointmentsList.get(position).getDate());
                         intent.putExtra("time", appointmentsList.get(position).getStartTime());
                         intent.putExtra("petName", appointmentsList.get(position).getPetName());
+                        intent.putExtra("comment", appointmentsList.get(position).getComment());
                         intent.putExtra("status", appointmentsList.get(position).getStatus());
                         startActivity(intent);
-                        Toast.makeText(getActivity().getApplicationContext(), appointmentsList.get(position).getComment(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

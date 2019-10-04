@@ -13,7 +13,8 @@ public class Appointment {
     private String userEmail;
     private String status;
 
-    private String doctorName;
+    private String doctorFirstName;
+    private String doctorLastName;
     private String hospitalName;
 
     public Appointment() {
@@ -33,7 +34,8 @@ public class Appointment {
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", status='" + status + '\'' +
-                ", doctorName='" + doctorName + '\'' +
+                ", doctorFirstName='" + doctorFirstName + '\'' +
+                ", doctorLastName='" + doctorLastName + '\'' +
                 ", hospitalName='" + hospitalName + '\'' +
                 '}';
     }
@@ -125,12 +127,18 @@ public class Appointment {
         this.status = status;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getDoctorFirstName() {
+        return doctorFirstName;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setDoctorFirstName(String doctorFirstName) { this.doctorFirstName = doctorFirstName; }
+
+    public String getDoctorLastName() {
+        return doctorLastName;
+    }
+
+    public void setDoctorLastName(String doctorLastName) {
+        this.doctorLastName = doctorLastName;
     }
 
     public String getHospitalName() {

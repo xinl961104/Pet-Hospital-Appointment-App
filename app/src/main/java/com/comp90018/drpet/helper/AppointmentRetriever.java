@@ -23,15 +23,13 @@ public class AppointmentRetriever {
 
     public AppointmentRetriever() {
         this.UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        this.reff = FirebaseDatabase.getInstance().getReference().child("Appointmentinfo");
+        this.reff = FirebaseDatabase.getInstance().getReference().child("AppointmentFinal");
         this.appointment = new ArrayList<>();
     }
 
     public interface FirebaseCallback {
         void onCallback(ArrayList<Appointment> list);
     }
-
-
 
     public void retrievData(final FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -54,10 +52,12 @@ public class AppointmentRetriever {
                             appointment.get(i).setUserEmail(ds.child("userEmail").getValue(String.class));
                             appointment.get(i).setUserID(ds.child("userID").getValue(String.class));
                             appointment.get(i).setUserName(ds.child("userName").getValue(String.class));
+                            appointment.get(i).setDoctorFirstName(ds.child("doctorFirstName").getValue(String.class));
+                            appointment.get(i).setDoctorLastName(ds.child("doctorLastName").getValue(String.class));
+                            appointment.get(i).setHospitalName(ds.child("hospitalName").getValue(String.class));
+                            System.out.println(i);
+                            System.out.println(appointment.get(i));
                         }
-
-//                        System.out.println(i);
-//                        System.out.println(appointment.get(i));
                         i++;
                     }
 
