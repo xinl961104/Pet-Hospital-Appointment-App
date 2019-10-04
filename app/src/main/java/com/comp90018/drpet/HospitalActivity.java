@@ -36,7 +36,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private ArrayList<String> hospitalsList;
+    private ArrayList<Hospital> hospitalsList;
     private Map<String, LatLng> hospitals;
 
     @Override
@@ -80,7 +80,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                     hospitals.put(hospitalName, coord);
                 }
 
-                hospitalsList = new ArrayList<>(hospitals.keySet());
+                hospitalsList = list;
 
                 initializeViewPager();
                 createMapMarkers();
@@ -105,7 +105,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
 
-                String hospitalName = hospitalsList.get(position);
+                String hospitalName = hospitalsList.get(position).getHospitalName();
                 Marker marker = makerMap.get(hospitalName);
 
                 markerClicked(marker);

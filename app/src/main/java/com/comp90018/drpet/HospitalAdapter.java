@@ -21,24 +21,28 @@ import java.util.Set;
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.PlacesViewHolder> {
 
     private Activity activity;
-    private ArrayList<String> hospitals;
+    private ArrayList<Hospital> hospitals;
 
     public class PlacesViewHolder extends RecyclerView.ViewHolder {
 
         public TextView hospitalNameTextView;
+        public TextView infoTextView;
+        public TextView addressTextView;
         public Button chooseButton;
 
 
         PlacesViewHolder(View itemView) {
             super(itemView);
             hospitalNameTextView = itemView.findViewById(R.id.hospitalNameTextView);
+            infoTextView = itemView.findViewById(R.id.infoTextView);
+            addressTextView = itemView.findViewById(R.id.addressTextView);
             chooseButton = itemView.findViewById(R.id.chooseButton);
         }
 
     }
 
 
-    public HospitalAdapter(ArrayList<String> hospitals, Activity activity) {
+    public HospitalAdapter(ArrayList<Hospital> hospitals, Activity activity) {
         this.hospitals = hospitals;
         this.activity = activity;
     }
@@ -56,8 +60,12 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
 
     @Override
     public void onBindViewHolder(final PlacesViewHolder holder, int position) {
-        String place = hospitals.get(position);
-        holder.hospitalNameTextView.setText(place);
+        String hospitalName = hospitals.get(position).getHospitalName();
+        holder.hospitalNameTextView.setText(hospitalName);
+        String background = hospitals.get(position).getHospitalBackground();
+        holder.infoTextView.setText(background);
+        String address = hospitals.get(position).getHospitalAddress();
+        holder.addressTextView.setText(address);
 
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
