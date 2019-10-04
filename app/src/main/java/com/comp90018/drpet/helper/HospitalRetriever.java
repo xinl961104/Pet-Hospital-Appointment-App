@@ -21,7 +21,7 @@ public class HospitalRetriever {
     private Hospital hospital;
     private Doctor doctor;
     private DatabaseReference reff1;
-
+    private String hospitalID;
 
 
     public HospitalRetriever() {
@@ -107,7 +107,7 @@ public class HospitalRetriever {
     }
 
     public void findHospitalByDoctor (String doctorID) {
-        final String hospitalID;
+
         HospitalRetriever retriever = new HospitalRetriever(doctorID);
         retriever.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
             @Override
@@ -121,14 +121,15 @@ public class HospitalRetriever {
             public void onCallback(ArrayList<Hospital> list) {
                 System.out.println(list.size());
                 for (int i = 0; i < list.size(); i++) {
-                    if (hospitalName == list.get(i).getHospitalId()){
+                    if (hospitalID == list.get(i).getHospitalId()){
 
+                        System.out.println(list.get(i).getHospitalName());
                     }
-
                 }
 
             }
         });
+
     }
 
 }
