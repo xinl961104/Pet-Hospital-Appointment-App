@@ -19,6 +19,24 @@
             android:name=".ManagementActivity"
             android:label="@string/title_activity_management"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HospitalActivity"
+            android:label="@string/title_activity_hospital" />
+        <activity android:name=".DoctorActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ChooseHospitalActivity" />
+        <activity android:name=".ShowBookInfoActivity" />
+        <activity android:name=".ChooseTimeSlotActivity" />
+        <activity android:name=".ChooseDoctorActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SigninActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -27,43 +45,6 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <activity
-            android:name=".HospitalActivity"
-            android:label="@string/title_activity_hospital" />
-        <activity android:name=".DoctorActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ChooseHospitalActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ShowBookInfoActivity" />
-        <activity android:name=".ChooseTimeSlotActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".ChooseDoctorActivity">
-
-        </activity>
-        <activity android:name=".RegisterActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".SigninActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".updateActivity" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
