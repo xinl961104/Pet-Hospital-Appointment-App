@@ -59,7 +59,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
     }
 
     @Override
-    public void onBindViewHolder(final PlacesViewHolder holder, int position) {
+    public void onBindViewHolder(final PlacesViewHolder holder, final int position) {
         String hospitalName = hospitals.get(position).getHospitalName();
         holder.hospitalNameTextView.setText(hospitalName);
         String background = hospitals.get(position).getHospitalBackground();
@@ -69,8 +69,13 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
 
         holder.chooseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(activity, DoctorActivity.class);
-                intent.putExtra("hospitalName", holder.hospitalNameTextView.getText());
+                Intent intent = new Intent(activity, ChooseDoctorActivity.class);
+                intent.putExtra("HospitalId", hospitals.get(position).getHospitalId());
+                intent.putExtra("HospitalName", hospitals.get(position).getHospitalName());
+                intent.putExtra("HospitalAddress", hospitals.get(position).getHospitalAddress());
+                intent.putExtra("HospitalPhone", hospitals.get(position).getHospitalPhone());
+                intent.putExtra("HospitalBackground", hospitals.get(position).getHospitalBackground());
+                intent.putExtra("HospitalOpenHours", hospitals.get(position).getHospitalOpenhours());
                 activity.startActivity(intent);
             }
         });
