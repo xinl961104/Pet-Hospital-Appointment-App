@@ -1,5 +1,8 @@
 package com.comp90018.drpet;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +58,7 @@ public class SigninActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            startActivity(new Intent(SigninActivity.this, MainActivity.class));
+                            startActivity(new Intent(SigninActivity.this, HomeActivity.class));
 
 
                         } else {
