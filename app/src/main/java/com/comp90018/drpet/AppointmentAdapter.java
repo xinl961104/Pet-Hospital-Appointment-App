@@ -1,18 +1,18 @@
 package com.comp90018.drpet;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder> {
 
-    private Activity activity;
+    private AppCompatActivity activity;
     private ArrayList<Appointment> appointments;
 
     public class AppointmentViewHolder extends RecyclerView.ViewHolder {
@@ -30,7 +30,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
     }
 
 
-    public AppointmentAdapter(ArrayList<Appointment> appointments, Activity activity) {
+    public AppointmentAdapter(ArrayList<Appointment> appointments, AppCompatActivity activity) {
         this.appointments = appointments;
         this.activity = activity;
     }

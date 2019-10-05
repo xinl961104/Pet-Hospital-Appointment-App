@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7f1ec">
+    android:background="@drawable/backgroundimage">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="@string/todo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_textfield"
@@ -18,7 +20,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:hint="Username">
+        android:hint="@string/username">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
@@ -35,7 +37,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:hint="Email">
+        android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/id"
@@ -52,7 +54,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:hint="Password">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -72,8 +74,8 @@
             android:id="@+id/signup"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="32dp"
-            android:text="SIGN UP"
+            android:layout_marginEnd="32dp"
+            android:text="@string/sign_up"
             android:background="@drawable/ic_signup_button"
             android:textColor="#f7f1ec"/>
 
@@ -82,8 +84,7 @@
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:background="#f7f1ec"
             android:textColor="#D9A886"/>
 
