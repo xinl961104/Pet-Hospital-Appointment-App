@@ -73,7 +73,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup"
             android:theme="@style/FormPrimaryButton"
-            android:layout_width="230dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
