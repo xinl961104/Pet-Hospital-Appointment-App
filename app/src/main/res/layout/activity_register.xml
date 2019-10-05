@@ -82,7 +82,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btntest"
-            android:theme="@style/FormButton"
+            android:theme="@style/FormSignupButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"

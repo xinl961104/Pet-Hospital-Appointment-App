@@ -30,7 +30,13 @@
         <item name="colorOnSurface">@color/secondaryDarkColor</item>
     </style>
 
-    <style name="FormButton" parent="Theme.MaterialComponents">
+    <style name="FormSigninButton" parent="Theme.MaterialComponents">
+        <item name="colorOnPrimary">@color/secondaryColor</item>
+        <item name="colorPrimary">@color/thirdColor</item>
+        <item name="colorOnSurface">@color/primaryDarkColor</item>
+    </style>
+
+    <style name="FormSignupButton" parent="Theme.MaterialComponents">
         <item name="colorOnPrimary">@color/primaryColor</item>
         <item name="colorPrimary">@color/thirdColor</item>
         <item name="colorOnSurface">@color/primaryDarkColor</item>
