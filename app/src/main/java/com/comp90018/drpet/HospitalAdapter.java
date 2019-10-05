@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.PlacesViewHolder> {
 
-    private AppCompatActivity activity;
+    private HospitalActivity activity;
     private ArrayList<Hospital> hospitals;
 
     public class PlacesViewHolder extends RecyclerView.ViewHolder {
@@ -36,7 +36,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
     }
 
 
-    public HospitalAdapter(ArrayList<Hospital> hospitals, AppCompatActivity activity) {
+    public HospitalAdapter(ArrayList<Hospital> hospitals, HospitalActivity activity) {
         this.hospitals = hospitals;
         this.activity = activity;
     }

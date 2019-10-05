@@ -7,12 +7,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder> {
 
-    private AppCompatActivity activity;
     private ArrayList<Appointment> appointments;
 
     public class AppointmentViewHolder extends RecyclerView.ViewHolder {
@@ -30,9 +28,8 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
     }
 
 
-    public AppointmentAdapter(ArrayList<Appointment> appointments, AppCompatActivity activity) {
+    public AppointmentAdapter(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
-        this.activity = activity;
     }
 
     @Override
