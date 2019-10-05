@@ -88,7 +88,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 System.out.println(list.size());
                 for (int i = 0; i < list.size(); i++) {
                     String hospitalName = list.get(i).getHospitalName();
-//                    LatLng coord = getLocationFromAddress(list.get(i).getHospitalAddress());
                     LatLng coord = locations.get(i);
                     System.out.println(hospitalName + coord.toString());
                     hospitals.put(hospitalName, coord);
