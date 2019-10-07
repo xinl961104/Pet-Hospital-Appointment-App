@@ -7,19 +7,60 @@
     tools:context=".ShowBookInfoActivity">
 
     <TextView
-        android:id="@+id/BookingInfo"
+        android:id="@+id/HospitalInfo"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:text="Your Book Info"
+        android:layout_marginTop="40dp"
+        android:text="Your Hospital Info"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="33dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="29dp" />
 
     <TextView
-        android:id="@+id/DoctorFirstName"
+        android:id="@+id/DoctorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Doctor First name"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="91dp" />
+        android:layout_marginBottom="32dp"
+        android:text="My Doctor name"
+        app:layout_constraintBottom_toTopOf="@+id/DateTime"
+        app:layout_constraintTop_toBottomOf="@+id/HospitalInfo"
+        tools:layout_editor_absoluteX="36dp" />
+
+    <TextView
+        android:id="@+id/DateTime"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="The date and time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="164dp" />
+
+    <TextView
+        android:id="@+id/PetInfo"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="My pet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <TextView
+        android:id="@+id/Comment"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="My Comment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PetInfo"
+        app:layout_constraintVertical_bias="0.297" />
+
+    <Button
+        android:id="@+id/BackToDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to dashboard"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="498dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
