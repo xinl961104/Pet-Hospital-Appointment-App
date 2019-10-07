@@ -28,14 +28,17 @@
         app:layout_constraintBottom_toTopOf="@+id/SpinnerTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
 
     <Spinner
         android:id="@+id/SpinnerTime"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="316dp" />
+        android:layout_marginBottom="212dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="46dp" />
 
     <Button
         android:id="@+id/Finally"
@@ -44,5 +47,5 @@
         android:layout_marginBottom="76dp"
         android:text="NEXT"
         app:layout_constraintBottom_toTopOf="@+id/SpinnerTime"
-        tools:layout_editor_absoluteX="151dp" />
+        tools:layout_editor_absoluteX="149dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
