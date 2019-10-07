@@ -19,9 +19,11 @@ public class ChooseTimeSlotActivity extends AppCompatActivity {
     private static final String TAG = "Get Hospital";
     public TextView theDate;
     public Button btnGoCalendar;
-    String doctorID;
+    public String doctorID;
     public TextView DoctorName;
     public TextView DoctorBackgroundInfo;
+    public Button btnChooseTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +33,32 @@ public class ChooseTimeSlotActivity extends AppCompatActivity {
         doctorID = intent.getStringExtra("doctorID");
         loadhospital();
 
-        theDate = (TextView) findViewById(R.id.SelectedDate);
+       // theDate = (TextView) findViewById(R.id.SelectedDate);
         btnGoCalendar = (Button) findViewById(R.id.btnGoCalendar);
-        Intent incomingIntent = getIntent();
-        String date = incomingIntent.getStringExtra("date");
-        theDate.setText(date);
+        //Intent incomingIntent = getIntent();
+      //  date = incomingIntent.getStringExtra("date");
+       // theDate.setText(date);
         btnGoCalendar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Intent intent = new Intent(ChooseTimeSlotActivity.this, CalendarActivity.class);
+                intent.putExtra("DoctorIDForTime", doctorID);
                 startActivity(intent);
-
-
             }
         });
+
+
+
+      /*  btnChooseTime = (Button) findViewById(R.id.GotoAddTime);
+        btnChooseTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view1) {
+                Intent intent1 = new Intent(ChooseTimeSlotActivity.this, ChooseTimePage2.class);
+
+              //  intent1.putExtra("DoctorIDForTime", doctorID);
+               // intent1.putExtra("ChosenTime",date);
+                startActivity(intent1);
+            }
+        });*/
 
     }
 

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AppointmentAddPetActivity"></activity>
+        <activity android:name=".TimeSlotActivity"></activity>
+        <activity android:name=".ChooseTimePage2" />
+        <activity android:name=".AppointmentAddPetActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".HomeActivity" />
