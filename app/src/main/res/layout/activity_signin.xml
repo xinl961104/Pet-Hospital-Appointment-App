@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:background="@drawable/backgroundimage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SigninActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -90,7 +92,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="8dp"
         android:text="@string/forget_password"
-        android:textColor="#F7F1EC"
+        android:textColor="#EC8094"
         android:textSize="14sp" />
 
 </LinearLayout>
