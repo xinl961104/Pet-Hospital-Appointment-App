@@ -94,6 +94,7 @@
                 android:src="@drawable/selector_appointmentbtn"
                 android:scaleType="fitXY"
                 android:background="@null"
+                android:onClick="makeAppointment"
                 android:layout_gravity="center_horizontal">
 
             </androidx.appcompat.widget.AppCompatImageButton>
