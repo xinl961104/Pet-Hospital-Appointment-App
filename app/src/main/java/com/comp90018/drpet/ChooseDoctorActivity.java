@@ -2,6 +2,8 @@ package com.comp90018.drpet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,7 +65,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
 
                 if(dataSnapshot.exists()) {
                    // doctorList.clear();
-                    List<DoctorModel> doctorList = new ArrayList<>();
+                   final List<DoctorModel> doctorList = new ArrayList<>();
                     for (DataSnapshot doctorSnapShot : dataSnapshot.getChildren()) {
                         DoctorModel doctor = doctorSnapShot.getValue(DoctorModel.class);
                         doctorList.add(doctor);
@@ -71,6 +73,15 @@ public class ChooseDoctorActivity extends AppCompatActivity {
 
                     DoctorList adapter = new DoctorList(ChooseDoctorActivity.this, doctorList);
                     listofDoctors.setAdapter(adapter);
+                    listofDoctors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            Intent intent1 = new Intent(ChooseDoctorActivity.this, ChooseTimeSlotActivity.class);
+                            intent1.putExtra("doctorID",doctorList.get(i).getDoctorId());
+                            startActivity(intent1);
+                        }
+                    });
+
                 }
             }
 
