@@ -12,6 +12,16 @@ public class Pet {
     public Pet() {
     }
 
+    public Pet(String petID, String category, String breed, String petAge, String comment, String ownerID, String petName) {
+        this.petID = petID;
+        this.category = category;
+        this.breed = breed;
+        this.petAge = petAge;
+        this.comment = comment;
+        this.ownerID = ownerID;
+        this.petName = petName;
+    }
+
     public String getPetID() {
         return petID;
     }
