@@ -31,7 +31,7 @@ public class DoctorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor);
+        setContentView(R.layout.activity_choose_doctor);
 
         hospitalTextView = findViewById(R.id.hospitalTextView);
         hospitalImageView = findViewById(R.id.hospitalImageView);

@@ -7,123 +7,128 @@
     android:background="@drawable/vetpuppy_background"
     tools:context=".HomeActivity">
 
-
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Hello,"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="24sp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Xian Dong"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="24sp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="We will help you to find your vet."
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="32dp"
-            android:layout_alignTop="@id/welcomeText">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/logoutButton"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/ic_vector_profile"
-                >
-
-            </androidx.appcompat.widget.AppCompatImageButton>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/logoutButton"
-                android:fontFamily="@font/roboto"
-                android:text="Log out"
-                android:layout_marginTop="2dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2">
-
-            </com.google.android.material.textview.MaterialTextView>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical"
-            android:layout_below="@id/welcomeText">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/appointmentButton"
+            <LinearLayout
+                android:id="@+id/welcomeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/selector_appointmentbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:onClick="makeAppointment"
-                android:layout_gravity="center_horizontal">
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
 
-            </androidx.appcompat.widget.AppCompatImageButton>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Hello,"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="24sp" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/manageButton"
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Xian Dong"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="24sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:text="We will help you to find your vet."
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/selector_bookbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
+                android:layout_alignTop="@id/welcomeText"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="32dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/logoutButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/ic_vector_profile">
+
+                </androidx.appcompat.widget.AppCompatImageButton>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/logoutButton"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Log out"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2">
+
+                </com.google.android.material.textview.MaterialTextView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/welcomeText"
                 android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal">
+                android:orientation="vertical">
 
-            </androidx.appcompat.widget.AppCompatImageButton>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/appointmentButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@null"
+                    android:onClick="makeAppointment"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/selector_appointmentbtn">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/myPetsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_petbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal">
+                </androidx.appcompat.widget.AppCompatImageButton>
 
-            </androidx.appcompat.widget.AppCompatImageButton>
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/manageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/selector_bookbtn">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </RelativeLayout>
+                </androidx.appcompat.widget.AppCompatImageButton>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/myPetsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="50dp"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/selector_petbtn">
+
+                </androidx.appcompat.widget.AppCompatImageButton>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
