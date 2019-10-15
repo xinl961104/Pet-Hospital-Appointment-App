@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DoctorActivity">
+    android:layout_height="match_parent">
+<!--    tools:context=".DoctorActivity">-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="#474747"
+                android:layout_marginBottom="16dp"
                 android:textSize="24sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
