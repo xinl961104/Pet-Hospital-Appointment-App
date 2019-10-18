@@ -147,15 +147,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
-            android:paddingHorizontal="16dp"
-            android:fontFamily="@font/roboto"
-            android:text="Call +(04)43948339"
-            android:textColor="@color/secondaryTextColor"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:background="@color/secondaryColor"
-            app:layout_constraintTop_toBottomOf="@id/HospitalAddress"
+            android:fontFamily="@font/roboto"
+            android:onClick="callHospital"
+            android:paddingHorizontal="16dp"
+            android:text="Call +(04)43948339"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="@color/secondaryTextColor"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/HospitalAddress" />
 
 
 
