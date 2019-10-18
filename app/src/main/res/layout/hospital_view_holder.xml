@@ -31,7 +31,13 @@
             android:id="@+id/infoTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="医院介绍，评分。" />
+            android:text="This is a good hospital." />
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123 street" />
 
         <Button
             android:id="@+id/chooseButton"

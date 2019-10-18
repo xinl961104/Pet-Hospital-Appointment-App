@@ -9,12 +9,12 @@
         android:id="@+id/hospitalTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hoppers Crossing Veterinary Clinic &amp; Hospital"
+        android:text="hospital name"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/timeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="9 AM, 12 September, 2019" />
+        android:text="time" />
 </LinearLayout>

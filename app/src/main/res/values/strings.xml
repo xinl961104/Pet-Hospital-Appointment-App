@@ -3,5 +3,16 @@
     <string name="title_activity_hospital">Map</string>
     <string name="title_activity_management">ManagementActivity</string>
     <string name="tab_text_1">Pending</string>
-    <string name="tab_text_2">History</string>
+    <string name="tab_text_2">Finished</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="sign_in">LOG IN</string>
+    <string name="todo">TODO</string>
+    <string name="xiandong_abc_com">xiandong@abc.com</string>
+    <string name="_123456">123456</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="make_an_appointment"><u>Make An Appointment</u></string>
 </resources>

@@ -1,22 +1,20 @@
 package com.comp90018.drpet;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorsViewHolder> {
 
-    private Activity activity;
+    private AppCompatActivity activity;
     private ArrayList<String> doctors;
     private ArrayList<Bitmap> doctorPictures;
 
@@ -35,7 +33,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorsVie
     }
 
 
-    public DoctorAdapter(ArrayList<String> doctors, Activity activity) {
+    public DoctorAdapter(ArrayList<String> doctors, AppCompatActivity activity) {
         this.doctors = doctors;
         this.activity = activity;
     }

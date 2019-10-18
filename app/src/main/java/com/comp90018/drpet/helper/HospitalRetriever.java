@@ -22,8 +22,6 @@ public class HospitalRetriever {
     private Doctor doctor;
     private DatabaseReference reff1;
 
-
-
     public HospitalRetriever() {
 
         this.reff = FirebaseDatabase.getInstance().getReference().child("Hospital");
@@ -80,6 +78,7 @@ public class HospitalRetriever {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                hospitals = new ArrayList<>();
                 hospitals.clear();
                 if (dataSnapshot.exists()) {
                     int i = 0;

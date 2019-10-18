@@ -13,6 +13,10 @@ public class Appointment {
     private String userEmail;
     private String status;
 
+    private String doctorFirstName;
+    private String doctorLastName;
+    private String hospitalName;
+
     public Appointment() {
     }
 
@@ -30,12 +34,14 @@ public class Appointment {
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", status='" + status + '\'' +
+                ", doctorFirstName='" + doctorFirstName + '\'' +
+                ", doctorLastName='" + doctorLastName + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
                 '}';
     }
 
-    public String getAppointmentID() {
-        return appointmentID;
-    }
+
+    public String getAppointmentID() { return appointmentID; }
 
     public void setAppointmentID(String appointmentID) {
         this.appointmentID = appointmentID;
@@ -120,4 +126,27 @@ public class Appointment {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getDoctorFirstName() {
+        return doctorFirstName;
+    }
+
+    public void setDoctorFirstName(String doctorFirstName) { this.doctorFirstName = doctorFirstName; }
+
+    public String getDoctorLastName() {
+        return doctorLastName;
+    }
+
+    public void setDoctorLastName(String doctorLastName) {
+        this.doctorLastName = doctorLastName;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
+    }
+
 }

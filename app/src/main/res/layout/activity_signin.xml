@@ -4,60 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/backgroundimage"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    tools:context=".SigninActivity">
 
     <ImageView
-        android:src="@drawable/profile"
-        android:layout_marginTop="50dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/img_profile" />
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/id"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:hint="email"
-        android:text="xiandong@abc.com" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:hint="password"
-        android:inputType="textPassword"
-        android:text="123456" />
-
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_textfield"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center_horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/email">
 
-        <Button
-            android:text="Sign In"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@string/xiandong_abc_com" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPassword"
+            android:text="@string/_123456" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/isremember"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_marginTop="10dp"
+        android:text="Remember Password"
+        android:textSize="11sp"/> 
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="16dp">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signin"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@string/sign_in"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="#f7f1ec"
+            android:theme="@style/FormSecondaryButton" />
 
-        <Button
-            android:text="Sign Up"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signup"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:elevation="2dp"
+            android:text="@string/sign_up"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="#EC8094"
+            android:theme="@style/FormSigninButton" />
 
-    </LinearLayout>
 
+    </RelativeLayout>
 
+    <TextView
+        android:id="@+id/resetpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/forget_password"
+        android:textColor="#EC8094"
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -1,18 +1,16 @@
 package com.comp90018.drpet;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder> {
 
-    private Activity activity;
     private ArrayList<Appointment> appointments;
 
     public class AppointmentViewHolder extends RecyclerView.ViewHolder {
@@ -30,9 +28,8 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
     }
 
 
-    public AppointmentAdapter(ArrayList<Appointment> appointments, Activity activity) {
+    public AppointmentAdapter(ArrayList<Appointment> appointments) {
         this.appointments = appointments;
-        this.activity = activity;
     }
 
     @Override
@@ -48,7 +45,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<com.comp90018.drpet
 
     @Override
     public void onBindViewHolder(final com.comp90018.drpet.AppointmentAdapter.AppointmentViewHolder holder, int position) {
-        String hospital = "DoctorID is " + appointments.get(position).getDoctorID();
+        String hospital = appointments.get(position).getHospitalName();
         holder.hospitalTextView.setText(hospital);
         String dateTime = appointments.get(position).getStartTime() + " " + appointments.get(position).getDate();
         holder.timeTextView.setText(dateTime);

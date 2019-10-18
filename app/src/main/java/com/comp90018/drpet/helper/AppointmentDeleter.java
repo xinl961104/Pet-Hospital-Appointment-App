@@ -19,7 +19,7 @@ public class AppointmentDeleter {
 
     public AppointmentDeleter(String appointmentID) {
         this.appointmentID = appointmentID;
-        this.reff = FirebaseDatabase.getInstance().getReference().child("Appointmentinfo");
+        this.reff = FirebaseDatabase.getInstance().getReference().child("AppointmentFinal");
 
     }
     public interface FirebaseCallback {
@@ -32,14 +32,10 @@ public class AppointmentDeleter {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
-                    //int i = 0;
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         if(appointmentID.equals(ds.child("appointmentID").getValue(String.class))){
                             ds.getRef().removeValue();
                         }
-//                        System.out.println(i);
-//                        System.out.println(appointment.get(i));
-                        //i++;
                     }
 
                 }
