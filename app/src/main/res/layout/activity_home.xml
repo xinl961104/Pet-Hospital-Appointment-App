@@ -67,7 +67,8 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/ic_vector_profile">
+                    android:background="@drawable/ic_vector_profile"
+                    android:onClick="logout">
 
                 </androidx.appcompat.widget.AppCompatImageButton>
 
@@ -110,6 +111,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="50dp"
                     android:background="@null"
+                    android:onClick="manageAppointment"
                     android:scaleType="fitXY"
                     android:src="@drawable/selector_bookbtn">
 
@@ -122,6 +124,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="50dp"
                     android:background="@null"
+                    android:onClick="managePets"
                     android:scaleType="fitXY"
                     android:src="@drawable/selector_petbtn">
 
