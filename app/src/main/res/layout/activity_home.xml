@@ -39,12 +39,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Xian Dong"
+                    android:text="username"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="@color/colorOnSurface"
                     android:textSize="24sp" />
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/commentTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"

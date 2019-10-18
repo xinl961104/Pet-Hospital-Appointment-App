@@ -1,8 +1,9 @@
 package com.comp90018.drpet.helper;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
-import com.comp90018.drpet.Appointment;
 import com.comp90018.drpet.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -10,8 +11,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class UserRetriever {
 
@@ -21,7 +20,7 @@ public class UserRetriever {
 
     public UserRetriever() {
         this.UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        this.reff = FirebaseDatabase.getInstance().getReference().child("AppointmentFinal");
+        this.reff = FirebaseDatabase.getInstance().getReference().child("users");
         this.user = new UserModel();
     }
 
@@ -29,7 +28,7 @@ public class UserRetriever {
         void onCallback(UserModel user);
     }
 
-    public void retrievData(final UserRetriever.FirebaseCallback firebaseCallback){
+    public void retrieveData(final UserRetriever.FirebaseCallback firebaseCallback){
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -40,7 +39,6 @@ public class UserRetriever {
                             user.name = ds.child("name").getValue(String.class);
                         }
                     }
-
                 }
                 firebaseCallback.onCallback(user);
             }
