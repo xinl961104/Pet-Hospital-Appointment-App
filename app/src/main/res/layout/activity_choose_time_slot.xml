@@ -76,7 +76,7 @@
         android:id="@+id/btnGoCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CHOOSE A TIME"
+        android:text="MAKE AN APPOINTMENT"
         android:paddingHorizontal="32dp"
         android:background="@color/secondaryDarkColor"
         android:textColor="@color/secondaryTextColor"
