@@ -40,7 +40,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_doctor);
+        setContentView(R.layout.fragment_choose_doctor);
 
         Intent incomingIntent = getIntent();
         id = incomingIntent.getStringExtra("HospitalId");

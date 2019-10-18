@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:scrollbars="none"
+    android:background="@color/primaryLightColor"
     tools:context=".ChooseDoctorActivity"
     >
 
@@ -42,11 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
         android:fontFamily="@font/roboto"
+        android:gravity="center_horizontal"
         android:text="Name of Hospital"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="28sp"
+        android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintRight_toRightOf="@id/Guideline2"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +60,7 @@
         app:layout_constraintRight_toRightOf="@id/Guideline2"
         app:layout_constraintTop_toBottomOf="@+id/HospitalName"
         app:srcCompat="@drawable/ic_launcher_background"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="30dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/HospitalInfo"
@@ -79,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_bold"
         android:text="Doctors"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="16sp"
@@ -89,7 +90,7 @@
     <!-- listview 为什么只会显示一条？-->
     <ListView
         android:id="@+id/ListofDoctors"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
@@ -100,13 +101,13 @@
         android:id="@+id/HospitalOpenHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hospital Open Hours"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Hospital Open Hours &amp; Address"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/ListofDoctors"
-        app:layout_constraintLeft_toLeftOf="@id/Guideline1">
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/ListofDoctors">
 
     </com.google.android.material.textview.MaterialTextView>
 
@@ -117,7 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_black"
+        android:fontFamily="@font/roboto"
         android:text="Mon-Fri: 9am-5pm"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
@@ -128,19 +129,33 @@
 
     <!-- 电话和地址分成两条 -->
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/HospitalAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="Hospital address: #######"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/OpeningHourDetail" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/HospitalPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
-        android:fontFamily="@font/roboto_light"
+        android:paddingHorizontal="16dp"
+        android:fontFamily="@font/roboto"
         android:text="Call +(04)43948339"
-        android:textSize="14sp"
+        android:textColor="@color/secondaryTextColor"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:background="@color/secondaryColor"
+        app:layout_constraintTop_toBottomOf="@id/HospitalAddress"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-        app:layout_constraintTop_toBottomOf="@id/OpeningHourDetail"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>
