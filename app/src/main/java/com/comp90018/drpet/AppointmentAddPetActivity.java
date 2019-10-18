@@ -2,6 +2,7 @@ package com.comp90018.drpet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,8 +45,9 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
     Button book;
     public EditText ownerComment;
     public String content;
-
+    public String slotID;
     private DatabaseReference mDatabase;
+    String key1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
         doctorID = intent.getStringExtra("DoctorIDAppointment");
         date = intent.getStringExtra("dateforAppointment");
         time = intent.getStringExtra("selectedTime");
+
 
         show = (TextView) findViewById(R.id.textView2);
         show.setText(doctorID + date + time);
@@ -70,6 +73,34 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
             userID = user.getUid();
             userName = user.getDisplayName();
         }
+
+
+        Query queryTimeSlotID = FirebaseDatabase.getInstance().getReference("TimeSlot").orderByChild("doctorID").equalTo(doctorID);
+
+        queryTimeSlotID.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot timeSlotSnapShot : dataSnapshot.getChildren()){
+                         key1 = timeSlotSnapShot.getKey();
+                        TimeSlotModel timeSlot2 = timeSlotSnapShot.getValue(TimeSlotModel.class);
+                         if(timeSlot2.getDate().equals(date) && timeSlot2.getStartTime().equals(time) && timeSlot2.getSlotId()!=null){
+
+                          Log.e("Read successful", key1);
+                          break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         // query all doctors' information for the appointment
         Query queryDoctor = FirebaseDatabase.getInstance().getReference("Doctor").orderByChild("doctorId").equalTo(doctorID);
         queryDoctor.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -168,9 +199,14 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                 String key =  myRef.push().getKey();
                 Appointment app = new Appointment(key, doctorID, userID, "123", selectedPet, content, time, date, "xiandong", userEmail, "booked", doctorFirstName, doctorLastName,hospitalName);
                 myRef.child(key).setValue(app);//this creates the reqs key-value pair
-            //    myRef.child(key).child("title").setValue("Announcing COBOL");//this creates the reqs key-value pair
+            //  myRef.child(key).child("title").setValue("Announcing COBOL");//this creates the reqs key-value pair
+
+
 
                 // update the timedslot flag in the timeslot table;
+                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                DatabaseReference myref2 = database1.getReference();
+                myref2.child("TimeSlot").child(key1).child("flag").setValue("1");
 
 
                 Intent appointment = new Intent(AppointmentAddPetActivity.this, ShowBookInfoActivity.class);
@@ -195,6 +231,7 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }
