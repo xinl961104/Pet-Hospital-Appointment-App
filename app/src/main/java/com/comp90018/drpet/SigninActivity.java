@@ -52,7 +52,7 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String emailAddress = email.getText().toString();
-                if (emailAddress != null) {
+                if (!emailAddress.isEmpty()) {
                     mAuth.sendPasswordResetEmail(emailAddress);
                     Toast.makeText(SigninActivity.this, "Password reset mail was sent to your E-mail",
                             Toast.LENGTH_SHORT).show();
