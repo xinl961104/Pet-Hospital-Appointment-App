@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
     android:background="@drawable/backgroundimage"
-    >
+    android:orientation="vertical"
+    tools:context=".SigninActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_textfield"
@@ -20,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
         android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -38,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -55,30 +57,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signin"
-            android:theme="@style/FormSecondaryButton"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:text="@string/sign_in"
-            android:textColor="#f7f1ec"/>
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="#f7f1ec"
+            android:theme="@style/FormSecondaryButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup"
-            android:theme="@style/FormSigninButton"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:elevation="2dp"
             android:text="@string/sign_up"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="#EC8094"
-            android:elevation="2dp"/>
+            android:theme="@style/FormSigninButton" />
 
 
     </RelativeLayout>
@@ -86,10 +88,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forget_password"
         android:layout_marginStart="17dp"
         android:layout_marginTop="8dp"
-        android:textColor="#666666"
+        android:text="@string/forget_password"
+        android:textColor="#EC8094"
         android:textSize="14sp" />
 
 </LinearLayout>
