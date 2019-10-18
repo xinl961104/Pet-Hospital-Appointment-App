@@ -122,53 +122,31 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         } else if(event.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE) {
             if(mLastKnownRelativeHumidity !=0) {
                 float temperature = event.values[0];
-                // float humidity = calculateAbsoluteHumidity(temperature, mLastKnownRelativeHumidity);
                 float humidity = mLastKnownRelativeHumidity;
                 setComment(temperature, humidity);
             }
         }
     }
 
-    public void setComment(float temperature, float absoluteHumidity) {
+    public void setComment(float temperature, float humidity) {
 
         String comment;
-        String humidity = String.format(Locale.UK,"%.2f", absoluteHumidity);
-        comment = "Absolute humidity at temperature: " + temperature + " is: " + humidity + ".";
+//        String humidity = String.format(Locale.UK,"%.2f", humidity);
+        comment = "Temperature: " + temperature + ", Humidity: " + humidity + "%.";
 
-        if (temperature >= 40) {
-            comment += "\nThe temperature is too hot for your pet.";
+        if (temperature >= 40 || humidity <= 30) {
+            if (temperature >= 40) {
+                comment += "\nThe temperature is too hot for your pet.";
+            }
+            if (humidity <= 30) {
+                comment += "\nYour room is too dry for your pet.";
+            }
         } else {
             comment += "\nThe temperature and humidity are suitable.";
         }
 
         commentTextView.setText(comment);
 
-    }
-
-    /* Meaning of the constants
-     Dv: Absolute humidity in grams/meter3
-     m: Mass constant
-     Tn: Temperature constant
-     Ta: Temperature constant
-     Rh: Actual relative humidity in percent (%) from phone’s sensor
-     Tc: Current temperature in degrees C from phone’ sensor
-     A: Pressure constant in hP
-     K: Temperature constant for converting to kelvin
-     */
-    public float calculateAbsoluteHumidity(float temperature, float relativeHumidity)
-    {
-        float Dv;
-        float m = 17.62f;
-        float Tn = 243.12f;
-        float Ta = 216.7f;
-        float Rh = relativeHumidity;
-        float Tc = temperature;
-        float A = 6.112f;
-        float K = 273.15f;
-
-        Dv =   (float) (Ta * (Rh/100) * A * Math.exp(m*Tc/(Tn+Tc)) / (K + Tc));
-
-        return Dv;
     }
 
     @Override
