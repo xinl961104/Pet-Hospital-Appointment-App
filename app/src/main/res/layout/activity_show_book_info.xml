@@ -10,11 +10,13 @@
         android:id="@+id/HospitalInfo"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="Your Hospital Info"
         android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="29dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/DoctorName"
@@ -23,18 +25,22 @@
         android:layout_marginBottom="32dp"
         android:text="My Doctor name"
         app:layout_constraintBottom_toTopOf="@+id/DateTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HospitalInfo"
-        tools:layout_editor_absoluteX="36dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/DateTime"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:text="The date and time"
+        app:layout_constraintBottom_toTopOf="@+id/PetInfo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="164dp" />
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/PetInfo"
@@ -60,7 +66,9 @@
         android:id="@+id/BackToDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to dashboard"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="498dp" />
+        android:text="Back to Map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Comment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
