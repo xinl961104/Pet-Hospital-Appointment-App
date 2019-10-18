@@ -19,12 +19,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/DoctorName"
+        android:id="@+id/DoctorName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="My Doctor name"
-        app:layout_constraintBottom_toTopOf="@+id/DateTime"
+        app:layout_constraintBottom_toTopOf="@+id/DateTime1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/DateTime"
+        android:id="@+id/DateTime1"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
@@ -52,7 +52,7 @@
         tools:layout_editor_absoluteY="218dp" />
 
     <TextView
-        android:id="@+id/Comment"
+        android:id="@+id/Comment1"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="My Comment"
@@ -70,5 +70,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Comment" />
+        app:layout_constraintTop_toBottomOf="@+id/Comment1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
