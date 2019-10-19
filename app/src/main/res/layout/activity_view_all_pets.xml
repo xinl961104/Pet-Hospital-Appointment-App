@@ -8,36 +8,46 @@
 
     <ListView
         android:id="@+id/ListofPets"
-        android:layout_width="398dp"
-        android:layout_height="390dp"
+        android:layout_width="266dp"
+        android:layout_height="226dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView34"
-        app:layout_constraintVertical_bias="0.314" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358" />
 
     <TextView
         android:id="@+id/textView34"
         android:layout_width="264dp"
         android:layout_height="24dp"
+        android:layout_marginTop="36dp"
         android:text="List of your Pets"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="32dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ListofPets"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="6dp" />
 
     <Button
         android:id="@+id/Backtodash"
         android:layout_width="234dp"
         android:layout_height="48dp"
+        android:layout_marginTop="336dp"
         android:text="Back to Dashboard"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="522dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="88dp" />
 
     <Button
-        android:id="@+id/AddNewPet"
+        android:id="@+id/AddnewPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
-        tools:layout_editor_absoluteX="293dp"
-        tools:layout_editor_absoluteY="15dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
 </androidx.constraintlayout.widget.ConstraintLayout>
