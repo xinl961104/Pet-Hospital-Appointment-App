@@ -1,5 +1,6 @@
 package com.comp90018.drpet;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -46,7 +47,8 @@ public class AddPetActivity extends AppCompatActivity {
     String userEmail;
     String userID;
     private static final int REQUEST_IMAGE_CAPTURE = 101;
-    private  final int REQUEST_PICK_IMAGE = 2;
+    private final int REQUEST_PICK_IMAGE = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,31 +57,31 @@ public class AddPetActivity extends AppCompatActivity {
 
         Intent incomingIntent = getIntent();
 
-        PetName = (EditText)findViewById(R.id.PetName);
-        PetAge = (EditText)findViewById(R.id.PetAge);
-        PetCategory = (EditText)findViewById(R.id.PetCategory);
-        PetBreed = (EditText)findViewById(R.id.PetBreed);
-        CommentforPet = (EditText)findViewById(R.id.CommentforPet);
+        PetName = (EditText) findViewById(R.id.PetName);
+        PetAge = (EditText) findViewById(R.id.PetAge);
+        PetCategory = (EditText) findViewById(R.id.PetCategory);
+        PetBreed = (EditText) findViewById(R.id.PetBreed);
+        CommentforPet = (EditText) findViewById(R.id.CommentforPet);
 
 
         pick = findViewById(R.id.btnpick);
-        BacktoPetList = (Button)findViewById(R.id.backtoPetList);
-        TakePhotoes = (Button)findViewById(R.id.takePhotoes);
-        AddPet = (Button)findViewById(R.id.addPet1);
+        BacktoPetList = (Button) findViewById(R.id.backtoPetList);
+        TakePhotoes = (Button) findViewById(R.id.takePhotoes);
+        AddPet = (Button) findViewById(R.id.addPet1);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user!=null){
+        if (user != null) {
             userEmail = user.getEmail();
             userID = user.getUid();
-           // userName = user.getDisplayName();
+            // userName = user.getDisplayName();
         }
 
         pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                startActivityForResult(intent,REQUEST_PICK_IMAGE);
+                startActivityForResult(intent, REQUEST_PICK_IMAGE);
 
             }
         });
@@ -96,8 +98,8 @@ public class AddPetActivity extends AppCompatActivity {
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("Pet");
-                String k =  myRef.push().getKey();
-                Pet newPet = new Pet(k, petcategory, petbreed,petage,commentforpet,userID, petname);
+                String k = myRef.push().getKey();
+                Pet newPet = new Pet(k, petcategory, petbreed, petage, commentforpet, userID, petname);
                 myRef.child(k).setValue(newPet);//this creates the reqs key-value pair
                 Toast.makeText(AddPetActivity.this, "Add Success", Toast.LENGTH_SHORT).show();
             }
@@ -119,14 +121,12 @@ public class AddPetActivity extends AppCompatActivity {
         });
 
 
-
-
     }
 
-    public void takePicture(View view){
+    public void takePicture(View view) {
         Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(imageTakeIntent.resolveActivity(getPackageManager())!=null){
-            startActivityForResult(imageTakeIntent,REQUEST_IMAGE_CAPTURE);
+        if (imageTakeIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(imageTakeIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
@@ -134,17 +134,17 @@ public class AddPetActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
         }
-        if(requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK){
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
             Uri uri = data.getData();
             Bitmap bitmap = null;
-            try{
+            try {
 
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 mImageView.setImageBitmap(bitmap);
 
                 FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
@@ -159,28 +159,41 @@ public class AddPetActivity extends AppCompatActivity {
                         info.append("image labeler");
                         String guess = " ";
                         float p = 0;
-                        for(FirebaseVisionImageLabel label :firebaseVisionImageLabels){
+                        for (FirebaseVisionImageLabel label : firebaseVisionImageLabels) {
                             info.append("Text: ").append(label.getText()).append(",\n").append("Confidence : ").append(label.getConfidence()).append(",\n");
-                            if(label.getConfidence() >p){
+                            if (label.getConfidence() > p) {
                                 guess = label.getText();
                                 p = label.getConfidence();
                             }
                         }
                         System.out.println(info);
-                        String sen = "Is this is a "+ guess+" with p: "+p;
+                        String sen = "Is this is a " + guess + " with p: " + p;
+                        showResult(sen);
                         PetCategory.setText(guess);
                     }
                 });
 
-            } catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
 
-
-
     }
 
+    public void showResult (String sen) {
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Picture Recognition");
+        builder.setMessage(sen);
+
+        // add a button
+        builder.setPositiveButton("OK", null);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
