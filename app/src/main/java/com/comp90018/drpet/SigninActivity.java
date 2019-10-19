@@ -25,6 +25,7 @@ public class SigninActivity extends AppCompatActivity {
     Button signin, signup;
     FirebaseAuth mAuth;
 
+    Button pick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,15 @@ public class SigninActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         signin = findViewById(R.id.signin);
         signup = findViewById(R.id.signup);
+
+        pick = findViewById(R.id.btnpick);
+
+        pick.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SigninActivity.this,PickPic.class));
+            }
+        });
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

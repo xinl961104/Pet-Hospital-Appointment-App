@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public Appointment setAppointment(String appointmentID,String doctorID,String userID,String petID,
                                       String petName,String comment,String startTime, String date,String userName,
-                                      String userEmail,String status){
+                                      String userEmail,String status,String hospitalName,String doctorFirstName,String doctorLastName){
         Appointment appointment = new Appointment();
         appointment.setAppointmentID(appointmentID);
         appointment.setDoctorID(doctorID);
@@ -60,6 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         appointment.setUserName(userName);
         appointment.setUserEmail(userEmail);
         appointment.setStatus(status);
+        appointment.setHospitalName(hospitalName);
+        appointment.setDoctorFirstName(doctorFirstName);
+        appointment.setDoctorLastName(doctorLastName);
         return appointment;
     }
     public Pet setPet(String petID, String category,String breed,String petAge,
@@ -126,6 +129,26 @@ public class RegisterActivity extends AppCompatActivity {
 //                "Vincent's Hospital is a major hospital in Fitzroy, Melbourne, Australia.",
 //                "0:00-24:00","(03)92312211",
 //                "41 Victoria Parade, Fitzroy VIC 3065");
+//        hospital = setHospital(uniqueID,"Maribyrnong Veterinary Clinic",
+//                "Established in 2004, the Maribyrnong Veterinary Clinic aims to bring a compassionate, family approach to veterinary care to Maidstone, Maribyrnong and the surrounding suburbs of Footscray, Sunshine and Avondale Heights.",
+//                "8:00-19:00","(03)93174432",
+//                "95a Rosamond Road, Maidstone");
+//        hospital = setHospital(uniqueID,"Happy Tails Animal Hospital",
+//                "We pride ourselves on our premium and affordable pet care that is available to all animals including dogs, cats, guinea pigs, rabbits and even reptiles!",
+//                "8:00-18:00","(03)98027788",
+//                "337 Blackburn Rd, Burwood East, 3151, VIC");
+
+//        hospital = setHospital(uniqueID,"NORTHERN SUBURBS VET CLINICS",
+//                "We take pride in offering our clients and patients compassionate, holistic care.",
+//                "7:00-19:00","(03)94327207",
+//                "80 Taggerty Cres, Meadow Heights VIC 3048");
+        hospital = setHospital(uniqueID,"Pawssum",
+                "Pawssum provides pet care by trusted, local vets in the comfort of your home.",
+                "8:00-22:00","1300343580",
+                "Melbourne, VIC (inc. Bendigo)");
+
+
+
 //        doctor = createDoctor("0ca1dac7ebda425290d9e8f503a681d7","734b988831344270973e0a11cce4776f",
 //                "Saul","Metzstein","An anesthesiologist keeps a patient comfortable, " +
 //                        "safe and pain-free during surgery by administering local or general anesthetic.","(03)86637000");
@@ -154,20 +177,19 @@ public class RegisterActivity extends AppCompatActivity {
 
 //        pet = setPet(uniqueID,"cat","british long hair","5","Bad breath",
 //                "lpM91PpV79c5W8X0AHr7xYCeXQF2","fugui");
-//        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
+//        appointment = setAppointment("6cbb205ec38a4b7183b5a955d873591f","16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
 //                "38a47786f63043adb39f30656b45f05c","dobby","he doesn't eat anything","16:00","2019-09-12",
-//                "qwe","123455@163.com","booked");
-        //        appointment = setAppointment(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","vzD5yGDcH8XmXITdow7iReBAhAq1",
-//                "befef5c52d6042a3bff2c356c1a68424","wangcai","Inbreeding","16:00","2019-09-13",
-//                "qwe","123455@163.com","booked");
+//                "qwe","123455@163.com","booked","Epworth Freemasons","John","Phillips");
+
+
 
 //        appointment = setAppointment("4349f9744286464dbeebda49f7ab7287","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
 //                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","16:00","2019-06-12",
-//                "xiandong","xiandong@abc.com","booked");
+//                "xiandong","xiandong@abc.com","booked","Vincent's Hospital Melbourne","Steven","Moffat");
 
 //        appointment = setAppointment("42044cde3e0747b2b60269112af2f481","d4b1b0578e204a92b8be35bbe56e31cf","lpM91PpV79c5W8X0AHr7xYCeXQF2",
 //                "70a28c3d342c408488ce31ead5ab93a9","fugui","she doesn't eat anything","11:00","2019-06-14",
-//                "xiandong","xiandong@abc.com","booked");
+//                "xiandong","xiandong@abc.com","booked","Vincent's Hospital Melbourne","Steven","Moffat");
 
         reff = FirebaseDatabase.getInstance().getReference();
 
@@ -183,6 +205,7 @@ public class RegisterActivity extends AppCompatActivity {
         btntest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //retrieve appointment info
 //                AppointmentRetriever retriever = new AppointmentRetriever("lpM91PpV79c5W8X0AHr7xYCeXQF2");
 //                retriever.retrievData(new AppointmentRetriever.FirebaseCallback() {
@@ -213,45 +236,45 @@ public class RegisterActivity extends AppCompatActivity {
 //                });
 
 
-                HospitalRetriever retriever1 = new HospitalRetriever("0ca1dac7ebda425290d9e8f503a681d7");
-                retriever1.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
-                    @Override
-                    public void onCallback(Doctor doctor1) {
-                        doctor = doctor1;
-                        System.out.println(doctor1);
-                    }
-                });
-
-                HospitalRetriever retriever = new HospitalRetriever();
-                retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
-                    @Override
-                    public void onCallback(ArrayList<Hospital> list) {
-                        //System.out.println(list.size());
-                        for(int i =0; i<list.size();i++){
-                            if(doctor.getHospitalId().equals(list.get(i).getHospitalId())){
-                                System.out.println(list.get(i));
-                                System.out.println(doctor.getDoctorLastName()+doctor.getDoctorFirstName());
-                            }
-                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
-                            //System.out.println(list.get(i));
-                            //}
-
-                        }
-
-                    }
-                });
-
-
-
+//                HospitalRetriever retriever1 = new HospitalRetriever("0ca1dac7ebda425290d9e8f503a681d7");
+//                retriever1.retrieveHospitalByDoctorID(new HospitalRetriever.FirebaseCallback1() {
+//                    @Override
+//                    public void onCallback(Doctor doctor1) {
+//                        doctor = doctor1;
+//
+//                        System.out.println(doctor1);
+//                    }
+//                });
+//
+//                HospitalRetriever retriever = new HospitalRetriever();
+//                retriever.retrievData(new HospitalRetriever.FirebaseCallback() {
+//                    @Override
+//                    public void onCallback(ArrayList<Hospital> list) {
+//                        //System.out.println(list.size());
+//                        for(int i =0; i<list.size();i++){
+//                            if(doctor.getHospitalId().equals(list.get(i).getHospitalId())){
+//                                System.out.println(list.get(i));
+//                                System.out.println(doctor.getDoctorLastName()+doctor.getDoctorFirstName());
+//                            }
+//                            //if (list.get(i).getUserID().equals("lpM91PpV79c5W8X0AHr7xYCeXQF2")){
+//                            //System.out.println(list.get(i));
+//                            //}
+//
+//                        }
+//
+//                    }
+//                });
 
 
-                //reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
+
+
+                reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
                 //reff.child("Doctor").child(doctor.getDoctorId()).setValue(doctor);
                 //reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
                 //reff.child("Pet").child(pet.getPetID()).setValue(pet);
                 //reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
                 //reff.child("Appointmentinfo").child(appointment.getAppointmentID()).setValue(appointment);
-                //reff.child("Appointment").child(appointment.getAppointmentID()).setValue(appointment);
+                //reff.child("AppointmentFinal").child(appointment.getAppointmentID()).setValue(appointment);
 
                 Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
             }

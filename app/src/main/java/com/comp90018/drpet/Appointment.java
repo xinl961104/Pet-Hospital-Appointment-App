@@ -12,9 +12,9 @@ public class Appointment {
     private String userName;
     private String userEmail;
     private String status;
-
-    public Appointment() {
-    }
+    private String hospitalName;
+    private String doctorFirstName;
+    private String doctorLastName;
 
     @Override
     public String toString() {
@@ -30,7 +30,37 @@ public class Appointment {
                 ", userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", status='" + status + '\'' +
+                ", hospitalName='" + hospitalName + '\'' +
+                ", doctorFirstName='" + doctorFirstName + '\'' +
+                ", doctorLastName='" + doctorLastName + '\'' +
                 '}';
+    }
+
+    public Appointment() {
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
+    }
+
+    public String getDoctorFirstName() {
+        return doctorFirstName;
+    }
+
+    public void setDoctorFirstName(String doctorFirstName) {
+        this.doctorFirstName = doctorFirstName;
+    }
+
+    public String getDoctorLastName() {
+        return doctorLastName;
+    }
+
+    public void setDoctorLastName(String doctorLastName) {
+        this.doctorLastName = doctorLastName;
     }
 
     public String getAppointmentID() {
