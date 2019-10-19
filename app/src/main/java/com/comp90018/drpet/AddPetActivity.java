@@ -27,6 +27,7 @@ public class AddPetActivity extends AppCompatActivity {
     ImageView mImageView;
     Button BacktoPetList;
     Button TakePhotoes;
+    Button pick;
     String petname;
     String petage;
     String petcategory;
@@ -51,7 +52,7 @@ public class AddPetActivity extends AppCompatActivity {
         CommentforPet = (EditText)findViewById(R.id.CommentforPet);
 
 
-
+        pick = findViewById(R.id.btnpick);
         BacktoPetList = (Button)findViewById(R.id.backtoPetList);
         TakePhotoes = (Button)findViewById(R.id.takePhotoes);
         AddPet = (Button)findViewById(R.id.addPet1);
@@ -62,6 +63,14 @@ public class AddPetActivity extends AppCompatActivity {
             userID = user.getUid();
            // userName = user.getDisplayName();
         }
+
+        pick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
 
         AddPet.setOnClickListener(new View.OnClickListener() {
             @Override
