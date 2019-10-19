@@ -60,6 +60,7 @@ public class ViewAllPetsActivity extends AppCompatActivity {
 
                     PetList adapter = new PetList(ViewAllPetsActivity.this, petList);
                     listofPets.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                     listofPets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

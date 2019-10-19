@@ -8,7 +8,7 @@
     tools:context=".AddPetActivity">
 
     <Button
-        android:id="@+id/addPet"
+        android:id="@+id/addPet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Pet"
@@ -103,7 +103,7 @@
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/backtoPetList"
         android:layout_width="147dp"
         android:layout_height="48dp"
         android:text="Back to Pet List"
@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.926" />
 
     <Button
-        android:id="@+id/TakePhotoes"
+        android:id="@+id/takePhotoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Take Photo"
