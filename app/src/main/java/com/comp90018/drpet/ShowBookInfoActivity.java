@@ -49,18 +49,17 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         userID = incomingIntent.getStringExtra("UserId");
 
         hospital = (TextView)findViewById(R.id.HospitalInfo);
-        doctorName = (TextView)findViewById(R.id.DoctorName);
-        dateTime = (TextView)findViewById(R.id.DateTime);
+        doctorName = (TextView)findViewById(R.id.DoctorName1);
+        dateTime = (TextView)findViewById(R.id.DateTime1);
         petInfo = (TextView)findViewById(R.id.PetInfo);
-        comment = (TextView)findViewById(R.id.Comment);
+        comment = (TextView)findViewById(R.id.Comment1);
         backToDashboard = (Button)findViewById(R.id.BackToDashboard);
 
-        hospital.setText(hospitalId);
-        doctorName.setText(doctorFirstName);
-        dateTime.setText(date);
+       // hospital.setText(hospitalId);
+      //  doctorName.setText(doctorFirstName);
+      //  dateTime.setText(date);
 
-        petInfo.setText(selectedPet);
-        //comment.setText(ownerComment);
+       // comment.setText(ownerComment);
 
         backToDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +68,7 @@ public class ShowBookInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        hospital.setText(hospitalName + " "+doctorFirstName+ " "+doctorLastName + " "+date+ " "+time + " "+ownerComment + " "+userEmail );
+        petInfo.setText(selectedPet);
     }
 }

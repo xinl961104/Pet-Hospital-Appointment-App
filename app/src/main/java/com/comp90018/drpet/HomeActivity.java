@@ -1,10 +1,10 @@
 package com.comp90018.drpet;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void managePets(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ViewAllPetsActivity.class);
         startActivity(intent);
     }
 

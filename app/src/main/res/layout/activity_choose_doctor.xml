@@ -53,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HospitalInfo"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.021" />
 
     <TextView
         android:id="@+id/HospitalOpenHours"
