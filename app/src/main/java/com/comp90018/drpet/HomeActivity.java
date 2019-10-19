@@ -73,17 +73,16 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         String sensorStatus;
 
-        if(mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) != null) {
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY) != null) {
             sensorStatus = "Humidity sensor working.";
             mHumiditySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
             isHumiditySensorPresent = true;
-        }
-        else {
+        } else {
             sensorStatus = "Humidity sensor is not available!";
             isHumiditySensorPresent = false;
         }
 
-        if(mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null) {
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null) {
             sensorStatus += "\nTemperature sensor working.";
             mTemperatureSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
             isTemperatureSensorPresent = true;
@@ -98,10 +97,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume() {
         super.onResume();
-        if(isHumiditySensorPresent) {
+        if (isHumiditySensorPresent) {
             mSensorManager.registerListener(this, mHumiditySensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
-        if(isTemperatureSensorPresent) {
+        if (isTemperatureSensorPresent) {
             mSensorManager.registerListener(this, mTemperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
@@ -109,7 +108,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onPause() {
         super.onPause();
-        if(isHumiditySensorPresent || isTemperatureSensorPresent) {
+        if (isHumiditySensorPresent || isTemperatureSensorPresent) {
             mSensorManager.unregisterListener(this);
         }
     }
@@ -117,10 +116,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if(event.sensor.getType()==Sensor.TYPE_RELATIVE_HUMIDITY) {
+        if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
             mLastKnownRelativeHumidity = event.values[0];
-        } else if(event.sensor.getType()==Sensor.TYPE_AMBIENT_TEMPERATURE) {
-            if(mLastKnownRelativeHumidity !=0) {
+        } else if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
+            if (mLastKnownRelativeHumidity != 0) {
                 float temperature = event.values[0];
                 float humidity = mLastKnownRelativeHumidity;
                 setComment(temperature, humidity);
@@ -132,13 +131,18 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         String comment = "Temperature: " + temperature + ", Humidity: " + humidity + "%.";
 
-        if (temperature >= 40 || humidity <= 30) {
+        if (temperature >= 40 || temperature <= 0 || humidity <= 30) {
+
             if (temperature >= 40) {
                 comment += "\nThe temperature is too hot for your pet.";
+            } else if (temperature <= 0) {
+                comment += "\nThe temperature is too cold for your pet.";
             }
+
             if (humidity <= 30) {
                 comment += "\nYour room is too dry for your pet.";
             }
+
         } else {
             comment += "\nThe temperature and humidity are suitable.";
         }
