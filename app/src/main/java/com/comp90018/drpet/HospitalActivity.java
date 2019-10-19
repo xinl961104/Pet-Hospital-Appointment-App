@@ -77,9 +77,16 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
         // add dummy hospitals coordinates
         final ArrayList<LatLng> locations = new ArrayList<>();
-        locations.add(new LatLng(-37.815202, 144.963940));
+        locations.add(new LatLng(-37.808201, 144.964353));
         locations.add(new LatLng(-37.799459, 144.974074));
         locations.add(new LatLng(-37.798866, 144.953180));
+        locations.add(new LatLng(-37.803907, 144.951455));
+        locations.add(new LatLng(-37.814657, 144.956838));
+        locations.add(new LatLng(-37.805324, 144.975279));
+        locations.add(new LatLng(-37.813987, 144.969696));
+        locations.add(new LatLng(-37.795242, 144.955891));
+        locations.add(new LatLng(-37.796148, 144.969297));
+        locations.add(new LatLng(-37.815052, 144.960248));
 
         HospitalRetriever retriever = new HospitalRetriever();
         retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
