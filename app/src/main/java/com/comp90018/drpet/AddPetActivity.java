@@ -181,7 +181,7 @@ public class AddPetActivity extends AppCompatActivity {
 
     }
 
-    public void showResult (String sen) {
+    public void showResult(String sen) {
 
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

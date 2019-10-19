@@ -67,11 +67,12 @@ public class ViewAllPetsActivity extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Intent i1 = new Intent(ViewAllPetsActivity.this, ViewAPetActivity.class);
                             i1.putExtra("petID", petList.get(i).getPetID());
-                            i1.putExtra("name", petList.get(i).getPetName());
-                            i1.putExtra("age", petList.get(i).getPetAge());
-                            i1.putExtra("breed", petList.get(i).getBreed());
-                            i1.putExtra("category", petList.get(i).getCategory());
-                            i1.putExtra("comment", petList.get(i).getComment());
+                            i1.putExtra("petName", petList.get(i).getPetName());
+                            i1.putExtra("petAge", petList.get(i).getPetAge());
+                            i1.putExtra("petBreed", petList.get(i).getBreed());
+                            i1.putExtra("petCategory", petList.get(i).getCategory());
+                            i1.putExtra("petComment", petList.get(i).getComment());
+
                             startActivity(i1);
                         }
                     });
