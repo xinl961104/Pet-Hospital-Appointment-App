@@ -2,8 +2,90 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/a"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddPetActivity">
+
+    <Button
+        android:id="@+id/addPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="Add Pet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="69dp" />
+
+    <EditText
+        android:id="@+id/PetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pet Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="58dp" />
+
+    <EditText
+        android:id="@+id/PetAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pet Age"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="125dp" />
+
+    <EditText
+        android:id="@+id/PetCategory"
+        android:layout_width="331dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Category"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="229dp" />
+
+    <EditText
+        android:id="@+id/PetBreed"
+        android:layout_width="331dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Breed"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="307dp" />
+
+    <EditText
+        android:id="@+id/CommentforPet"
+        android:layout_width="327dp"
+        android:layout_height="102dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Comment"
+        app:layout_constraintBottom_toTopOf="@+id/addPet"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="141dp"
+        android:layout_height="177dp"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="147dp"
+        android:layout_height="48dp"
+        android:text="Back to Pet List"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="510dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

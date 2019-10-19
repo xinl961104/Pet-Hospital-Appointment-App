@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ViewAllPetsActivity">
 
+    <ListView
+        android:id="@+id/ListofPets"
+        android:layout_width="398dp"
+        android:layout_height="390dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        app:layout_constraintVertical_bias="0.314" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="264dp"
+        android:layout_height="24dp"
+        android:text="List of your Pets"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="32dp" />
+
+    <Button
+        android:id="@+id/Backtodash"
+        android:layout_width="234dp"
+        android:layout_height="48dp"
+        android:text="Back to Dashboard"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="522dp" />
+
+    <Button
+        android:id="@+id/AddNewPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        tools:layout_editor_absoluteX="293dp"
+        tools:layout_editor_absoluteY="15dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
