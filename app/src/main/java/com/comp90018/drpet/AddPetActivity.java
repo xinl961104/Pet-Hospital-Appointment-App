@@ -1,7 +1,9 @@
 package com.comp90018.drpet;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +24,7 @@ public class AddPetActivity extends AppCompatActivity {
     EditText PetCategory;
     EditText PetBreed;
     EditText CommentforPet;
-    ImageView ImageView;
+    ImageView mImageView;
     Button BacktoPetList;
     Button TakePhotoes;
     String petname;
@@ -33,10 +35,13 @@ public class AddPetActivity extends AppCompatActivity {
 
     String userEmail;
     String userID;
+    private static final int REQUEST_IMAGE_CAPTURE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+        mImageView = findViewById(R.id.imageView);
+
         Intent incomingIntent = getIntent();
 
         PetName = (EditText)findViewById(R.id.PetName);
@@ -85,10 +90,35 @@ public class AddPetActivity extends AppCompatActivity {
             }
         });
 
-
+        TakePhotoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePicture(view);
+            }
+        });
 
 
 
 
     }
+
+    public void takePicture(View view){
+        Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(imageTakeIntent.resolveActivity(getPackageManager())!=null){
+            startActivityForResult(imageTakeIntent,REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
+        }
+    }
+
+
 }
