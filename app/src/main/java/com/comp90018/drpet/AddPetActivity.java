@@ -44,8 +44,8 @@ public class AddPetActivity extends AppCompatActivity {
 
         Intent incomingIntent = getIntent();
 
-        PetName = (EditText)findViewById(R.id.PetName);
-        PetAge = (EditText)findViewById(R.id.PetAge);
+        PetName = (EditText)findViewById(R.id.PetsName);
+        PetAge = (EditText)findViewById(R.id.PetsAge);
         PetCategory = (EditText)findViewById(R.id.PetCategory);
         PetBreed = (EditText)findViewById(R.id.PetBreed);
         CommentforPet = (EditText)findViewById(R.id.CommentforPet);
