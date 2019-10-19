@@ -33,6 +33,7 @@ public class ViewAPetActivity extends AppCompatActivity {
 
     Button cancel;
     Button UpdatePetInfo;
+    Button DeletePet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class ViewAPetActivity extends AppCompatActivity {
 
         cancel = (Button)findViewById(R.id.cancel);
         UpdatePetInfo = (Button)findViewById(R.id.UpdatePetInfo);
+        DeletePet =(Button)findViewById(R.id.DeletePet);
 
         PetsName.setText(petName);
         PetsAge.setText(petAge);
@@ -103,7 +105,19 @@ public class ViewAPetActivity extends AppCompatActivity {
         });
 
 
+        DeletePet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                FirebaseDatabase database2 = FirebaseDatabase.getInstance();
+                DatabaseReference myref3 = database2.getReference();
+               // Pet newPet = new Pet(petID, petCategory, petBreed,petAge,petComment,userID, petName);
+                myref3.child("Pet").child(petID).removeValue();
+                
+                Toast.makeText(ViewAPetActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
 
