@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UpdateAPetActivity"></activity>
+        <activity android:name=".ViewAPetActivity" />
+        <activity android:name=".AddPetActivity" />
+        <activity android:name=".ViewAllPetsActivity" />
         <activity android:name=".TimeSlotActivity"></activity>
         <activity android:name=".ChooseTimePage2" />
         <activity android:name=".AppointmentAddPetActivity" />

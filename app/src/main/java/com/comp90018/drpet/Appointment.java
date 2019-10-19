@@ -8,7 +8,7 @@ public class Appointment {
     private String petName;
     private String comment;
     private String startTime;
-    private String Date;
+    private String date;
     private String userName;
     private String userEmail;
     private String status;
@@ -20,28 +20,26 @@ public class Appointment {
     public Appointment() {
     }
 
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointmentID='" + appointmentID + '\'' +
-                ", doctorID='" + doctorID + '\'' +
-                ", userID='" + userID + '\'' +
-                ", petID='" + petID + '\'' +
-                ", petName='" + petName + '\'' +
-                ", comment='" + comment + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", Date='" + Date + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", status='" + status + '\'' +
-                ", doctorFirstName='" + doctorFirstName + '\'' +
-                ", doctorLastName='" + doctorLastName + '\'' +
-                ", hospitalName='" + hospitalName + '\'' +
-                '}';
+    public Appointment(String appointmentID, String doctorID, String userID, String petID, String petName, String comment, String startTime, String date, String userName, String userEmail, String status, String doctorFirstName, String doctorLastName, String hospitalName) {
+        this.appointmentID = appointmentID;
+        this.doctorID = doctorID;
+        this.userID = userID;
+        this.petID = petID;
+        this.petName = petName;
+        this.comment = comment;
+        this.startTime = startTime;
+        this.date = date;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.status = status;
+        this.doctorFirstName = doctorFirstName;
+        this.doctorLastName = doctorLastName;
+        this.hospitalName = hospitalName;
     }
 
-
-    public String getAppointmentID() { return appointmentID; }
+    public String getAppointmentID() {
+        return appointmentID;
+    }
 
     public void setAppointmentID(String appointmentID) {
         this.appointmentID = appointmentID;
@@ -96,11 +94,11 @@ public class Appointment {
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public String getUserName() {
@@ -131,7 +129,9 @@ public class Appointment {
         return doctorFirstName;
     }
 
-    public void setDoctorFirstName(String doctorFirstName) { this.doctorFirstName = doctorFirstName; }
+    public void setDoctorFirstName(String doctorFirstName) {
+        this.doctorFirstName = doctorFirstName;
+    }
 
     public String getDoctorLastName() {
         return doctorLastName;
@@ -148,5 +148,4 @@ public class Appointment {
     public void setHospitalName(String hospitalName) {
         this.hospitalName = hospitalName;
     }
-
 }

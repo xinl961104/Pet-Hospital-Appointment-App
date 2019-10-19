@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void managePets(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ViewAllPetsActivity.class);
         startActivity(intent);
     }
 
@@ -130,9 +130,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     public void setComment(float temperature, float humidity) {
 
-        String comment;
-//        String humidity = String.format(Locale.UK,"%.2f", humidity);
-        comment = "Temperature: " + temperature + ", Humidity: " + humidity + "%.";
+        String comment = "Temperature: " + temperature + ", Humidity: " + humidity + "%.";
 
         if (temperature >= 40 || humidity <= 30) {
             if (temperature >= 40) {
