@@ -19,6 +19,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Spinner
+        android:id="@+id/SpinnerTime"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="212dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="46dp" />
+
     <TextView
         android:id="@+id/DoctorID"
         android:layout_width="300dp"
@@ -32,13 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.949" />
 
-    <Spinner
-        android:id="@+id/SpinnerTime"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="212dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="46dp" />
+
 
     <Button
         android:id="@+id/Finally"

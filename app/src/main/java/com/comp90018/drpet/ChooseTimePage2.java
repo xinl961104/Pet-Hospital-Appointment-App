@@ -28,6 +28,7 @@ public class ChooseTimePage2 extends AppCompatActivity {
 
         setContentView(R.layout.activity_choose_time_page2);
 
+
         Intent incomingIntent = getIntent();
         doctorID = incomingIntent.getStringExtra("DoctorIDForPet");
         date = incomingIntent.getStringExtra("DateForPet");
