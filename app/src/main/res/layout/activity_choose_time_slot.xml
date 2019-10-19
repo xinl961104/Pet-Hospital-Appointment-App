@@ -29,6 +29,8 @@
 
     </androidx.constraintlayout.widget.Guideline>
 
+
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="100dp"
@@ -63,6 +65,7 @@
         android:text="Doctor Information"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="16sp"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/btnGoCalendar"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
@@ -74,9 +77,9 @@
         android:id="@+id/btnGoCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CHOOSE A TIME"
+        android:text="MAKE AN APPOINTMENT"
         android:paddingHorizontal="32dp"
-        android:background="@color/secondaryDarkColor"
+        android:background="@color/secondaryColor"
         android:textColor="@color/secondaryTextColor"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintRight_toRightOf="@id/Guideline2"
