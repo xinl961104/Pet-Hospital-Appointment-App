@@ -6,39 +6,113 @@
     android:layout_height="match_parent"
     tools:context=".TimeSlotActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_end="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/roboto"
+        android:text="Selected Doctor:"
+        android:textSize="16sp"
+        android:textColor="@color/colorOnSurface"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/DoctorID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DoctorID"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        android:layout_marginTop="8dp"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DoctorID"
+        app:layout_constraintBottom_toTopOf="@id/textView3"/>
+
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Date: "
+        android:textSize="16sp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/colorOnSurface"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/DoctorID"/>
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/selecteddate"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Selected date"
-        app:layout_constraintBottom_toTopOf="@+id/DoctorID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView3" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintBottom_toTopOf="@id/selectTime"
+        app:layout_constraintTop_toBottomOf="@id/selecteddate"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/selectTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select time:"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/selecteddate"
+        android:textSize="16sp"
+        android:textColor="@color/secondaryDarkColor"
+        android:layout_marginTop="36dp" />
 
     <Spinner
         android:id="@+id/SpinnerTime"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="212dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="46dp" />
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/selectTime"/>
 
-    <TextView
-        android:id="@+id/DoctorID"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="188dp"
-        android:text="DoctorID"
-        app:layout_constraintBottom_toTopOf="@+id/SpinnerTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+
 
 
 
@@ -46,8 +120,12 @@
         android:id="@+id/Finally"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:text="NEXT"
-        app:layout_constraintBottom_toTopOf="@+id/SpinnerTime"
-        tools:layout_editor_absoluteX="149dp" />
+        android:text="Choose the pet"
+        android:background="@color/secondaryColor"
+        android:textColor="@color/secondaryTextColor"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        android:layout_marginBottom="30dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -91,7 +91,7 @@
         <!-- listview 为什么只会显示一条？-->
         <ListView
             android:id="@+id/ListofDoctors"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
