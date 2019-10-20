@@ -7,36 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".CalendarActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_end="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        />
+
+    <TextView
+        android:id="@+id/CalendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Please select a time"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNext"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2" />
+
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
-
-    <TextView
-        android:id="@+id/CalendarView"
-        android:layout_width="91dp"
-        android:layout_height="16dp"
-        android:text="Selected time"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        android:background="@color/secondaryColor"
+        android:textColor="@color/secondaryTextColor"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

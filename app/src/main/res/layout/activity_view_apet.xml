@@ -7,7 +7,7 @@
     tools:context=".ViewAPetActivity">
 
     <EditText
-        android:id="@+id/PetsName"
+        android:id="@+id/PetName"
         android:layout_width="146dp"
         android:layout_height="44dp"
         android:ems="10"
@@ -15,13 +15,13 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintHorizontal_bias="0.801"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.089" />
 
     <EditText
-        android:id="@+id/PetsAge"
+        android:id="@+id/PetAge"
         android:layout_width="144dp"
         android:layout_height="46dp"
         android:ems="10"
@@ -29,10 +29,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.184" />
 
     <EditText
         android:id="@+id/PetsCategory"
@@ -95,18 +95,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.06"
         app:srcCompat="@drawable/profile" />
-
-    <TextView
-        android:id="@+id/Petid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PetID"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
 
     <Button
         android:id="@+id/UpdatePetInfo"

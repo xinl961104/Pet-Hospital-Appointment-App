@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.comp90018.drpet">
-    <uses-feature
-        android:name="android.hardware.Camera"
-        android:required="true"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +18,7 @@
         <activity android:name=".ViewAPetActivity" />
         <activity android:name=".AddPetActivity" />
         <activity android:name=".ViewAllPetsActivity" />
-        <activity android:name=".TimeSlotActivity" />
+        <activity android:name=".TimeSlotActivity"></activity>
         <activity android:name=".ChooseTimePage2" />
         <activity android:name=".AppointmentAddPetActivity" />
         <activity android:name=".CalendarActivity" />
@@ -54,10 +56,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
+        <!-- To use multiple models: android:value="label,model2,model3" -->
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

@@ -28,6 +28,7 @@ public class ViewAllPetsActivity extends AppCompatActivity {
     public String userName;
     Button addNewPet;
     Button backtodash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class ViewAllPetsActivity extends AppCompatActivity {
         backtodash = (Button) findViewById(R.id.Backtodash);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user!=null){
+        if (user != null) {
             userEmail = user.getEmail();
             userID = user.getUid();
             userName = user.getDisplayName();
@@ -64,15 +65,15 @@ public class ViewAllPetsActivity extends AppCompatActivity {
                     listofPets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Intent i1 = new Intent(ViewAllPetsActivity.this, ViewAPetActivity.class);
-                                i1.putExtra("petID", petList.get(i).getPetID());
-                                i1.putExtra("petName",petList.get(i).getPetName());
-                            i1.putExtra("petAge",petList.get(i).getPetAge());
-                            i1.putExtra("petBreed",petList.get(i).getBreed());
-                            i1.putExtra("petCategory",petList.get(i).getCategory());
-                            i1.putExtra("petComment",petList.get(i).getComment());
+                            Intent i1 = new Intent(ViewAllPetsActivity.this, ViewAPetActivity.class);
+                            i1.putExtra("petID", petList.get(i).getPetID());
+                            i1.putExtra("petName", petList.get(i).getPetName());
+                            i1.putExtra("petAge", petList.get(i).getPetAge());
+                            i1.putExtra("petBreed", petList.get(i).getBreed());
+                            i1.putExtra("petCategory", petList.get(i).getCategory());
+                            i1.putExtra("petComment", petList.get(i).getComment());
 
-                                startActivity(i1);
+                            startActivity(i1);
                         }
                     });
 

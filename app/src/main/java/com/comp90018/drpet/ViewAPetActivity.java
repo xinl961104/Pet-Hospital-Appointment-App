@@ -16,8 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ViewAPetActivity extends AppCompatActivity {
-   public String petID;
-    TextView petid;
+
+    public String petID;
+
     public String petName;
     public String petAge;
     public String petBreed;
@@ -49,17 +50,15 @@ public class ViewAPetActivity extends AppCompatActivity {
         petCategory = incoming.getStringExtra("petCategory");
         petComment = incoming.getStringExtra("petComment");
 
-        petid = (TextView) findViewById(R.id.Petid);
-        petid.setText(petID);
-        PetsName = (EditText) findViewById(R.id.PetsName);
-        PetsAge = (EditText) findViewById(R.id.PetsAge);
+        PetsName = (EditText) findViewById(R.id.PetName);
+        PetsAge = (EditText) findViewById(R.id.PetAge);
         PetsCategory = (EditText) findViewById(R.id.PetsCategory);
         PetsBreed = (EditText) findViewById(R.id.PetsBreed);
         PetsComment = (EditText) findViewById(R.id.PetsComment);
 
-        cancel = (Button)findViewById(R.id.cancel);
-        UpdatePetInfo = (Button)findViewById(R.id.UpdatePetInfo);
-        DeletePet =(Button)findViewById(R.id.DeletePet);
+        cancel = (Button) findViewById(R.id.cancel);
+        UpdatePetInfo = (Button) findViewById(R.id.UpdatePetInfo);
+        DeletePet = (Button) findViewById(R.id.DeletePet);
 
         PetsName.setText(petName);
         PetsAge.setText(petAge);
@@ -77,10 +76,10 @@ public class ViewAPetActivity extends AppCompatActivity {
         });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user!=null){
-          //  userEmail = user.getEmail();
+        if (user != null) {
+            //  userEmail = user.getEmail();
             userID = user.getUid();
-           // userName = user.getDisplayName();
+            // userName = user.getDisplayName();
         }
 
 
@@ -96,7 +95,7 @@ public class ViewAPetActivity extends AppCompatActivity {
 
                 FirebaseDatabase database1 = FirebaseDatabase.getInstance();
                 DatabaseReference myref2 = database1.getReference();
-                Pet newPet = new Pet(petID, petCategory, petBreed,petAge,petComment,userID, petName);
+                Pet newPet = new Pet(petID, petCategory, petBreed, petAge, petComment, userID, petName);
                 myref2.child("Pet").child(petID).setValue(newPet);
 
 
@@ -111,17 +110,13 @@ public class ViewAPetActivity extends AppCompatActivity {
 
                 FirebaseDatabase database2 = FirebaseDatabase.getInstance();
                 DatabaseReference myref3 = database2.getReference();
-               // Pet newPet = new Pet(petID, petCategory, petBreed,petAge,petComment,userID, petName);
+                // Pet newPet = new Pet(petID, petCategory, petBreed,petAge,petComment,userID, petName);
                 myref3.child("Pet").child(petID).removeValue();
-                
+
                 Toast.makeText(ViewAPetActivity.this, "Delete Success", Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
-
-
 
 
     }

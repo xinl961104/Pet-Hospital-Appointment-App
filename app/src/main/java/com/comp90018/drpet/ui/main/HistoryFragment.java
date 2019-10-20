@@ -75,7 +75,7 @@ public class HistoryFragment extends Fragment {
                     }
                 }
 
-                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList, getActivity());
+                AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentsList);
                 recyclerView.setAdapter(appointmentAdapter);
 
                 recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {

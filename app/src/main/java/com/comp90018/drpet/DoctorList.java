@@ -1,16 +1,16 @@
 package com.comp90018.drpet;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author xinli
@@ -18,10 +18,10 @@ import java.util.List;
  */
 public class DoctorList extends ArrayAdapter<DoctorModel> {
 
-    private Activity context;
+    private AppCompatActivity context;
     private List<DoctorModel> doctorList;
 
-    public DoctorList(Activity context, List<DoctorModel> doctorList){
+    public DoctorList(AppCompatActivity context, List<DoctorModel> doctorList){
         super(context, R.layout.doctorlist, doctorList);
         this.context = context;
         this.doctorList = doctorList;

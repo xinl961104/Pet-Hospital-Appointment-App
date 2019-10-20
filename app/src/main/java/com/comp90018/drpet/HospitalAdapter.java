@@ -1,26 +1,20 @@
 package com.comp90018.drpet;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.PlacesViewHolder> {
 
-    private Activity activity;
+    private HospitalActivity activity;
     private ArrayList<Hospital> hospitals;
 
     public class PlacesViewHolder extends RecyclerView.ViewHolder {
@@ -42,7 +36,7 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Places
     }
 
 
-    public HospitalAdapter(ArrayList<Hospital> hospitals, Activity activity) {
+    public HospitalAdapter(ArrayList<Hospital> hospitals, HospitalActivity activity) {
         this.hospitals = hospitals;
         this.activity = activity;
     }
