@@ -1,14 +1,27 @@
 package com.comp90018.drpet;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.location.Address;
-import android.location.Geocoder;
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,17 +45,22 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     private Map<String, Marker> makerMap;
 
     private ViewPager2 mapViewPager;
-    private RecyclerView mapRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     private ArrayList<Hospital> hospitalsList;
     private Map<String, LatLng> hospitals;
 
+    LocationRequest mLocationRequest;
+    Location mLastLocation;
+    FusedLocationProviderClient mFusedLocationClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital);
+        setContentView(R.layout.activity_hospital_del);
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -57,15 +75,18 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     private void loadHospitals() {
 
-        // add dummy hospitals
-//        hospitals.put("Melbourne Mobile Vet Service", new LatLng(-37.815202, 144.963940));
-//        hospitals.put("First Paw Mobile Vet", new LatLng(-37.799459, 144.974074));
-//        hospitals.put("Lort Smith Animal Hospital", new LatLng(-37.798866, 144.953180));
-
+        // add dummy hospitals coordinates
         final ArrayList<LatLng> locations = new ArrayList<>();
-        locations.add(new LatLng(-37.815202, 144.963940));
+        locations.add(new LatLng(-37.808201, 144.964353));
         locations.add(new LatLng(-37.799459, 144.974074));
         locations.add(new LatLng(-37.798866, 144.953180));
+        locations.add(new LatLng(-37.803907, 144.951455));
+        locations.add(new LatLng(-37.814657, 144.956838));
+        locations.add(new LatLng(-37.805324, 144.975279));
+        locations.add(new LatLng(-37.813987, 144.969696));
+        locations.add(new LatLng(-37.795242, 144.955891));
+        locations.add(new LatLng(-37.796148, 144.969297));
+        locations.add(new LatLng(-37.815052, 144.960248));
 
         HospitalRetriever retriever = new HospitalRetriever();
         retriever.retrieveData(new HospitalRetriever.FirebaseCallback() {
@@ -74,7 +95,6 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
                 System.out.println(list.size());
                 for (int i = 0; i < list.size(); i++) {
                     String hospitalName = list.get(i).getHospitalName();
-//                    LatLng coord = getLocationFromAddress(list.get(i).getHospitalAddress());
                     LatLng coord = locations.get(i);
                     System.out.println(hospitalName + coord.toString());
                     hospitals.put(hospitalName, coord);
@@ -118,6 +138,15 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        //stop location updates when Activity is no longer active
+        if (mFusedLocationClient != null) {
+            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        }
+    }
 
     /**
      * Manipulates the map once available.
@@ -132,9 +161,22 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // move the camera to current user location
-        LatLng melbourne = new LatLng(-37.81, 144.96);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(melbourne, 14.0f));
+        // request current location every 2 mins
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(120000); // two minute interval
+        mLocationRequest.setFastestInterval(120000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            //Location Permission already granted
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+            mMap.setMyLocationEnabled(true);
+        } else {
+            //Request Location Permission
+            checkLocationPermission();
+        }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -167,7 +209,13 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
 
                 mapViewPager.setVisibility(View.VISIBLE);
                 String chosenMarker = marker.getTitle();
-                final int page = hospitalsList.indexOf(chosenMarker);
+                int index = 0;
+                for (int i = 0; i < hospitalsList.size(); i++) {
+                    if (hospitalsList.get(i).getHospitalName().equals(chosenMarker)) {
+                        index = i;
+                    }
+                }
+                final int page = index;
                 mapViewPager.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -188,27 +236,88 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
         previousMarker = marker;
     }
 
-    public LatLng getLocationFromAddress(String strAddress) {
+    LocationCallback mLocationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            List<Location> locationList = locationResult.getLocations();
+            if (locationList.size() > 0) {
+                // the last location in the list is the newest
+                Location location = locationList.get(locationList.size() - 1);
+                Log.i("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
+                mLastLocation = location;
 
-        Geocoder coder = new Geocoder(this);
-        List<Address> address;
-        LatLng coord = null;
-
-        try {
-            address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return null;
+                // move the camera to current user location
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14.0f));
             }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            coord = new LatLng(location.getLatitude() * 1E6, location.getLongitude() * 1E6);
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return coord;
+    };
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(this)
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(HospitalActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, do the location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+                        mMap.setMyLocationEnabled(true);
+                    }
+
+                } else {
+
+                    // permission denied, disable the functionality that depends on this permission.
+                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+            // other 'case' lines to check for other permissions this app might request
+        }
     }
 
 }

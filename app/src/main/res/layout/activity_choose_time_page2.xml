@@ -6,25 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ChooseTimePage2">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_end="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/selectTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select time:"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="16dp"
+        android:textColor="@color/secondaryDarkColor"
+        android:layout_marginTop="30dp" />
+
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="300dp"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="42dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintTop_toBottomOf="@id/selectTime"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:layout_marginHorizontal="16dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ChooseMyPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to Choose My Pet"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="507dp" />
+        android:background="@color/secondaryColor"
+        android:textColor="@color/secondaryTextColor"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        android:layout_marginBottom="30dp"/>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/Period"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="Generally the appoitment is about 1 hour, the period can be changed in the DB"
         tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="370dp" />
+        tools:layout_editor_absoluteY="370dp" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

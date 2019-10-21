@@ -32,7 +32,7 @@ public class TimeSlotActivity extends AppCompatActivity {
     String selecteddate;
     private boolean isSpinnerInitial = true;
     String selectedDate;
-
+    String slotID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,8 @@ public class TimeSlotActivity extends AppCompatActivity {
             }
         });
         // go to the next page
+
+
         btnGotoPet = (Button)findViewById(R.id.Finally);
 
         btnGotoPet.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +110,7 @@ public class TimeSlotActivity extends AppCompatActivity {
                 intent.putExtra("DoctorIDAppointment", doctorID);
                 intent.putExtra("dateforAppointment",date);
                 intent.putExtra("selectedTime", selectedDate);
+
                 startActivity(intent);
             }
         });

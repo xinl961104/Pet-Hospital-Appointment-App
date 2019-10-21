@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/a"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPetActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"/>
+
+
+    <Button
+        android:id="@+id/takePhotoes"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:text="Take Photo"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/secondaryColor"
+        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnpick"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Upload"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/secondaryDarkColor"
+        app:layout_constraintLeft_toRightOf="@+id/imageView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/takePhotoes"/>
+
+    <EditText
+        android:id="@+id/PetName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Pet Name"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="16dp"/>
+
+    <EditText
+        android:id="@+id/PetAge"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Pet Age"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="16dp"/>
+
+    <EditText
+        android:id="@+id/PetCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Category"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetName"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/PetBreed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Breed"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetCategory"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/CommentforPet"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:ems="20"
+        android:hint="Bio"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:layout_marginHorizontal="16dp"
+        android:textColor="@color/primaryDarkColor"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetBreed"
+        android:layout_marginTop="16dp" />
+
+
+
+
+
+    <Button
+        android:id="@+id/addPet1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Pet"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryDarkColor"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toRightOf="@id/backtoPetList"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/backtoPetList"
+        android:layout_width="147dp"
+        android:layout_height="48dp"
+        android:text="Back to Pet List"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryDarkColor"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/addPet1"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

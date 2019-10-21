@@ -10,7 +10,7 @@
     <color name="secondaryTextColor">#f7f1ec</color>
     <color name="thirdColor">#F7F1EC</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="LightBlue">#BDECFA</color>
+    <color name="LightBlue">#E9FDE1</color>
     <color name="colorError">#F44336</color>
     <color name="colorOnError">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>

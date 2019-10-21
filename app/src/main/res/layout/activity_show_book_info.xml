@@ -6,61 +6,175 @@
     android:layout_height="match_parent"
     tools:context=".ShowBookInfoActivity">
 
-    <TextView
-        android:id="@+id/HospitalInfo"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="40dp"
-        android:text="Your Hospital Info"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="29dp" />
-
-    <TextView
-        android:id="@+id/DoctorName"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="My Doctor name"
-        app:layout_constraintBottom_toTopOf="@+id/DateTime"
-        app:layout_constraintTop_toBottomOf="@+id/HospitalInfo"
-        tools:layout_editor_absoluteX="36dp" />
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_end="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
 
     <TextView
-        android:id="@+id/DateTime"
-        android:layout_width="300dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The date and time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="164dp" />
+        android:text="Your Appointment Details"
+        android:textSize="28sp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal"
+        android:textColor="@color/secondaryDarkColor"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/HospitalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Your Hospital Info"
+        android:textSize="24sp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintBottom_toTopOf="@id/textView4"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Doctor Name"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/HospitalInfo"
+        app:layout_constraintBottom_toTopOf="@id/DoctorName1" />
+
+    <TextView
+        android:id="@+id/DoctorName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jason Williams"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center_horizontal"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView4"
+        app:layout_constraintBottom_toTopOf="@id/textView5"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The time"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/DoctorName1"
+        app:layout_constraintBottom_toTopOf="@id/DateTime1" />
+
+    <TextView
+        android:id="@+id/DateTime1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:text="01/11/2019 Friday, 3:00pm"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center_horizontal"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView5"
+        app:layout_constraintBottom_toTopOf="@id/textView6"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pet Name"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/DateTime1" />
 
     <TextView
         android:id="@+id/PetInfo"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:text="My pet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="218dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jojo"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView6"
+        app:layout_constraintBottom_toTopOf="@id/textView7" />
 
     <TextView
-        android:id="@+id/Comment"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_black"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/PetInfo"
+        app:layout_constraintBottom_toTopOf="@id/Comment1" />
+
+    <TextView
+        android:id="@+id/Comment1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="My Comment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PetInfo"
-        app:layout_constraintVertical_bias="0.297" />
+        android:fontFamily="@font/roboto_condensed_regular"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textView7"  />
 
     <Button
         android:id="@+id/BackToDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to dashboard"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="498dp" />
+        android:text="CONFIRM"
+        android:background="@color/secondaryColor"
+        android:textColor="@color/secondaryTextColor"
+        android:paddingHorizontal="16dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
