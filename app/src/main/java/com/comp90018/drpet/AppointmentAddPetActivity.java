@@ -59,8 +59,8 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
         time = intent.getStringExtra("selectedTime");
 
 
-        show = (TextView) findViewById(R.id.textView2);
-        show.setText(doctorID + date + time);
+        //how = (TextView) findViewById(R.id.textView);
+      //  show.setText(doctorID + date + time);
         spinner2 = (Spinner) findViewById(R.id.PetList);
         book = (Button) findViewById(R.id.BookAppointment);
         ownerComment = (EditText) findViewById(R.id.AddPetComment);
