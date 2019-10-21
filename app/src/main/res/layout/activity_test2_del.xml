@@ -1,128 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/vetpuppy_background"
-    tools:context=".HomeActivity">
+    tools:context=".ViewAPetActivity">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PetName_textfield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="16dp">
 
-    <RelativeLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PetName"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PetAge_textfield"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PetAge"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:ems="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PetCategory_textfield"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:hint="Category"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetName_textfield"
+        android:layout_marginTop="16dp">
 
-        <LinearLayout
-            android:id="@+id/welcomeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Hello,"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="24sp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Karlie Ho"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="24sp" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="We will help you to find your vet."
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@color/colorOnSurface"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="32dp"
-            android:layout_alignTop="@id/welcomeText">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/logoutButton"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/ic_vector_profile"
-                >
-
-            </androidx.appcompat.widget.AppCompatImageButton>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/logoutButton"
-                android:fontFamily="@font/roboto"
-                android:text="Log out"
-                android:layout_marginTop="2dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2">
-
-            </com.google.android.material.textview.MaterialTextView>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PetCategory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical"
-            android:layout_below="@id/welcomeText">
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:ems="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/appointmentButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_appointmentbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_gravity="center_horizontal">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PetBreed_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Breed"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetCategory_textfield"
+        android:layout_marginTop="16dp">
 
-            </androidx.appcompat.widget.AppCompatImageButton>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PetBreed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/manageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_bookbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/CommentforPet_textfield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Bio"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textColorHint="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetBreed_textfield"
+        android:layout_marginTop="16dp">
 
-            </androidx.appcompat.widget.AppCompatImageButton>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/CommentforPet"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="textPersonName"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/myPetsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/selector_petbtn"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal">
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="@color/primaryTextColor"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/UpdatePetInfo"/>
 
-            </androidx.appcompat.widget.AppCompatImageButton>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </RelativeLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/UpdatePetInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryDarkColor"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toRightOf="@id/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/DeletePet" />
+
+    <Button
+        android:id="@+id/DeletePet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryColor"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toRightOf="@id/UpdatePetInfo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

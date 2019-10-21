@@ -118,7 +118,7 @@
             android:id="@+id/HospitalOpenHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:text="Mon-Fri: 9am-5pm"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -137,7 +137,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto"
             android:text="Hospital address: #######"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
             app:layout_constraintTop_toBottomOf="@id/HospitalOpenHours" />
 
@@ -145,10 +145,11 @@
             android:id="@+id/HospitalPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="32dp"
             android:fontFamily="@font/roboto"
             android:text="Phone: +(04)43948339"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
             app:layout_constraintTop_toBottomOf="@id/HospitalAddress"/>
