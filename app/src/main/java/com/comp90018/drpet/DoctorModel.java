@@ -69,3 +69,4 @@ public class DoctorModel {
         this.hospitalId = hospitalId;
     }
 }
+

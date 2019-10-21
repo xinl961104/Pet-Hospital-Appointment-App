@@ -33,7 +33,8 @@ public class TimeSlotActivity extends AppCompatActivity {
     private boolean isSpinnerInitial = true;
     String selectedDate;
     String slotID;
-
+    String firstname;
+    String lastname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,28 @@ public class TimeSlotActivity extends AppCompatActivity {
         Date =  (TextView) findViewById(R.id.selecteddate);
         spinner1 = (Spinner) findViewById(R.id.SpinnerTime);
 
-        DoctorID.setText(doctorID);
+        Query DoctorName = FirebaseDatabase.getInstance().getReference("Doctor").orderByChild("doctorId").equalTo(doctorID);
+        DoctorName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                   for(DataSnapshot doctorSnapshot: dataSnapshot.getChildren()){
+                       DoctorModel doctor = doctorSnapshot.getValue(DoctorModel.class);
+                       firstname = doctor.getDoctorFirstName();
+                       lastname = doctor.getDoctorLastName();
+                       DoctorID.setText(firstname + " " + lastname);
+                   }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         Date.setText(date);
 
         Query queryTimeSlot = FirebaseDatabase.getInstance().getReference("TimeSlot").orderByChild("doctorID").equalTo(doctorID);
