@@ -1,23 +1,15 @@
 package com.comp90018.drpet;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,27 +30,11 @@ public class ChooseDoctorActivity extends AppCompatActivity {
     TextView hospitalOpenHours;
     TextView hospitalPhone;
     String id;
-    String phone;
 
     ListView listofDoctors;
 
 
     DatabaseReference databaseDoctors;
-
-    public void callHospital(View view) {
-        if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_GRANTED) {
-            Log.v("TAG", "Permission is granted");
-
-            Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:" + phone));
-            startActivity(callIntent);
-        } else {
-
-            Log.v("TAG", "Permission is revoked");
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-        }
-    }
 
 
     @Override
@@ -70,7 +46,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         id = incomingIntent.getStringExtra("HospitalId");
         String name = incomingIntent.getStringExtra("HospitalName");
         String address = incomingIntent.getStringExtra("HospitalAddress");
-        phone = incomingIntent.getStringExtra("HospitalPhone");
+        String phone = incomingIntent.getStringExtra("HospitalPhone");
         String background = incomingIntent.getStringExtra("HospitalBackground");
         String openhour = incomingIntent.getStringExtra("HospitalOpenHours");
 
@@ -85,9 +61,9 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         Query query = FirebaseDatabase.getInstance().getReference("Doctor").orderByChild("hospitalId").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange( DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists()) {
+                if(dataSnapshot.exists()) {
                     // doctorList.clear();
                     final List<DoctorModel> doctorList = new ArrayList<>();
                     for (DataSnapshot doctorSnapShot : dataSnapshot.getChildren()) {
@@ -101,7 +77,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Intent intent1 = new Intent(ChooseDoctorActivity.this, ChooseTimeSlotActivity.class);
-                            intent1.putExtra("doctorID", doctorList.get(i).getDoctorId());
+                            intent1.putExtra("doctorID",doctorList.get(i).getDoctorId());
                             startActivity(intent1);
                         }
                     });
@@ -118,7 +94,6 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         hospitalName.setText(name);
         hospitalOpenHours.setText(openhour);
         hospitalInfo.setText(background);
-        hospitalPhone.setText(phone + "   " + address);
+        hospitalPhone.setText(phone +"   "+ address);
     }
-
 }
