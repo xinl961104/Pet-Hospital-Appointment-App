@@ -57,7 +57,7 @@ public class HospitalActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hospital);
+        setContentView(R.layout.activity_hospital_del);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

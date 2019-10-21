@@ -26,8 +26,8 @@
 
     </androidx.constraintlayout.widget.Guideline>
 
-    <TextView
-        android:id="@+id/textView2"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Select your pet:"
@@ -37,37 +37,60 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="30dp"/>
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/PetList"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/textView"
 
         android:layout_marginTop="8dp"/>
 
-    <EditText
-        android:id="@+id/AddPetComment"
-        android:layout_width="wrap_content"
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintTop_toBottomOf="@id/PetList"
+        app:layout_constraintBottom_toTopOf="@id/message_textfield"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/message_textfield"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:ems="30"
-        android:inputType="textPersonName"
-        android:text="Message"
+        android:hint="Message"
+        android:textColorHint="@color/secondaryDarkColor"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintTop_toBottomOf="@id/PetList"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="60dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/AddPetComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/roboto"
+            android:inputType="text"
+            android:ems="30"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/BookAppointment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="30dp"
         android:text="Book"
+        android:background="@color/secondaryColor"
+        android:textColor="@color/secondaryTextColor"
+        android:paddingHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

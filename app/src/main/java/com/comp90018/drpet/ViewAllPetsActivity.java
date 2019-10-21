@@ -63,7 +63,7 @@ public class ViewAllPetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_all_pets);
+        setContentView(R.layout.fragment_view_all_pets);
 
         // Setting for Navigation Bar
         BottomNavigationView navView = findViewById(R.id.nav_view);
