@@ -53,18 +53,32 @@
             android:text="@string/_123456" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:id="@+id/isremember"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignLeft="@+id/tv_name"
-        android:layout_marginTop="8dp"
-        android:text="Remember Password"
-        android:textSize="12sp"
         android:layout_marginLeft="16dp"
-        android:fontFamily="@font/roboto"/> 
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp">
 
+        <CheckBox
+            android:id="@+id/isremember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="Remember Password"
+            android:textSize="12sp"
+            android:layout_alignParentLeft="true"/>
 
+        <TextView
+            android:id="@+id/resetpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget_password"
+            android:textColor="@color/secondaryDarkColor"
+            android:textSize="14sp"
+            android:layout_alignBaseline="@id/isremember"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -96,15 +110,5 @@
 
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/resetpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/forget_password"
-        android:textColor="#EC8094"
-        android:textSize="14sp" />
 
 </LinearLayout>
