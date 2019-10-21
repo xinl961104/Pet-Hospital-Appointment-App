@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
     TextView placeholderDoctor;
     TextView hospitalOpenHours;
     TextView hospitalPhone;
+    TextView HospitalAddress;
     String id;
     String phone;
 
@@ -60,11 +63,44 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         }
     }
 
+    // Click listener for choosing different navigation tabs
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                // To show Booking
+                case R.id.navigation_linear: {
+//                    Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+//                    startActivity(intent);
+                    return true;
+                }
+                // To show Management
+                case R.id.navigation_relative: {
+                    Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                // To show My Pet
+                case R.id.navigation_list: {
+                    Intent intent = new Intent(getApplicationContext(), ViewAllPetsActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_choose_doctor);
+
+        // Setting for Navigation Bar
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.setSelectedItemId(R.id.navigation_linear);
 
         Intent incomingIntent = getIntent();
         id = incomingIntent.getStringExtra("HospitalId");
@@ -79,6 +115,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         placeholderDoctor = (TextView) findViewById(R.id.PlaceholderDoctor);
         hospitalOpenHours = (TextView) findViewById(R.id.HospitalOpenHours);
         hospitalPhone = (TextView) findViewById(R.id.HospitalPhone);
+        HospitalAddress = findViewById(R.id.HospitalAddress);
         listofDoctors = (ListView) findViewById(R.id.ListofDoctors);
 
         //databaseDoctors = FirebaseDatabase.getInstance().getReference("Doctor");
@@ -118,7 +155,8 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         hospitalName.setText(name);
         hospitalOpenHours.setText(openhour);
         hospitalInfo.setText(background);
-        hospitalPhone.setText(phone + "   " + address);
+        HospitalAddress.setText("Hospital address: " + address);
+        hospitalPhone.setText("Phone: " + phone);
     }
 
 }
