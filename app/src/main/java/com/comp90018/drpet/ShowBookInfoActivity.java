@@ -64,7 +64,7 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         backToDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ShowBookInfoActivity.this, HospitalActivity.class);
+                Intent intent = new Intent(ShowBookInfoActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
