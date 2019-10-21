@@ -153,7 +153,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         });
 
         hospitalName.setText(name);
-        hospitalOpenHours.setText(openhour);
+        hospitalOpenHours.setText("Mon-Fri: " + openhour);
         hospitalInfo.setText(background);
         HospitalAddress.setText("Hospital address: " + address);
         hospitalPhone.setText("Phone: " + phone);
