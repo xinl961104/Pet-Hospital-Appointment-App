@@ -58,9 +58,11 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_alignLeft="@+id/tv_name"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="Remember Password"
-        android:textSize="11sp"/> 
+        android:textSize="12sp"
+        android:layout_marginLeft="16dp"
+        android:fontFamily="@font/roboto"/> 
 
 
 

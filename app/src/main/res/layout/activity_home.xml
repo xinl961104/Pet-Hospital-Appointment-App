@@ -91,8 +91,8 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/logoutButton"
-                android:layout_marginTop="40dp"
+                android:layout_below="@id/welcomeText"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageButton
