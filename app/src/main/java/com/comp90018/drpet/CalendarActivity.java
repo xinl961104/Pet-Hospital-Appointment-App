@@ -29,6 +29,7 @@ public class CalendarActivity extends AppCompatActivity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
 
             public void onSelectedDayChange(CalendarView calendarView, int i , int i1, int i2){
+                i1= i1 + 1;
                 date = i + "/" + i1 + "/" + i2;
                 Log.d(TAG, "onselecteddatachange: date: " +  date);
                 selecteddate.setText(date);
