@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewAllPetsActivity">
+
+<!--    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Your Pets"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <ListView
+        android:id="@+id/ListofPets"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <Button
+        android:id="@+id/Backtodash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Dashboard"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryDarkColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/AddnewPet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="30dp"/>
+
+    <Button
+        android:id="@+id/AddnewPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add new pet"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryDarkColor"
+        app:layout_constraintLeft_toRightOf="@id/Backtodash"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="30dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

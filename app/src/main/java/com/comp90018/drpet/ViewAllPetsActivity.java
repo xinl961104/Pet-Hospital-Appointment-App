@@ -32,7 +32,7 @@ public class ViewAllPetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_all_pets);
+        setContentView(R.layout.fragment_view_all_pets);
 
         Intent incomingIntent = getIntent();
         listofPets = (ListView) findViewById(R.id.ListofPets);

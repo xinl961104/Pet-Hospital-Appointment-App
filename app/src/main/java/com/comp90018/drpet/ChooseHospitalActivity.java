@@ -24,7 +24,7 @@ public class ChooseHospitalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_hospital);
+        setContentView(R.layout.activity_choose_hospital_del);
 
         selectBtn = (Button)findViewById(R.id.SelectHosptial);
 
