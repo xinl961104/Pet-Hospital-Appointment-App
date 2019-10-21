@@ -53,14 +53,23 @@
             android:text="@string/_123456" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/isremember"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@+id/tv_name"
+        android:layout_marginTop="10dp"
+        android:text="Remember Password"
+        android:textSize="11sp"/> 
 
-    <LinearLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:orientation="horizontal">
+        android:layout_marginRight="16dp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signin"
@@ -70,8 +79,7 @@
             android:text="@string/sign_in"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="#f7f1ec"
-            android:theme="@style/FormSecondaryButton"
-            android:layout_weight="3"/>
+            android:theme="@style/FormSecondaryButton" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup"
@@ -82,13 +90,13 @@
             android:text="@string/sign_up"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="#EC8094"
-            android:theme="@style/FormSigninButton"
-            android:layout_weight="1"/>
+            android:theme="@style/FormSigninButton" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
+        android:id="@+id/resetpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
