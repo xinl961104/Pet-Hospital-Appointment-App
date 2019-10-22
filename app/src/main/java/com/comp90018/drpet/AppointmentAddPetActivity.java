@@ -84,10 +84,10 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot timeSlotSnapShot : dataSnapshot.getChildren()){
-                         key1 = timeSlotSnapShot.getKey();
-                        TimeSlotModel timeSlot2 = timeSlotSnapShot.getValue(TimeSlotModel.class);
-                         if(timeSlot2.getDate().equals(date) && timeSlot2.getStartTime().equals(time) && timeSlot2.getSlotId()!=null){
 
+                        TimeSlotModel timeSlot2 = timeSlotSnapShot.getValue(TimeSlotModel.class);
+                         if(timeSlot2.getDate().equals(date) && timeSlot2.getStartTime().equals(time)){
+                             key1 = timeSlotSnapShot.getKey();
                           Log.e("Read successful", key1);
                           break;
                         }
