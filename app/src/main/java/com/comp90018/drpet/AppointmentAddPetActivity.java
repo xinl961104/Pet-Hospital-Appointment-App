@@ -47,6 +47,9 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
     public String content;
     public String slotID;
     private DatabaseReference mDatabase;
+    public String hospitalPhone;
+    public String hospitalAddress;
+
     String key1;
 
     @Override
@@ -118,6 +121,9 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                                 for(DataSnapshot HospitalSnapShot: dataSnapshot.getChildren()){
                                     HospitalModel Hospital = HospitalSnapShot.getValue(HospitalModel.class);
                                     hospitalName = Hospital.getHospitalName();
+                                    hospitalPhone = Hospital.getHospitalPhone();
+                                    hospitalAddress = Hospital.getHospitalAddress();
+
                                 }
                             }
 
@@ -222,7 +228,8 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                 appointment.putExtra("UserEmail", userEmail);
                 appointment.putExtra("UserName",userName);
                 appointment.putExtra("UserId", userID);
-
+                appointment.putExtra("HospitalPhone", hospitalPhone);
+                appointment.putExtra("HospitalAddress",hospitalAddress);
                 startActivity(appointment);
             }
         });
