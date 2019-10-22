@@ -17,6 +17,7 @@ public class CalendarActivity extends AppCompatActivity {
     String doctorID;
     String date;
     public Button buttonNext;
+    public Button buttonLast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,17 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
+        buttonLast = (Button)findViewById(R.id.buttonLast);
 
+        buttonLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent1 = new Intent(CalendarActivity.this, ChooseTimeSlotActivity.class);
+                intent1.putExtra("doctorID", doctorID);
+                startActivity(intent1);
+            }
+        });
 
         buttonNext = (Button)findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(new View.OnClickListener() {

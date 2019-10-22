@@ -48,17 +48,34 @@
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintRight_toRightOf="@id/Guideline2" />
 
+
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Next"
         android:background="@color/secondaryColor"
-        android:textColor="@color/secondaryTextColor"
         android:paddingHorizontal="16dp"
-        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        android:text="Next"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintRight_toRightOf="@id/Guideline2" />
+
+    <Button
+        android:id="@+id/buttonLast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@color/secondaryColor"
+        android:paddingHorizontal="16dp"
+        android:text="Back"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
