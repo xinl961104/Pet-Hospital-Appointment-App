@@ -6,29 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ChooseDoctorActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_begin="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/Guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintGuide_end="16dp">
+
+    </androidx.constraintlayout.widget.Guideline>
+
     <TextView
         android:id="@+id/HospitalName"
-        android:layout_width="251dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Name of Hospital"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="24sp"
+        android:fontFamily="@font/roboto"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        android:layout_marginTop="30dp"/>
 
     <ImageView
         android:id="@+id/HospitalImage"
-        android:layout_width="242dp"
-        android:layout_height="123dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135"
+        android:layout_width="240dp"
+        android:layout_height="160dp"
+        android:fontFamily="@font/roboto"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintRight_toRightOf="@id/Guideline2"
+        app:layout_constraintTop_toBottomOf="@id/HospitalName"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -36,58 +55,74 @@
         android:layout_width="299dp"
         android:layout_height="37dp"
         android:text="Hospital Infomation"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HospitalImage"
-        app:layout_constraintVertical_bias="0.051" />
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HospitalImage" />
 
     <TextView
         android:id="@+id/PlaceholderDoctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Doctors"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HospitalInfo"
-        app:layout_constraintVertical_bias="0.021" />
-
-    <TextView
-        android:id="@+id/HospitalOpenHours"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="Hospital Open Hours"
-        app:layout_constraintBottom_toTopOf="@+id/HospitalPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.405"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlaceholderDoctor"
-        app:layout_constraintVertical_bias="0.952" />
-
-    <TextView
-        android:id="@+id/HospitalPhone"
-        android:layout_width="300dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="16dp"
-        android:text="Hospital Phone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:fontFamily="@font/roboto"
+        android:textSize="16sp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/HospitalInfo"
+        />
 
     <ListView
         android:id="@+id/ListofDoctors"
         android:layout_width="320dp"
-        android:layout_height="226dp"
-        app:layout_constraintBottom_toTopOf="@+id/HospitalOpenHours"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlaceholderDoctor"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/PlaceholderDoctor"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hospital Open Hours"
+        android:fontFamily="@font/roboto"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/ListofDoctors"/>
+
+    <TextView
+        android:id="@+id/HospitalOpenHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hospital Open Hours"
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:layout_constraintTop_toBottomOf="@id/textView11"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        android:layout_marginTop="8dp"/>
+
+
+
+
+    <TextView
+        android:id="@+id/HospitalPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Hospital Phone"
+        android:fontFamily="@font/roboto_light_italic"
+        app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+        app:layout_constraintTop_toBottomOf="@id/HospitalOpenHours"
+        android:layout_marginTop="12dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,5 @@
     <color name="colorOnError">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#212121</color>
+    <color name="colorOnBackground">#FFFFFF</color>
 </resources>
