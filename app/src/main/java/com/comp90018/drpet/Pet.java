@@ -8,10 +8,12 @@ public class Pet {
     private String comment;
     private String ownerID;
     private String petName;
+    private String imageurl;
     public Pet(){
 
     }
-    public Pet(String petID, String category, String breed, String petAge, String comment, String ownerID, String petName) {
+
+    public Pet(String petID, String category, String breed, String petAge, String comment, String ownerID, String petName, String imageurl) {
         this.petID = petID;
         this.category = category;
         this.breed = breed;
@@ -19,6 +21,15 @@ public class Pet {
         this.comment = comment;
         this.ownerID = ownerID;
         this.petName = petName;
+        this.imageurl = imageurl;
+    }
+    
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public String getPetID() {
