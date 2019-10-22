@@ -59,7 +59,7 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         comment = (TextView)findViewById(R.id.Comment1);
         backToDashboard = (Button)findViewById(R.id.BackToDashboard);
 
-        hospital.setText(hospitalName + "\n Address: "+HospitalAddress + "\n Phone: HospitalPhone");
+        hospital.setText(hospitalName + "\n Address: "+HospitalAddress + "\n Phone: "+HospitalPhone);
         petInfo.setText(selectedPet);
         doctorName.setText(doctorFirstName + " "+ doctorLastName);
         dateTime.setText(date + " " + time);
