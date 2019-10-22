@@ -92,8 +92,10 @@ public class DetailsActivity extends AppCompatActivity {
 
         if (status.equals("finished")) {
             cancelButton.setEnabled(false);
+            cancelButton.setVisibility(View.GONE);
         } else if (status.equals("booked")) {
             cancelButton.setEnabled(true);
+            cancelButton.setVisibility(View.VISIBLE);
         }
     }
 
