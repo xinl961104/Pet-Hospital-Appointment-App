@@ -9,7 +9,17 @@ public class Pet {
     private String ownerID;
     private String petName;
 
+    private String imageurl;
     public Pet() {
+
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     public String getPetID() {

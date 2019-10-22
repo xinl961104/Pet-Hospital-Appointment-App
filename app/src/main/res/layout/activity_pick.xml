@@ -25,7 +25,13 @@
         android:id="@+id/txtquestion"
         android:layout_width="match_parent"
         android:layout_height="31dp"
-        android:text="TextView" /><![CDATA[
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/retrieve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrieve" /><![CDATA[
 
     //app:srcCompat="@drawable/animal" />
 ]]>
