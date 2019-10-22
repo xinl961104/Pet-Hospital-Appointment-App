@@ -217,6 +217,25 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
 
 
 
+        Query queryPetID = FirebaseDatabase.getInstance().getReference("Pet").orderByChild("ownerID").equalTo(userID);
+
+        queryPetID.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot petSlotSnapShot : dataSnapshot.getChildren()){
+
+                        Pet pet = petSlotSnapShot.getValue(Pet.class);
+                        petId = pet.getPetID();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         // the whole booking action is shown here
@@ -224,12 +243,15 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
+
                 // add a new row to the appointmentFinal database;
                 content = ownerComment.getText().toString(); //gets you the contents of edit text
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("AppointmentFinal");
                 String key =  myRef.push().getKey();
-                Appointment app = new Appointment(key, doctorID, userID, "123", selectedPet, content, time, date, userName, userEmail, "booked", doctorFirstName, doctorLastName,hospitalName);
+                Appointment app = new Appointment(key, doctorID, userID, petId, selectedPet, content, time, date, userName, userEmail, "booked", doctorFirstName, doctorLastName,hospitalName);
                 myRef.child(key).setValue(app);//this creates the reqs key-value pair
             //  myRef.child(key).child("title").setValue("Announcing COBOL");//this creates the reqs key-value pair
 
