@@ -2,6 +2,7 @@ package com.comp90018.drpet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +31,44 @@ public class ViewAllPetsActivity extends AppCompatActivity {
     Button addNewPet;
     Button backtodash;
 
+    // Click listener for choosing different navigation tabs
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                // To show Booking
+                case R.id.navigation_linear: {
+                    Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                // To show Management
+                case R.id.navigation_relative: {
+                    Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                // To show My Pet
+                case R.id.navigation_list: {
+//                    Intent intent = new Intent(getApplicationContext(), ViewAllPetsActivity.class);
+//                    startActivity(intent);
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_view_all_pets);
+
+        // Setting for Navigation Bar
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.setSelectedItemId(R.id.navigation_list);
 
         Intent incomingIntent = getIntent();
         listofPets = (ListView) findViewById(R.id.ListofPets);

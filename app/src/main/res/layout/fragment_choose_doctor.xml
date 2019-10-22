@@ -1,134 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
-    android:scrollbars="none"
-    tools:context=".ChooseDoctorActivity"
-    >
+    tools:context=".ChooseDoctorActivity">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/Guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintGuide_begin="16dp">
-
-        </androidx.constraintlayout.widget.Guideline>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/Guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintGuide_end="16dp">
-
-        </androidx.constraintlayout.widget.Guideline>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/HospitalName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto"
-            android:gravity="center_horizontal"
-            android:text="Name of Hospital"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="24sp"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintRight_toRightOf="@id/Guideline2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/HospitalImage"
-            android:layout_width="240dp"
-            android:layout_height="160dp"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintRight_toRightOf="@id/Guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/HospitalName"
-            app:srcCompat="@drawable/ic_launcher_background"
-            android:layout_marginTop="30dp"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/HospitalInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/roboto"
-            android:gravity="center_horizontal"
-            android:text="Hospital Information"
-            android:paddingHorizontal="40dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintRight_toRightOf="@id/Guideline2"
-            app:layout_constraintTop_toBottomOf="@id/HospitalImage" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/PlaceholderDoctor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Doctors"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/HospitalInfo" /> />
-
-        <!-- listview 为什么只会显示一条？-->
-        <ListView
-            android:id="@+id/ListofDoctors"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintTop_toBottomOf="@id/PlaceholderDoctor"
-            android:layout_marginTop="16dp"/>
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/OpenHours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Hospital Open Hours &amp; Address"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="@id/Guideline1"
-            app:layout_constraintTop_toBottomOf="@id/ListofDoctors">
 
-        </com.google.android.material.textview.MaterialTextView>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/Guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintGuide_begin="16dp">
 
-        <!-- 时间展示在这个下面 -->
+            </androidx.constraintlayout.widget.Guideline>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/Guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintGuide_end="16dp">
+
+            </androidx.constraintlayout.widget.Guideline>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/HospitalName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_horizontal"
+                android:text="Name of Hospital"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintRight_toRightOf="@id/Guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/HospitalImage"
+                android:layout_width="260dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintRight_toRightOf="@id/Guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/HospitalName"
+                app:srcCompat="@drawable/hospital_example" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/HospitalInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="40dp"
+                android:text="Hospital Information"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintRight_toRightOf="@id/Guideline2"
+                app:layout_constraintTop_toBottomOf="@id/HospitalImage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/PlaceholderDoctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Doctors"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/HospitalInfo" />
+            />
+
+            <!-- listview 为什么只会显示一条？-->
+            <ListView
+                android:id="@+id/ListofDoctors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintTop_toBottomOf="@id/PlaceholderDoctor" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/OpenHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Hospital Open Hours &amp; Address"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="@id/Guideline1"
+                app:layout_constraintTop_toBottomOf="@id/ListofDoctors">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <!-- 时间展示在这个下面 -->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/HospitalOpenHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:text="Mon-Fri: 9am-5pm"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
             app:layout_constraintTop_toBottomOf="@id/OpenHours">
 
-        </com.google.android.material.textview.MaterialTextView>
+            </com.google.android.material.textview.MaterialTextView>
 
 
-        <!-- 电话和地址分成两条 -->
+            <!-- 电话和地址分成两条 -->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/HospitalAddress"
@@ -137,7 +139,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto"
             android:text="Hospital address: #######"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
             app:layout_constraintTop_toBottomOf="@id/HospitalOpenHours" />
 
@@ -145,32 +147,43 @@
             android:id="@+id/HospitalPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="32dp"
             android:fontFamily="@font/roboto"
             android:text="Phone: +(04)43948339"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/Guideline1"
             app:layout_constraintTop_toBottomOf="@id/HospitalAddress"/>
 
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/HospitalPhone"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_marginBottom="32dp"-->
-<!--            android:background="@color/secondaryColor"-->
-<!--            android:fontFamily="@font/roboto"-->
-<!--            android:onClick="callHospital"-->
-<!--            android:paddingHorizontal="16dp"-->
-<!--            android:text="Call +(04)43948339"-->
-<!--            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
-<!--            android:textColor="@color/secondaryTextColor"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintLeft_toLeftOf="@id/Guideline1"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/HospitalAddress" />-->
+            <!--        <com.google.android.material.button.MaterialButton-->
+            <!--            android:id="@+id/HospitalPhone"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginTop="16dp"-->
+            <!--            android:layout_marginBottom="32dp"-->
+            <!--            android:background="@color/secondaryColor"-->
+            <!--            android:fontFamily="@font/roboto"-->
+            <!--            android:onClick="callHospital"-->
+            <!--            android:paddingHorizontal="16dp"-->
+            <!--            android:text="Call +(04)43948339"-->
+            <!--            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
+            <!--            android:textColor="@color/secondaryTextColor"-->
+            <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--            app:layout_constraintLeft_toLeftOf="@id/Guideline1"-->
+            <!--            app:layout_constraintTop_toBottomOf="@id/HospitalAddress" />-->
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>
