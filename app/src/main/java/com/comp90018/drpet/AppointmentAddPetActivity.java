@@ -47,6 +47,10 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
     public String content;
     public String slotID;
     private DatabaseReference mDatabase;
+    public String hospitalPhone;
+    public String hospitalAddress;
+    public String petId;
+
     String key1;
 
     @Override
@@ -70,8 +74,29 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
         if(user!=null){
             userEmail = user.getEmail();
             userID = user.getUid();
-            userName = user.getDisplayName();
+          //  userName = user.getDisplayName();
         }
+
+        Query queryOwnerName = FirebaseDatabase.getInstance().getReference("users").orderByChild("uid").equalTo(userID);
+
+        queryOwnerName.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot userSlotSnapShot : dataSnapshot.getChildren()){
+
+                        UserModel user = userSlotSnapShot.getValue(UserModel.class);
+                        userName = user.getName();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         Query queryTimeSlotID = FirebaseDatabase.getInstance().getReference("TimeSlot").orderByChild("doctorID").equalTo(doctorID);
@@ -81,10 +106,10 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     for(DataSnapshot timeSlotSnapShot : dataSnapshot.getChildren()){
-                         key1 = timeSlotSnapShot.getKey();
-                        TimeSlotModel timeSlot2 = timeSlotSnapShot.getValue(TimeSlotModel.class);
-                         if(timeSlot2.getDate().equals(date) && timeSlot2.getStartTime().equals(time) && timeSlot2.getSlotId()!=null){
 
+                        TimeSlotModel timeSlot2 = timeSlotSnapShot.getValue(TimeSlotModel.class);
+                         if(timeSlot2.getDate().equals(date) && timeSlot2.getStartTime().equals(time)){
+                             key1 = timeSlotSnapShot.getKey();
                           Log.e("Read successful", key1);
                           break;
                         }
@@ -118,6 +143,9 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                                 for(DataSnapshot HospitalSnapShot: dataSnapshot.getChildren()){
                                     HospitalModel Hospital = HospitalSnapShot.getValue(HospitalModel.class);
                                     hospitalName = Hospital.getHospitalName();
+                                    hospitalPhone = Hospital.getHospitalPhone();
+                                    hospitalAddress = Hospital.getHospitalAddress();
+
                                 }
                             }
 
@@ -150,6 +178,7 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                     for(DataSnapshot petSlotSnapShot : dataSnapshot.getChildren()){
                         Pet pet = petSlotSnapShot.getValue(Pet.class);
                         pets.add(pet.getPetName());
+
                     }
 
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, pets);
@@ -186,17 +215,43 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
             }
         });
 
+
+
+        Query queryPetID = FirebaseDatabase.getInstance().getReference("Pet").orderByChild("ownerID").equalTo(userID);
+
+        queryPetID.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot petSlotSnapShot : dataSnapshot.getChildren()){
+
+                        Pet pet = petSlotSnapShot.getValue(Pet.class);
+                        petId = pet.getPetID();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         // the whole booking action is shown here
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // add a new row to the appointmentFinal database;
 
+
+
+                // add a new row to the appointmentFinal database;
+                content = ownerComment.getText().toString(); //gets you the contents of edit text
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("AppointmentFinal");
                 String key =  myRef.push().getKey();
-                Appointment app = new Appointment(key, doctorID, userID, "123", selectedPet, content, time, date, "xiandong", userEmail, "booked", doctorFirstName, doctorLastName,hospitalName);
+                Appointment app = new Appointment(key, doctorID, userID, petId, selectedPet, content, time, date, userName, userEmail, "booked", doctorFirstName, doctorLastName,hospitalName);
                 myRef.child(key).setValue(app);//this creates the reqs key-value pair
             //  myRef.child(key).child("title").setValue("Announcing COBOL");//this creates the reqs key-value pair
 
@@ -209,7 +264,7 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
 
 
                 Intent appointment = new Intent(AppointmentAddPetActivity.this, ShowBookInfoActivity.class);
-                content = ownerComment.getText().toString(); //gets you the contents of edit text
+
                 appointment.putExtra("commentFromOwner", content);
                 appointment.putExtra("dateForAppointment", date);
                 appointment.putExtra("DoctorFirstName",doctorFirstName );
@@ -222,7 +277,8 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
                 appointment.putExtra("UserEmail", userEmail);
                 appointment.putExtra("UserName",userName);
                 appointment.putExtra("UserId", userID);
-
+                appointment.putExtra("HospitalPhone", hospitalPhone);
+                appointment.putExtra("HospitalAddress",hospitalAddress);
                 startActivity(appointment);
             }
         });

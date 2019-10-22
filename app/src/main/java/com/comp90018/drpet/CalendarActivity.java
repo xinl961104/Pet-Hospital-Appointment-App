@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,10 +54,15 @@ public class CalendarActivity extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CalendarActivity.this, TimeSlotActivity.class);
-                intent.putExtra("DoctorIDForPet", doctorID);
-                intent.putExtra("DateForPet", date);
-                startActivity(intent);
+                if(date != null) {
+                    Intent intent = new Intent(CalendarActivity.this, TimeSlotActivity.class);
+                    intent.putExtra("DoctorIDForPet", doctorID);
+                    intent.putExtra("DateForPet", date);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(CalendarActivity.this, "Please choose a date firstly",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
