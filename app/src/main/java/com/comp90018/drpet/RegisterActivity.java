@@ -142,10 +142,10 @@ public class RegisterActivity extends AppCompatActivity {
 //                "We take pride in offering our clients and patients compassionate, holistic care.",
 //                "7:00-19:00","(03)94327207",
 //                "80 Taggerty Cres, Meadow Heights VIC 3048");
-        hospital = setHospital(uniqueID,"Pawssum",
-                "Pawssum provides pet care by trusted, local vets in the comfort of your home.",
-                "8:00-22:00","1300343580",
-                "Melbourne, VIC (inc. Bendigo)");
+//        hospital = setHospital(uniqueID,"Pawssum",
+//                "Pawssum provides pet care by trusted, local vets in the comfort of your home.",
+//                "8:00-22:00","1300343580",
+//                "Melbourne, VIC (inc. Bendigo)");
 
 
 
@@ -162,10 +162,26 @@ public class RegisterActivity extends AppCompatActivity {
 //                "Stanley","Peter","A chiropractor, or doctor of chiropractic medicine, specializes in diagnosing and treating disorders of " +
 //                        "the musculoskeletal and nervous system, especially in the spine.","(03)96399600");
 
+//        doctor = createDoctor("8db84be713cf4c8aacad988bb7d4ef45","30e84d089d37408d83f526d3748d9487",
+//                "Brighton","Alan","3 years of experience practicing as a primary care doctor.","(03)95244570");
+//        doctor = createDoctor("f0baff3dc16b4b1b88276a29276311e3","5d83b541de5240889dd56b390d94fafe",
+//                "Briar","Caram","Fantastic counseling and listening skills.","(03)93628218");
+//        doctor = createDoctor("71c6c5a48607488689ae0eefaf63710c","9b1490fe595846578555478c575af0c8",
+//                "Devon","Carl","Current state medical license and Federal DEA license.","(03)91823740");
+//        doctor = createDoctor(uniqueID,"b7bf8e9270174e928b350c6ed0e08fc7",
+//                "Gardenia","Elwood","Compassionate nature with the ability to make patients feel at ease.","(03)91234567");
+
+
+
         //slot = setSlot(uniqueID,"0ca1dac7ebda425290d9e8f503a681d7","8:00","0","1","2019-08-12");
         //slot = setSlot(uniqueID,"16d06bc1403f47d399b2c1ed61a2c135","16:00","0","1","2019-09-13");
         //slot = setSlot(uniqueID,"a22d185378934fc587ff174e345eeb71","10:00","0","1","2019-08-12");
         //slot = setSlot(uniqueID,"d4b1b0578e204a92b8be35bbe56e31cf","11:00","0","1","2019-06-14");
+
+       // slot = setSlot(uniqueID,"0ca1dac7ebda425290d9e8f503a681d7","8:00","0","1","2019-11-17");
+
+
+
         //pet = setPet(uniqueID,"dog","sheepdog","5","he doesn't eat anything",
           //      "vzD5yGDcH8XmXITdow7iReBAhAq1","dobby");
 //        pet = setPet(uniqueID,"cat","ragdoll","2","Inbreeding",
@@ -265,15 +281,20 @@ public class RegisterActivity extends AppCompatActivity {
 //                    }
 //                });
 
+                //slot = setSlot(uniqueID,"0ca1dac7ebda425290d9e8f503a681d7","8:00","0","1","2019-11-17");
 
+                for (int i=0; i < 5;i++){
+                    String clo = String.valueOf(8+i);
+                    String start = clo+":00";
+                    slot = setSlot(UUID.randomUUID().toString().replace("-",""),"0ca1dac7ebda425290d9e8f503a681d7",start,"0","1","2019-11-18");//11-17
+                    reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
+                }
 
-
-                reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
+                //reff.child("Hospital").child(hospital.getHospitalId()).setValue(hospital);
                 //reff.child("Doctor").child(doctor.getDoctorId()).setValue(doctor);
-                //reff.child("TimeSlot").child(slot.getSlotID()).setValue(slot);
+                //reff.child("TimeSlotNew").child(slot.getSlotID()).setValue(slot);
                 //reff.child("Pet").child(pet.getPetID()).setValue(pet);
                 //reff.child("AppointmentNew").child(appointment.getUserID()).child(appointment.getAppointmentID()).setValue(appointment);
-                //reff.child("Appointmentinfo").child(appointment.getAppointmentID()).setValue(appointment);
                 //reff.child("AppointmentFinal").child(appointment.getAppointmentID()).setValue(appointment);
 
                 Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
