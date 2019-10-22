@@ -57,8 +57,8 @@ public class AppointmentRetriever {
                             appointment.get(i).setHospitalName(ds.child("hospitalName").getValue(String.class));
                             System.out.println(i);
                             System.out.println(appointment.get(i));
+                            i++;
                         }
-                        i++;
                     }
 
                 }
