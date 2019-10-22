@@ -20,6 +20,7 @@ public class PetList extends ArrayAdapter<Pet> {
     private Activity context;
     private List<Pet> petList;
 
+
     public PetList(Activity context, List<Pet> petList) {
         super(context, R.layout.petlist, petList);
         this.context = context;
@@ -34,10 +35,13 @@ public class PetList extends ArrayAdapter<Pet> {
         View listViewItem = inflater.inflate(R.layout.petlist, null,true);
 
         TextView textViewDoctorName = (TextView) listViewItem.findViewById(R.id.PetList);
+        TextView showPetBreed = (TextView)listViewItem.findViewById(R.id.textView8);
 
         Pet pet = petList.get(position);
 
-        textViewDoctorName.setText(pet.getBreed()+" | "+ pet.getPetAge());
+        textViewDoctorName.setText(pet.getPetName());
+        showPetBreed.setText(pet.getBreed() + "  |  " + pet.getPetAge());
+
 
         return listViewItem;
 
