@@ -37,7 +37,7 @@ public class PetList extends ArrayAdapter<Pet> {
 
         Pet pet = petList.get(position);
 
-        textViewDoctorName.setText(pet.getPetName()+" "+pet.getPetAge()+" "+pet.getBreed()+ " "+ pet.getCategory()+ " "+ pet.getComment());
+        textViewDoctorName.setText(pet.getBreed()+" | "+ pet.getPetAge());
 
         return listViewItem;
 
