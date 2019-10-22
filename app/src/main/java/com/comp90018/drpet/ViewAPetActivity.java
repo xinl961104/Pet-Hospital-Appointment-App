@@ -129,15 +129,15 @@ public class ViewAPetActivity extends AppCompatActivity {
 
     private void showPic() {
 
-        DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("test");
-        System.out.println("click");
+        DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference("Pet");
+
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     System.out.println("loop");
                     Pet pet2 = postSnapshot.getValue(Pet.class);
-                    System.out.println(pet2.getOwnerID());
+                    System.out.println(pet2.getPetID());
                     System.out.println(pet2.getImageurl());
                     if (pet2.getPetID().equals(petID)) {
                         System.out.println("1");
