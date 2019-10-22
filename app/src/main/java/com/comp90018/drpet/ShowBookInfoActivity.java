@@ -21,6 +21,8 @@ public class ShowBookInfoActivity extends AppCompatActivity {
     public String userEmail;
     public String userName;
     public String userID;
+    public String HospitalAddress;
+    public String HospitalPhone;
 
     TextView hospital;
     TextView doctorName;
@@ -47,6 +49,8 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         userEmail = incomingIntent.getStringExtra("UserEmail");
         userName = incomingIntent.getStringExtra("UserName");
         userID = incomingIntent.getStringExtra("UserId");
+        HospitalAddress = incomingIntent.getStringExtra("HospitalAddress");
+        HospitalPhone = incomingIntent.getStringExtra("HospitalPhone");
 
         hospital = (TextView)findViewById(R.id.HospitalInfo);
         doctorName = (TextView)findViewById(R.id.DoctorName1);
@@ -55,9 +59,9 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         comment = (TextView)findViewById(R.id.Comment1);
         backToDashboard = (Button)findViewById(R.id.BackToDashboard);
 
-        hospital.setText(hospitalName);
+        hospital.setText(hospitalName + "\n Address: "+HospitalAddress + "\n Phone: HospitalPhone");
         petInfo.setText(selectedPet);
-        doctorName.setText(hospitalName);
+        doctorName.setText(doctorFirstName + " "+ doctorLastName);
         dateTime.setText(date + " " + time);
         petInfo.setText(selectedPet);
         comment.setText(ownerComment);
