@@ -41,14 +41,14 @@
 
     <ImageView
         android:id="@+id/HospitalImage"
-        android:layout_width="240dp"
+        android:layout_width="260dp"
         android:layout_height="160dp"
-        android:fontFamily="@font/roboto"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintRight_toRightOf="@id/Guideline2"
         app:layout_constraintTop_toBottomOf="@id/HospitalName"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/hospital_example" />
 
     <TextView
         android:id="@+id/HospitalInfo"
@@ -123,6 +123,14 @@
         app:layout_constraintTop_toBottomOf="@id/HospitalOpenHours"
         android:layout_marginTop="12dp"/>
 
-
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

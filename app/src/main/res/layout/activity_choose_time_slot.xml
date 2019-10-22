@@ -30,16 +30,15 @@
     </androidx.constraintlayout.widget.Guideline>
 
 
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintLeft_toLeftOf="@id/Guideline1"
         app:layout_constraintRight_toRightOf="@id/Guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round"
-        android:layout_marginTop="32dp"/>
+        app:srcCompat="@drawable/avatar_example_1" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/TheDoctorName"

@@ -1,16 +1,26 @@
 package com.comp90018.drpet;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,18 +39,68 @@ public class ChooseDoctorActivity extends AppCompatActivity {
     TextView placeholderDoctor;
     TextView hospitalOpenHours;
     TextView hospitalPhone;
+    TextView HospitalAddress;
     String id;
+    String phone;
 
     ListView listofDoctors;
 
 
     DatabaseReference databaseDoctors;
 
+    public void callHospital(View view) {
+        if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED) {
+            Log.v("TAG", "Permission is granted");
+
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse("tel:" + phone));
+            startActivity(callIntent);
+        } else {
+
+            Log.v("TAG", "Permission is revoked");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+        }
+    }
+
+    // Click listener for choosing different navigation tabs
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                // To show Booking
+                case R.id.navigation_linear: {
+//                    Intent intent = new Intent(getApplicationContext(), HospitalActivity.class);
+//                    startActivity(intent);
+                    return true;
+                }
+                // To show Management
+                case R.id.navigation_relative: {
+                    Intent intent = new Intent(getApplicationContext(), ManagementActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                // To show My Pet
+                case R.id.navigation_list: {
+                    Intent intent = new Intent(getApplicationContext(), ViewAllPetsActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_choose_doctor);
+
+        // Setting for Navigation Bar
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navView.setSelectedItemId(R.id.navigation_linear);
 
         Intent incomingIntent = getIntent();
         id = incomingIntent.getStringExtra("HospitalId");
