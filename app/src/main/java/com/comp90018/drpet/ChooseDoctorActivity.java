@@ -106,7 +106,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         id = incomingIntent.getStringExtra("HospitalId");
         String name = incomingIntent.getStringExtra("HospitalName");
         String address = incomingIntent.getStringExtra("HospitalAddress");
-        phone = incomingIntent.getStringExtra("HospitalPhone");
+        String phone = incomingIntent.getStringExtra("HospitalPhone");
         String background = incomingIntent.getStringExtra("HospitalBackground");
         String openhour = incomingIntent.getStringExtra("HospitalOpenHours");
 
@@ -115,16 +115,15 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         placeholderDoctor = (TextView) findViewById(R.id.PlaceholderDoctor);
         hospitalOpenHours = (TextView) findViewById(R.id.HospitalOpenHours);
         hospitalPhone = (TextView) findViewById(R.id.HospitalPhone);
-        HospitalAddress = findViewById(R.id.HospitalAddress);
         listofDoctors = (ListView) findViewById(R.id.ListofDoctors);
 
         //databaseDoctors = FirebaseDatabase.getInstance().getReference("Doctor");
         Query query = FirebaseDatabase.getInstance().getReference("Doctor").orderByChild("hospitalId").equalTo(id);
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange( DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists()) {
+                if(dataSnapshot.exists()) {
                     // doctorList.clear();
                     final List<DoctorModel> doctorList = new ArrayList<>();
                     for (DataSnapshot doctorSnapShot : dataSnapshot.getChildren()) {
@@ -138,7 +137,7 @@ public class ChooseDoctorActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Intent intent1 = new Intent(ChooseDoctorActivity.this, ChooseTimeSlotActivity.class);
-                            intent1.putExtra("doctorID", doctorList.get(i).getDoctorId());
+                            intent1.putExtra("doctorID",doctorList.get(i).getDoctorId());
                             startActivity(intent1);
                         }
                     });
@@ -153,10 +152,8 @@ public class ChooseDoctorActivity extends AppCompatActivity {
         });
 
         hospitalName.setText(name);
-        hospitalOpenHours.setText("Mon-Fri: " + openhour);
+        hospitalOpenHours.setText(openhour);
         hospitalInfo.setText(background);
-        HospitalAddress.setText("Hospital address: " + address);
-        hospitalPhone.setText("Phone: " + phone);
+        hospitalPhone.setText(phone +"   "+ address);
     }
-
 }
