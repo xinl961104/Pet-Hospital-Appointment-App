@@ -135,16 +135,16 @@ public class ViewAPetActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    System.out.println("loop");
+
                     Pet pet2 = postSnapshot.getValue(Pet.class);
-                    System.out.println(pet2.getPetID());
-                    System.out.println(pet2.getImageurl());
+//                    System.out.println(pet2.getPetID());
+//                    System.out.println(pet2.getImageurl());
                     if (pet2.getPetID().equals(petID)) {
-                        System.out.println("1");
+                        //System.out.println("1");
                         Glide.with(ViewAPetActivity.this)
                                 .load(pet2.getImageurl()) // the uri you got from Firebase
                                 .into(imageView);
-                        System.out.println("2");
+                        //System.out.println("2");
 
                     }
 
