@@ -55,6 +55,14 @@ public class ShowBookInfoActivity extends AppCompatActivity {
         comment = (TextView)findViewById(R.id.Comment1);
         backToDashboard = (Button)findViewById(R.id.BackToDashboard);
 
+        hospital.setText(hospitalName);
+        petInfo.setText(selectedPet);
+        doctorName.setText(hospitalName);
+        dateTime.setText(date + " " + time);
+        petInfo.setText(selectedPet);
+        comment.setText(ownerComment);
+
+
        // hospital.setText(hospitalId);
       //  doctorName.setText(doctorFirstName);
       //  dateTime.setText(date);
@@ -68,7 +76,6 @@ public class ShowBookInfoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        hospital.setText(hospitalName + " "+doctorFirstName+ " "+doctorLastName + " "+date+ " "+time + " "+ownerComment + " "+userEmail );
-        petInfo.setText(selectedPet);
+
     }
 }

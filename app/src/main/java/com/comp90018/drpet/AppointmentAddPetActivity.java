@@ -64,7 +64,6 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
         spinner2 = (Spinner) findViewById(R.id.PetList);
         book = (Button) findViewById(R.id.BookAppointment);
         ownerComment = (EditText) findViewById(R.id.AddPetComment);
-        content = ownerComment.getText().toString(); //gets you the contents of edit text
 
         // query to correct user for appointment
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -210,7 +209,7 @@ public class AppointmentAddPetActivity extends AppCompatActivity {
 
 
                 Intent appointment = new Intent(AppointmentAddPetActivity.this, ShowBookInfoActivity.class);
-
+                content = ownerComment.getText().toString(); //gets you the contents of edit text
                 appointment.putExtra("commentFromOwner", content);
                 appointment.putExtra("dateForAppointment", date);
                 appointment.putExtra("DoctorFirstName",doctorFirstName );
