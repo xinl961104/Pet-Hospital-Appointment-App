@@ -1,19 +1,23 @@
 package com.comp90018.drpet;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +27,11 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,6 +52,12 @@ public class AddPetActivity extends AppCompatActivity {
     String petcategory;
     String petbreed;
     String commentforpet;
+
+    StorageReference fileReference;
+    Uri mImageUri;
+    StorageReference mStorageRef;
+    StorageTask mUploadTask;
+    DatabaseReference myRef;
 
     String userEmail;
     String userID;
@@ -69,6 +84,8 @@ public class AddPetActivity extends AppCompatActivity {
         TakePhotoes = (Button) findViewById(R.id.takePhotoes);
         AddPet = (Button) findViewById(R.id.addPet1);
 
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             userEmail = user.getEmail();
@@ -89,19 +106,20 @@ public class AddPetActivity extends AppCompatActivity {
         AddPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                petname = PetName.getText().toString();
-                petage = PetAge.getText().toString();
-                petcategory = PetCategory.getText().toString();
-                petbreed = PetBreed.getText().toString();
-                commentforpet = CommentforPet.getText().toString();
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("Pet");
-                String k = myRef.push().getKey();
-                Pet newPet = new Pet(k, petcategory, petbreed, petage, commentforpet, userID, petname);
-                myRef.child(k).setValue(newPet);//this creates the reqs key-value pair
-                Toast.makeText(AddPetActivity.this, "Add Success", Toast.LENGTH_SHORT).show();
+            uploadFile();
+//                petname = PetName.getText().toString();
+//                petage = PetAge.getText().toString();
+//                petcategory = PetCategory.getText().toString();
+//                petbreed = PetBreed.getText().toString();
+//                commentforpet = CommentforPet.getText().toString();
+//
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                myRef = database.getReference("Pet");
+//                String k = myRef.push().getKey();
+//
+//                Pet newPet = new Pet(k, petcategory, petbreed, petage, commentforpet, userID, petname);
+//                myRef.child(k).setValue(newPet);//this creates the reqs key-value pair
+//                Toast.makeText(AddPetActivity.this, "Add Success", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,6 +140,62 @@ public class AddPetActivity extends AppCompatActivity {
 
 
     }
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+    private void uploadFile() {
+        if (mImageUri != null) {
+            fileReference = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUri));
+
+            mUploadTask = fileReference.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    System.out.println(uri);
+
+                                    petname = PetName.getText().toString();
+                                    petage = PetAge.getText().toString();
+                                    petcategory = PetCategory.getText().toString();
+                                    petbreed = PetBreed.getText().toString();
+                                    commentforpet = CommentforPet.getText().toString();
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    myRef = database.getReference("Pet");
+                                    String k = myRef.push().getKey();
+
+                                    Pet newPet = new Pet(k, petcategory, petbreed, petage, commentforpet, userID, petname, uri.toString());
+
+                                    myRef.child(k).setValue(newPet);
+
+                                    Toast.makeText(AddPetActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddPetActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            //mProgressBar.setProgress((int) progress);
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void takePicture(View view) {
         Intent imageTakeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -141,6 +215,7 @@ public class AddPetActivity extends AppCompatActivity {
         }
         if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
             Uri uri = data.getData();
+            mImageUri = uri;
             Bitmap bitmap = null;
             try {
 
